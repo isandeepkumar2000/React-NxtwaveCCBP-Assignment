@@ -32,25 +32,25 @@ export const GridBoxItems = styled.div`
 
 export const GridBoxItemsBlue = styled.div`
   background-color: #0b69ff;
-  border-radius: 10px;
-  padding: 10px 25px;
+  border-radius: 4px;
+  padding: 6px 25px;
 `;
 
 export const GridBoxItemsGreen = styled.div`
   background-color: #2dca73;
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 10px 25px;
 `;
 
 export const GridBoxItemsYellow = styled.div`
   background-color: #ffb800;
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 10px 25px;
 `;
 
 export const GridBoxItemsRed = styled.div`
   background-color: #ff0b37;
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 10px 25px;
 `;
 
@@ -58,17 +58,17 @@ export const NotificationHeading = styled.span`
   font-size: 40px;
   letter-spacing: normal;
   line-height: 60px;
-
   font-weight: 700;
 `;
 
 export const NotificationHead = styled.span`
-  font-size: 15px;
+  font-size: 13px;
   color: white;
+  font-family: Roboto;
   font-weight: 700;
-  margin-left: 20px;
+  margin-left: 16px;
 `;
 export const NotificationImg = styled.img`
-  width: 20px;
+  width: 17px;
   margin-top: 20px;
 `;
