@@ -1,10 +1,11 @@
 import React from "react";
-import NotificationApp from "./Components/NotificationCCBP";
+
+import TechnologyCard from "./Components/TechnologyCardHooks";
 
 function App() {
   return (
     <div className="App">
-      <NotificationApp />
+      <TechnologyCard />
     </div>
   );
 }
