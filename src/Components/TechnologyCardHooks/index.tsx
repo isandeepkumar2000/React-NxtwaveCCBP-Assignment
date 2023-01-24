@@ -7,7 +7,9 @@ import {
   TechnologyGridGreen,
   TechnologyGridRed,
   TechnologyGridYellow,
+  TechnologyHeading,
   TechnologyItems,
+  TechnologyPara,
 } from "./stylecomponents";
 
 export type TechnologyCardType = {
@@ -20,17 +22,17 @@ const TechnologyCard = () => {
   return (
     <TechnologyContainer>
       <TechnologyItems>
-        <div className="Heading">
+        <TechnologyHeading className="Heading">
           <span>Learn 4.0 Technologies</span>
-        </div>
-        <div className="Paragraph">
+        </TechnologyHeading>
+        <TechnologyPara className="Paragraph">
           <span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
             vitae ducimus suscipit velit adipisci sunt doloremque ad repudiandae
             totam! Illo sunt optio sed quae! Nesciunt nemo at voluptates aperiam
             tempore?
           </span>
-        </div>
+        </TechnologyPara>
         <TechnologyGrid>
           <TechnologyGridRed className="Data">
             <TechnologyCardProp

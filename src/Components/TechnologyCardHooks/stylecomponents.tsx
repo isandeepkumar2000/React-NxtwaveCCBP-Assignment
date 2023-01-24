@@ -6,7 +6,10 @@ export const TechnologyGrid = styled.div`
   justify-content: center;
   grid-template-columns: auto auto;
   gap: 30px;
-  padding: 20px 60px;
+  padding: 20px 30px;
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+  }
 `;
 
 export const TechnologyGridRed = styled.div`
@@ -46,16 +49,51 @@ export const TechnologyContainer = styled.div`
 
 export const TechnologyItems = styled.div`
   width: auto;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 92vh;
+  padding: 10px 15px;
+  /* height: 92vh; */
+
   background-color: #f4faff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 `;
 
-export const TechnologyCardHeading = styled.span`
+export const TechnologyHeading = styled.span`
+  font-size: 50px;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+`;
+export const TechnologyPara = styled.div`
+  font-size: 18px;
+  margin-top: 40px;
+  padding: 15px 35px;
+  color: gray;
+  line-height: 20px;
+  font-family: Roboto, sans-serif;
+`;
+
+export const TechnologyInnerBox = styled.div`
+  padding: 10px 12px;
+`;
+
+export const TechnologyInnerPara = styled.div`
+  font-size: 15px;
+  color: gray;
+  padding: 10px;
+  font-family: Roboto, sans-serif;
+`;
+export const TechnologyInnerHeading = styled.div`
+  font-size: 22px;
+  font-weight: 700;
+  padding: 10px;
+  font-family: Roboto, sans-serif;
+`;
+
+export const TechnologyInnerIm = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;

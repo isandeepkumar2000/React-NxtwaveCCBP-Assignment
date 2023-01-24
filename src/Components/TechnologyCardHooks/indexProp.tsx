@@ -1,6 +1,12 @@
 import React from "react";
 import { TechnologyCardType } from "./index";
-import { TechnologyGrid } from "./stylecomponents";
+import {
+  TechnologyGrid,
+  TechnologyInnerBox,
+  TechnologyInnerHeading,
+  TechnologyInnerIm,
+  TechnologyInnerPara,
+} from "./stylecomponents";
 
 interface TechnologyCardTypeProp {
   VariableTechnology: TechnologyCardType;
@@ -15,17 +21,17 @@ const TechnologyCardProp: React.FC<TechnologyCardTypeProp> = (props) => {
   } = VariableTechnology;
   return (
     <div>
-      <div>
-        <div>
+      <TechnologyInnerBox>
+        <TechnologyInnerHeading>
           <span>{TechnologyCardTextHeading}</span>
-        </div>
-        <div>
+        </TechnologyInnerHeading>
+        <TechnologyInnerPara>
           <span>{TechnologyCardPara}</span>
-        </div>
-        <div>
+        </TechnologyInnerPara>
+        <TechnologyInnerIm>
           <img src={TechnologyCardImgUrl} alt={TechnologyCardTextHeading} />
-        </div>
-      </div>
+        </TechnologyInnerIm>
+      </TechnologyInnerBox>
     </div>
   );
 };
