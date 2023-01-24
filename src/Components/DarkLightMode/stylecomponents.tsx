@@ -21,7 +21,9 @@ export const DarkModeContainer = styled.div`
 export const DarkContainer = styled.div`
   padding: 40px 40px;
 `;
-
+export const DarkBox = styled.div`
+  padding: 40px 40px;
+`;
 export const Button = styled.button`
   padding: 10px 15px;
   margin-top: 20px;

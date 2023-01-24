@@ -1,10 +1,11 @@
 import React from "react";
-import DarkLightMode from "./Components/DarkLightMode";
+
+import LoginApp from "./Components/LoginApp";
 
 function App() {
   return (
     <div className="App">
-      <DarkLightMode />
+      <LoginApp />
     </div>
   );
 }
