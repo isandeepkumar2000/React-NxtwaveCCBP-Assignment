@@ -1,11 +1,10 @@
 import React from "react";
-
-import TechnologyCard from "./Components/TechnologyCardHooks";
+import DarkLightMode from "./Components/DarkLightMode";
 
 function App() {
   return (
     <div className="App">
-      <TechnologyCard />
+      <DarkLightMode />
     </div>
   );
 }
