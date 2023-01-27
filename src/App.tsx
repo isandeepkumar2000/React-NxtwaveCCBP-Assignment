@@ -1,11 +1,12 @@
 import React from "react";
+import BrowserHistory from "./Components/BrowserHistory";
 
-import LoginApp from "./Components/LoginApp";
+// import LoginApp from "./Components/LoginApp";
 
 function App() {
   return (
     <div className="App">
-      <LoginApp />
+      <BrowserHistory />
     </div>
   );
 }
