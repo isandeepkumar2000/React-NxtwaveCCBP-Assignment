@@ -140,7 +140,7 @@ const BrowserHistory = () => {
             />
           ))}
         </div>
-        {FilterSearchInput.length === 0 ? "Ohh No there is No data" : ""}
+        {FilterSearchInput.length === 0 ? "ohh No there is No data" : ""}
       </BrowserItems>
     </BrowserContainer>
   );

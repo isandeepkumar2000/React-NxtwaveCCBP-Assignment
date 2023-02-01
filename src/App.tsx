@@ -1,14 +1,7 @@
 import React from "react";
-import BrowserHistory from "./Components/BrowserHistory";
 
-// import LoginApp from "./Components/LoginApp";
-
-function App() {
-  return (
-    <div className="App">
-      <BrowserHistory />
-    </div>
-  );
-}
+const App = () => {
+  return <div className="App"></div>;
+};
 
 export default App;
