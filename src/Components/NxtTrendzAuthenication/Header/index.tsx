@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , withRouter} from "react-router-dom";
 import {
   HeaderContainerNxt,
   HeaderImage,
@@ -51,4 +51,4 @@ const HeaderPage = () => {
   );
 };
 
-export default HeaderPage;
+export default HeaderPage(withRouter);
