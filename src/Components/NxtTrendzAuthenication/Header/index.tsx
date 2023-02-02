@@ -51,4 +51,4 @@ const HeaderPage = () => {
   );
 };
 
-export default HeaderPage(withRouter);
+export default withRouter(HeaderPage);
