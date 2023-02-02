@@ -30,9 +30,9 @@ const LoginForm = () => {
     Cookies.set("jwt_token", jwtToken, { expires: 30 });
     history.replace("/");
   };
-  const failureMsg = (errorMsg: string) => ({
+  const failureMsg = (errorMsg: any) => ({
     setErrorMsg,
-    setShowSubmitError,
+    setShowSubmitError: true,
   });
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
