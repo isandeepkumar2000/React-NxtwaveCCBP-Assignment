@@ -1,32 +1,39 @@
 import styled from "styled-components";
 
 const sliderSettings = {
-  infinite: false,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  initialSlide: 0,
+  className: "center",
+  infinite: true,
+  centerPadding: "60px",
+  slidesToShow: 5,
+  swipeToSlide: true,
+
   responsive: [
     {
       breakpoint: 1114,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 5,
         slidesToScroll: 1,
         infinite: true,
+
+        dot: true,
       },
     },
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 4,
         slidesToScroll: 1,
         infinite: true,
+        dot: true,
       },
     },
     {
       breakpoint: 480,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 3,
         slidesToScroll: 1,
+
+        dot: true,
       },
     },
   ],

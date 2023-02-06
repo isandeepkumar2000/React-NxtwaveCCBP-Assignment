@@ -12,32 +12,32 @@ const MovieItem: React.FC<MovieItemsPp> = (props) => {
   const { data } = props;
   const { id, thumbnailUrl, videoUrl } = data;
   return (
-    <div>
-      <Popup
-        trigger={
-          <div className="">
-            <img src={thumbnailUrl} alt={id} />
-          </div>
-        }
-        className="popup-content"
-        modal
-        nested
-      >
-        {(close) => (
+    <Popup
+      trigger={
+        <div className="prime-video-movie-image">
+          <img src={thumbnailUrl} alt={id} />
+        </div>
+      }
+      modal
+      nested
+    >
+      <>
+        {/* {(close: (event: any) => void) => (
           <div className="modal">
             <button className="close" onClick={close}>
-              close
-            </button>
-            <Player
-              url={videoUrl}
-              controls
-              className="prime-video-player"
-              width="93%"
-            />
+              &times;
+            </button> */}
+
+        <div className="content">
+          <IoMdClose className="prime-close-popup" />
+          <div>
+            <Player url={videoUrl} controls width="93%" />
           </div>
-        )}
-      </Popup>
-    </div>
+        </div>
+        {/* </div>
+        )} */}
+      </>
+    </Popup>
   );
 };
 

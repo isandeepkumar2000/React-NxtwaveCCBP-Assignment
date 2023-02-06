@@ -2,6 +2,7 @@ import React from "react";
 import MovieItem from "../MovieItems/Index";
 import Slider from "react-slick";
 import sliderSettings from "./styleComponets";
+import "./style.css";
 
 export type movieListItemsType = {
   id: string;
@@ -15,9 +16,13 @@ interface propType {
 
 const MovieSlider: React.FC<propType> = (props) => {
   const { FilterMoviesList } = props;
-
+  // const settings = {
+  //   dots: true,
+  //   slidesToShow: 4,
+  //   slidesToScroll: 1,
+  // };
   return (
-    <div>
+    <div className="MoviesSlider_Container">
       <Slider {...sliderSettings}>
         {FilterMoviesList.map((eachItem: movieListItemsType) => (
           <MovieItem data={eachItem} key={eachItem.id} />

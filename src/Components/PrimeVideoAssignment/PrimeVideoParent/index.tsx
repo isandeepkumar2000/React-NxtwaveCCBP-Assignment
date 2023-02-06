@@ -1,42 +1,66 @@
 import React from "react";
 import moviesList from "../MovieListFolder/Index";
-import MovieSlider, { movieListItemsType } from "../MoviesSlider";
+import MovieSlider from "../MoviesSlider";
+// import "./style.css";
+import {
+  GlobalStyle,
+  PrimeVideoAction,
+  PrimeVideoActionDiv,
+  PrimeVideoActionDivMain,
+  PrimeVideoImage,
+} from "./stylecomponts";
 
 const PrimeVideo = () => {
   const renderActionMovieList = () => {
     const actionMovies = moviesList.filter(
       (items) => items.categoryId === "ACTION"
     );
-    return <MovieSlider FilterMoviesList={actionMovies} />;
+    return (
+      <div>
+        <MovieSlider FilterMoviesList={actionMovies} />
+      </div>
+    );
   };
 
   const renderComedyMovieList = () => {
     const comedyMovies = moviesList.filter(
       (items) => items.categoryId === "COMEDY"
     );
-    return <MovieSlider FilterMoviesList={comedyMovies} />;
+    return (
+      <div>
+        <MovieSlider FilterMoviesList={comedyMovies} />
+      </div>
+    );
   };
+
   return (
-    <div>
-      <div className="prime-video-page">
-        <div className="prime-video-image">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/prime-video-img.png"
-            alt="prime-video"
-          />
-        </div>
-        <div className="movie-sliders-container">
+    <>
+      <GlobalStyle />
+      <div>
+        <div>
           <div>
-            <span className="movie-slider-heading">Action Movies</span>
-            {renderActionMovieList()}
+            <PrimeVideoImage
+              src="https://assets.ccbp.in/frontend/react-js/prime-video-img.png"
+              alt="prime-video"
+            />
           </div>
           <div>
-            <span className="movie-slider-heading">Comedy Movies</span>
-            {renderComedyMovieList()}
+            <PrimeVideoActionDivMain>
+              <PrimeVideoAction>Action Movies</PrimeVideoAction>
+              <PrimeVideoActionDiv className={"sandeep"}>
+                {renderActionMovieList()}
+              </PrimeVideoActionDiv>
+            </PrimeVideoActionDivMain>
+            <PrimeVideoActionDivMain>
+              <PrimeVideoAction>Comedy Movies</PrimeVideoAction>
+              <PrimeVideoActionDiv className="ComedyList">
+                {renderComedyMovieList()}
+              </PrimeVideoActionDiv>
+            </PrimeVideoActionDivMain>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
