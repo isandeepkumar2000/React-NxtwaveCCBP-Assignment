@@ -1,4 +1,11 @@
 import JobbyHeader from "../Header";
+import {
+  ErrorInfo,
+  GoHomeBtn,
+  NotFoundContainer,
+  NotFoundInfoContainer,
+  TextDanger,
+} from "./stylecomponents";
 
 const NotFound = (props: any) => {
   const { history } = props;
@@ -8,20 +15,20 @@ const NotFound = (props: any) => {
   };
 
   return (
-    <div className="not-found-contianer">
+    <NotFoundContainer className="not-found-contianer">
       <JobbyHeader />
-      <div className="not-found-info-container">
-        <h1 className="text-danger">404 - Page Not Found</h1>
-        <p className="error-info">
+      <NotFoundInfoContainer className="not-found-info-container">
+        <TextDanger className="text-danger">404 - Page Not Found</TextDanger>
+        <ErrorInfo className="error-info">
           Uh oh, we can't seem to find the page you're looking for.Try going
           back or to Home.
-        </p>
+        </ErrorInfo>
 
-        <button className="go-home-btn" onClick={onClickOfGoHome}>
+        <GoHomeBtn className="go-home-btn" onClick={onClickOfGoHome}>
           Go Home
-        </button>
-      </div>
-    </div>
+        </GoHomeBtn>
+      </NotFoundInfoContainer>
+    </NotFoundContainer>
   );
 };
 

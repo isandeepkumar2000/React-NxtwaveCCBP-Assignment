@@ -8,6 +8,42 @@ import { BsBriefcaseFill } from "react-icons/bs";
 import { BsFillArrowUpRightSquareFill } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import JobbyHeader from "../Header";
+import {
+  CompanyLifeImage,
+  CompanyLogo,
+  Describtion,
+  DescriptionContainer,
+  DescriptionHeaderLinkContainer,
+  DescriptionImageContainer,
+  IconTextContainer,
+  JobContainer,
+  JobDetailsBGContainer,
+  JobLogoImg,
+  JobTitleRate,
+  LifeAtCompanyContainer,
+  ListOfSkills,
+  LoaderContainer,
+  LocationEmploymentTypePackageContainer,
+  LogoTitleRatingContainer,
+  RatingEl,
+  SectionsDescription,
+  SectionsHeader,
+  SectionsText,
+  SelectedJobContainer,
+  SelectedJobSimilar,
+  SimilarJobContainer,
+  SimilarJobsSection,
+  SkillImg,
+  SkillNameContainer,
+  SkillsContainer,
+  SkillsHeading,
+  TitleHeading,
+  TitleImageContainer,
+  TitleRatingContainer,
+  Visita,
+  VisitEl,
+} from "./stylecomponents";
+import { JobTypeEl, LocationEl } from "../JobItem/stylecomponents";
 
 const isJobDetailsFetched = {
   success: "SUCCESS",
@@ -112,60 +148,72 @@ const JobDetailsItem = (props: any) => {
 
   const getDescriptionSection = () => {
     return (
-      <div className="description-container" id="description-container">
-        <div className="description-header-link-container">
-          <h1 className="sections-Header">Desciption</h1>
-          <p className="visit-el">
+      <DescriptionContainer
+        className="description-container"
+        id="description-container"
+      >
+        <DescriptionHeaderLinkContainer className="description-header-link-container">
+          <SectionsDescription className="sections-Header">
+            Description
+          </SectionsDescription>
+          <VisitEl className="visit-el">
             Visit{" "}
-            <a
+            <Visita
               href={`${jobDetails.companyWebsiteUrl}`}
               rel="noreferrer"
               target="_blank"
             >
               <BsFillArrowUpRightSquareFill fill="blue" />
-            </a>
-          </p>
-        </div>
-        <p className="sections-text">{jobDetails.jobDescription}</p>
-      </div>
+            </Visita>
+          </VisitEl>
+        </DescriptionHeaderLinkContainer>
+        <SectionsText className="sections-text">
+          {jobDetails.jobDescription}
+        </SectionsText>
+      </DescriptionContainer>
     );
   };
 
   const getSkillsSection = () => {
     return (
-      <div className="skills-container" id="skills-container">
-        <h2 className="sections-Header">Skills</h2>
-        <div className="list-of-skills">
+      <SkillsContainer className="skills-container" id="skills-container">
+        <SkillsHeading className="sections-Header">Skills</SkillsHeading>
+        <ListOfSkills className="list-of-skills">
           {jobDetails.skills.map((eachSkill: skillsType) => (
-            <div className="skill-name-container">
-              <img
+            <SkillNameContainer className="skill-name-container">
+              <SkillImg
                 src={`${eachSkill.imageUrl}`}
                 alt={`${eachSkill.name}`}
                 className="skill-img"
               />
-              <p className="sections-text">{`${eachSkill.name}`}</p>
-            </div>
+              <SectionsText className="sections-text">{`${eachSkill.name}`}</SectionsText>
+            </SkillNameContainer>
           ))}
-        </div>
-      </div>
+        </ListOfSkills>
+      </SkillsContainer>
     );
   };
 
   const getLifeAtCompanySection = () => {
     return (
-      <div id="life-at-company-container" className="life-at-company-container">
-        <h1 className="sections-Header">Life At Company</h1>
-        <div className="description-image-container">
-          <p className="sections-text">
+      <LifeAtCompanyContainer
+        id="life-at-company-container"
+        className="life-at-company-container"
+      >
+        <SectionsHeader className="sections-Header">
+          Life At Company
+        </SectionsHeader>
+        <DescriptionImageContainer className="description-image-container">
+          <SectionsText className="sections-text">
             {jobDetails.lifeAtCompany.description}
-          </p>
-          <img
+          </SectionsText>
+          <CompanyLifeImage
             src={`${jobDetails.lifeAtCompany.imageUrl}`}
             alt="Company pic"
             className="company-life-img"
           />
-        </div>
-      </div>
+        </DescriptionImageContainer>
+      </LifeAtCompanyContainer>
     );
   };
 
@@ -178,82 +226,109 @@ const JobDetailsItem = (props: any) => {
       title,
       location,
     } = eachJob;
-    // console.log(eachJob)
+
     return (
-      <div className="job-container">
-        <div className="title-img-container">
-          <img
+      <JobContainer className="job-container">
+        <TitleImageContainer className="title-img-container">
+          <JobLogoImg
             src={`${companyLogoUrl}`}
             alt="Comapny logo"
             className="job-logo-img"
           />
-          <div className="job-title-rate">
-            <h1 className="title-heading">{title}</h1>
-            <p className="rating-el">
+          <JobTitleRate className="job-title-rate">
+            <TitleHeading className="title-heading">{title}</TitleHeading>
+            <RatingEl className="rating-el">
               <AiFillStar fill="yellow" />
               {rating}
-            </p>
-          </div>
-        </div>
-        <h1 className="sections-Header">Desciption</h1>
-        <p className="sections-text">{jobDescription}</p>
-        <div className="icons-text-container">
-          <MdLocationOn fill="white" />
-          <p className="location-el">{location}</p>
-          <BsBriefcaseFill fill="white" />
-          <p className="job-type-el">{employmentType}</p>
-        </div>
-      </div>
+            </RatingEl>
+          </JobTitleRate>
+        </TitleImageContainer>
+        <Describtion>
+          <SectionsHeader className="sections-Header">
+            Description
+          </SectionsHeader>
+        </Describtion>
+        <Describtion>
+          <SectionsText className="sections-text">
+            {jobDescription}
+          </SectionsText>
+        </Describtion>
+        <Describtion>
+          <IconTextContainer className="icons-text-container">
+            <MdLocationOn fill="white" />
+            <LocationEl className="location-el">{location}</LocationEl>
+            <BsBriefcaseFill fill="white" />
+
+            <JobTypeEl className="job-type-el">{employmentType}</JobTypeEl>
+          </IconTextContainer>
+        </Describtion>
+      </JobContainer>
     );
   };
 
   const getJobDetailsFetchedSuccessView = () => {
     return (
-      <div className="job-detail-item-bg-container">
+      <JobDetailsBGContainer className="job-detail-item-bg-container">
         <JobbyHeader />
-        <div className="selected-job-and-similar-jobs-container">
-          <div id="selected-job-container" className="selected-job-container">
-            <div
+        <SelectedJobSimilar className="selected-job-and-similar-jobs-container">
+          <SelectedJobContainer
+            id="selected-job-container"
+            className="selected-job-container"
+          >
+            <LogoTitleRatingContainer
               id="logo-title-rating-container"
               className="logo-title-rating-container"
             >
-              <img
+              <CompanyLogo
                 src={`${jobDetails.companyLogoUrl}`}
                 alt="Company Logo"
                 className="company-logo"
               />
-              <div className="title-rating-container">
-                <h1 className="title-heading">{jobDetails.title}</h1>
-                <p className="rating-el">
+              <TitleRatingContainer className="title-rating-container">
+                <TitleHeading className="title-heading">
+                  {jobDetails.title}
+                </TitleHeading>
+                <RatingEl className="rating-el">
                   <AiFillStar fill="yellow" />
                   {jobDetails.rating}
-                </p>
-              </div>
-            </div>
-            <div className="location-employmenttype-package-container">
-              <div className="location-employment-type-container">
+                </RatingEl>
+              </TitleRatingContainer>
+            </LogoTitleRatingContainer>
+            <LocationEmploymentTypePackageContainer className="location-employmenttype-package-container">
+              <LocationEmploymentTypePackageContainer className="location-employment-type-container">
                 <MdLocationOn fill="white" />
-                <p className="location-el">{jobDetails.location}</p>
+                <LocationEl className="location-el">
+                  {jobDetails.location}
+                </LocationEl>
                 <BsBriefcaseFill fill="white" />
-                <p className="job-type-el">{jobDetails.employmentType}</p>
-              </div>
-              <p className="job-type-el">{jobDetails.packagePerAnnum}</p>
-            </div>
+                <JobTypeEl className="job-type-el">
+                  {jobDetails.employmentType}
+                </JobTypeEl>
+              </LocationEmploymentTypePackageContainer>
+              <JobTypeEl className="job-type-el">
+                {jobDetails.packagePerAnnum}
+              </JobTypeEl>
+            </LocationEmploymentTypePackageContainer>
             <hr />
             {getDescriptionSection()}
             {getSkillsSection()}
             {getLifeAtCompanySection()}
-          </div>
-          <div id="similar-jobs-section" className="similar-jobs-section">
-            <h1 className="sections-Header">Similar Jobs</h1>
-            <div className="similar-job-container">
+          </SelectedJobContainer>
+          <SimilarJobsSection
+            id="similar-jobs-section"
+            className="similar-jobs-section"
+          >
+            <SectionsHeader className="sections-Header">
+              Similar Jobs
+            </SectionsHeader>
+            <SimilarJobContainer className="similar-job-container">
               {jobDetails.similarJobs.map((eachJob: JobItemsDetailType) =>
                 getSimilarJobDetails(eachJob)
               )}
-            </div>
-          </div>
-        </div>
-      </div>
+            </SimilarJobContainer>
+          </SimilarJobsSection>
+        </SelectedJobSimilar>
+      </JobDetailsBGContainer>
     );
   };
 
@@ -261,15 +336,14 @@ const JobDetailsItem = (props: any) => {
     switch (jobDetailsFetchedStatus) {
       case isJobDetailsFetched.loading:
         return (
-          <div className="loader-container">
+          <LoaderContainer className="loader-container">
             <ThreeDots
-              // type="TailSpin"
               color="black"
               height={150}
               width={100}
               // className=""
             />
-          </div>
+          </LoaderContainer>
         );
 
       case isJobDetailsFetched.success:

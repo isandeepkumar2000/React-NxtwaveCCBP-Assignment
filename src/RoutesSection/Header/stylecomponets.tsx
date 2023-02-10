@@ -9,7 +9,7 @@ export const HeaderGlobalStyle = createGlobalStyle`
 
 export const JobbyHeaderContainer = styled.div`
   background-color: rgb(31, 30, 30);
-  padding: 10px;
+  padding: 10px 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -49,6 +49,7 @@ export const JobbyHeaderJobs = styled.span`
 export const JobbyHeaderImage = styled.img`
   width: 150px;
   height: 44px;
+  margin-left: 20px;
 `;
 
 export const JobbyHeaderButton = styled.button`
@@ -59,75 +60,36 @@ export const JobbyHeaderButton = styled.button`
   font-weight: 700;
   font-family: sans-serif, initial;
   border: none;
+  cursor: pointer;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
-// .header-container{
-//   background-color: rgb(31, 30, 30);
-//   padding: 10px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin:0px;
-// }
+export const NavLink = styled.div`
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "roboto";
+  margin: 10px;
+  a {
+    text-decoration: none;
+  }
+`;
 
-// @media screen and (min-width:768px) {
-//   .header-container{
-//   justify-content: space-between;
-//   }
-// }
+export const HomeJobsIcon = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
 
-// .header-logo-img{
-//   height:40px;
-//   width:100px;
-//   margin-left: 40px;
-// }
-
-// .nav-link{
-//   font-size:15px;
-//   text-decoration: none;
-//   color:white;
-//   font-family: 'roboto';
-//   margin:10px;
-// }
-
-// .logout-btn{
-//   margin-right: 40px;
-//   color:white;
-//   background-color: blue;
-//   padding-right:10px;
-//   padding-left: 10px;
-//   padding-top: 5px;
-//   padding-bottom: 5px;
-//   border-radius: 2px;
-//   border:1px solid white;
-//   cursor: pointer;
-
-// }
-
-// @media screen and (max-width:767px) {
-//   .logout-btn{
-//       display: none;
-//   }
-// }
-
-// .home-jobs-sm-nav-icons-container{
-//   display: flex;
-//   flex-direction: row;
-// }
-
-// @media screen and (min-width:768px) {
-//   .home-jobs-sm-nav-icons-container{
-//       display:none;
-//   }
-// }
-
-// @media screen and (max-width:767px) {
-//   .home-jobs-lg-nav-items-container{
-//       display: none;
-//   }
-// }
-
-// .sm-nav-icon{
-//   margin: 5px;
-// }
+export const NavContainer = styled.div`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+`;
+export const MobileVersionIcon = styled.div`
+  margin-left: 20px;
+`;

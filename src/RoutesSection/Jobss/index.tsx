@@ -5,6 +5,23 @@ import { ThreeDots } from "react-loader-spinner";
 import { Redirect } from "react-router-dom";
 import Header from "../Header";
 import JobItem from "../JobItem";
+import {
+  FilterHeading,
+  FilterLabel,
+  JobBgContainer,
+  LineBrake,
+  NameEl,
+  ProfileContainer,
+  ProfileFilterContainer,
+  ProfileImg,
+  SearchContainer,
+  SearchEl,
+  SearchIconContainer,
+  ShorMargin,
+  ShortBio,
+  ShortMargin,
+} from "./stylecomponents";
+import { JobbyFindJobButton } from "../Homes/stylecomponents";
 
 export type JobsType = {
   id: string;
@@ -41,6 +58,14 @@ const Jobs = () => {
   const [employmentType, setEmploymentType] = useState("");
   const [minimumPackage, setMinimumPackage] = useState("");
   const [titleSearchInput, setTitleSearchInput] = useState("");
+
+  const OnFailure = () => {
+    return (
+      <div>
+        <JobbyFindJobButton>Retry</JobbyFindJobButton>
+      </div>
+    );
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -123,99 +148,111 @@ const Jobs = () => {
   const getDifferentFilters = () => {
     return (
       <>
-        <hr className="line-break" />
-        <h1 className="filter-heading">Type Of Employement</h1>
-        <input
-          type="checkbox"
-          id="FULLTIME"
-          name="fav_language"
-          value="FULLTIME"
-          onChange={onChangeofEmploymentType}
-        />
-        <label htmlFor="FULLTIME" className="filter-label">
-          Full Time
-        </label>
-        <br />
-        <input
-          type="checkbox"
-          id="PARTTIME"
-          name="fav_language"
-          value="PARTTIME"
-          onChange={onChangeofEmploymentType}
-        />
-        <label htmlFor="PARTTIME" className="filter-label">
-          Part Time
-        </label>
-        <br />
-        <input
-          type="checkbox"
-          id="FREELANCE"
-          name="fav_language"
-          value="FREELANCE"
-          onChange={onChangeofEmploymentType}
-        />
-        <label htmlFor="FREELANCE" className="filter-label">
-          Freelance
-        </label>
-        <br />
-        <input
-          type="checkbox"
-          id="INTERNSHIP"
-          name="fav_language"
-          value="INTERNSHIP"
-          onChange={onChangeofEmploymentType}
-        />
-        <label htmlFor="INTERNSHIP" className="filter-label">
-          Internship
-        </label>
-        <br />
-        <hr className="line-break" />
+        <LineBrake className="line-break" />
+        <div className="TypeOfEmployment">
+          <FilterHeading className="filter-heading">
+            Type of Employment
+          </FilterHeading>
+        </div>
+        <ShorMargin className="FullTime">
+          <input
+            type="checkbox"
+            id="FULLTIME"
+            name="fav_language"
+            value="FULLTIME"
+            onChange={onChangeofEmploymentType}
+          />
+          <FilterLabel htmlFor="FULLTIME" className="filter-label">
+            Full Time
+          </FilterLabel>
+        </ShorMargin>
+        <ShorMargin className="PartTime">
+          <input
+            type="checkbox"
+            id="PARTTIME"
+            name="fav_language"
+            value="PARTTIME"
+            onChange={onChangeofEmploymentType}
+          />
+          <FilterLabel htmlFor="PARTTIME" className="filter-label">
+            Part Time
+          </FilterLabel>
+        </ShorMargin>
+        <ShorMargin className="FreeLance">
+          <input
+            type="checkbox"
+            id="FREELANCE"
+            name="fav_language"
+            value="FREELANCE"
+            onChange={onChangeofEmploymentType}
+          />
+          <FilterLabel htmlFor="FREELANCE" className="filter-label">
+            Freelance
+          </FilterLabel>
+        </ShorMargin>
+        <ShorMargin className="Internship">
+          <input
+            type="checkbox"
+            id="INTERNSHIP"
+            name="fav_language"
+            value="INTERNSHIP"
+            onChange={onChangeofEmploymentType}
+          />
+          <FilterLabel htmlFor="INTERNSHIP" className="filter-label">
+            Internship
+          </FilterLabel>
+        </ShorMargin>
+        <LineBrake className="line-break" />
+        <FilterHeading className="filter-heading">Salary Range</FilterHeading>
+        <ShorMargin>
+          <input
+            type="radio"
+            id="1000000"
+            name="fav_language"
+            value="1000000"
+            onChange={onChangeOfMinimumSalary}
+          />
+          <FilterLabel htmlFor="1000000" className="filter-label">
+            10 LPA and above
+          </FilterLabel>
+        </ShorMargin>
+        <ShorMargin>
+          <input
+            type="radio"
+            id="2000000"
+            name="fav_language"
+            value="2000000"
+            onChange={onChangeOfMinimumSalary}
+          />
 
-        <h1 className="filter-heading">Salary Range</h1>
-        <input
-          type="radio"
-          id="1000000"
-          name="fav_language"
-          value="1000000"
-          onChange={onChangeOfMinimumSalary}
-        />
-        <label htmlFor="1000000" className="filter-label">
-          10LPA and above
-        </label>
-        <br />
-        <input
-          type="radio"
-          id="2000000"
-          name="fav_language"
-          value="2000000"
-          onChange={onChangeOfMinimumSalary}
-        />
-        <label htmlFor="2000000" className="filter-label">
-          20LPA and above
-        </label>
-        <br />
-        <input
-          type="radio"
-          id="3000000"
-          name="fav_language"
-          value="3000000"
-          onChange={onChangeOfMinimumSalary}
-        />
-        <label htmlFor="3000000" className="filter-label">
-          30LPA and above
-        </label>
-        <br />
-        <input
-          type="radio"
-          id="4000000"
-          name="fav_language"
-          value="4000000"
-          onChange={onChangeOfMinimumSalary}
-        />
-        <label htmlFor="4000000" className="filter-label">
-          40LPA and above
-        </label>
-        <br />
+          <FilterLabel htmlFor="2000000" className="filter-label">
+            20 LPA and above
+          </FilterLabel>
+        </ShorMargin>
+        <ShorMargin>
+          <input
+            type="radio"
+            id="3000000"
+            name="fav_language"
+            value="3000000"
+            onChange={onChangeOfMinimumSalary}
+          />
+          <FilterLabel htmlFor="3000000" className="filter-label">
+            30 LPA and above
+          </FilterLabel>
+        </ShorMargin>
+        <ShorMargin>
+          <input
+            type="radio"
+            id="4000000"
+            name="fav_language"
+            value="4000000"
+            onChange={onChangeOfMinimumSalary}
+          />
+          <FilterLabel htmlFor="4000000" className="filter-label">
+            40 LPA and above
+          </FilterLabel>
+        </ShorMargin>
       </>
     );
   };
@@ -223,7 +260,7 @@ const Jobs = () => {
   const getListOfJobs = () => {
     switch (isJobDetailsLoaded) {
       case jobDetailsLodingStatus.loading:
-        return <ThreeDots color="white" height={100} width={50} />;
+        return <ThreeDots color="white" height={100} width={100} />;
       case jobDetailsLodingStatus.success:
         return (
           <ul>
@@ -242,44 +279,43 @@ const Jobs = () => {
   return (
     <>
       <Header />
-      <div className="jobs-bg-container" id="jobs-bg-container">
-        <div className="search-container-for-sm">
-          <input type="search" className="search-el" placeholder="Search" />
-          <div className="search-icon-container">
-            <AiOutlineSearch fill="white" />
-          </div>
-        </div>
-        <div className="profile-filters-container">
+      <JobBgContainer className="jobs-bg-container" id="jobs-bg-container">
+        <div></div>
+        <ProfileFilterContainer className="profile-filters-container">
           {!userInfo.isProfileDetailsLoaded ? (
             <ThreeDots color="white" height={100} width={50} />
           ) : (
-            <div className="profile-container">
-              <img
+            <ProfileContainer className="profile-container">
+              <ProfileImg
                 src={`${userInfo.profileImgUrl}`}
                 alt="Profile-Img-Url"
                 className="profile-img"
               />
-              <h1 className="name-el">{userInfo.name}</h1>
-              <p className="short-bio">{userInfo.shortBio}</p>
-            </div>
+              <ShortMargin>
+                <NameEl className="name-el">{userInfo.name}</NameEl>
+              </ShortMargin>
+              <ShortMargin>
+                <ShortBio className="short-bio">{userInfo.shortBio}</ShortBio>
+              </ShortMargin>
+            </ProfileContainer>
           )}
           {getDifferentFilters()}
-        </div>
+        </ProfileFilterContainer>
         <div>
-          <div className="search-container">
-            <input
+          <SearchContainer className="search-container">
+            <SearchEl
               type="search"
               className="search-el"
               placeholder="Search"
               onChange={onChangeOfSearchInput}
             />
-            <div className="search-icon-container">
+            <SearchIconContainer className="search-icon-container">
               <AiOutlineSearch fill="white" />
-            </div>
-          </div>
+            </SearchIconContainer>
+          </SearchContainer>
           {getListOfJobs()}
         </div>
-      </div>
+      </JobBgContainer>
     </>
   );
 };
