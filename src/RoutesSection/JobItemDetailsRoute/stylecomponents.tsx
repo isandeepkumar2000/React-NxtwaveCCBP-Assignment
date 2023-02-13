@@ -143,7 +143,7 @@ export const SectionsDescription = styled.span`
   font-weight: 600;
 `;
 
-export const Describtion = styled.div`
+export const Descriptions = styled.div`
   color: white;
   font-family: "Roboto", sans-serif;
   margin-top: 10px;

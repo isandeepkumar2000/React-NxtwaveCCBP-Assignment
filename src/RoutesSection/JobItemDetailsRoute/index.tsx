@@ -11,7 +11,7 @@ import JobbyHeader from "../Header";
 import {
   CompanyLifeImage,
   CompanyLogo,
-  Describtion,
+  Descriptions,
   DescriptionContainer,
   DescriptionHeaderLinkContainer,
   DescriptionImageContainer,
@@ -243,17 +243,17 @@ const JobDetailsItem = (props: any) => {
             </RatingEl>
           </JobTitleRate>
         </TitleImageContainer>
-        <Describtion>
+        <Descriptions>
           <SectionsHeader className="sections-Header">
             Description
           </SectionsHeader>
-        </Describtion>
-        <Describtion>
+        </Descriptions>
+        <Descriptions>
           <SectionsText className="sections-text">
             {jobDescription}
           </SectionsText>
-        </Describtion>
-        <Describtion>
+        </Descriptions>
+        <Descriptions>
           <IconTextContainer className="icons-text-container">
             <MdLocationOn fill="white" />
             <LocationEl className="location-el">{location}</LocationEl>
@@ -261,7 +261,7 @@ const JobDetailsItem = (props: any) => {
 
             <JobTypeEl className="job-type-el">{employmentType}</JobTypeEl>
           </IconTextContainer>
-        </Describtion>
+        </Descriptions>
       </JobContainer>
     );
   };
