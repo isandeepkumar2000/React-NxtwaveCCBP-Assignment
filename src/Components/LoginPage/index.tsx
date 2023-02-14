@@ -21,10 +21,6 @@ export type StyleComponentTypeColor = {
   darkMode: boolean;
 };
 
-// export type MainBgColor = {
-//   isDarkMode: boolean;
-// };
-
 const LoginPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState("");
