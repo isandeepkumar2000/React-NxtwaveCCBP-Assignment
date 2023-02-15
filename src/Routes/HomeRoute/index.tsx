@@ -24,6 +24,7 @@ const Home = () => {
   const onClearInput = () => {
     setSearchValue("");
   };
+
   return (
     <NxtwatchContext.Consumer>
       {(value) => {

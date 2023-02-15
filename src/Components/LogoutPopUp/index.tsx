@@ -11,8 +11,8 @@ export type LogoutStyle = {
   darkMode: boolean;
 };
 interface LogoutButtonType {
-  onClose: void;
-  onConfirm: void;
+  onClose: () => void;
+  onConfirm: () => void;
 }
 
 const LogOutPopup = (props: LogoutButtonType) => {
@@ -27,19 +27,10 @@ const LogOutPopup = (props: LogoutButtonType) => {
               Are you sure you want to logout?
             </LogoutPoputHeader>
             <LogoutActionContainer>
-              <LogoutPopupCancelBtn
-                onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-                  onClose
-                }
-                darkMode={isDarkMode}
-              >
+              <LogoutPopupCancelBtn onClick={onClose} darkMode={isDarkMode}>
                 Cancel
               </LogoutPopupCancelBtn>
-              <LogoutPopupConfirmBtn
-                onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-                  onConfirm
-                }
-              >
+              <LogoutPopupConfirmBtn onClick={onConfirm}>
                 Confirm
               </LogoutPopupConfirmBtn>
             </LogoutActionContainer>

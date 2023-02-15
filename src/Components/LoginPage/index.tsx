@@ -2,10 +2,10 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import {
   ErrorMsg,
-  Formstyling,
   JobbyButton,
   JobbyLogoImage,
   LoginFormContainer,
@@ -16,8 +16,8 @@ import {
   UserNameHeading,
   UserNameInputSection,
 } from "./styleComponents";
-
-export type StyleComponentTypeColor = {
+import { jwtToken } from "../../Constants/appConstants";
+export type LoginPage = {
   darkMode: boolean;
 };
 
@@ -31,21 +31,19 @@ const LoginPage = () => {
     loginErrorMsg: "",
   });
 
-  const onLoginSuccess = (jwtToken: string) => {
-    Cookies.set("jobby_app_jwt_token", jwtToken, { expires: 2, path: "/" });
-    history.replace("/");
+  const onLoginSuccess = (token: string) => {
+    Cookies.set(jwtToken, token, { expires: 2, path: "/" });
+
+    history.replace("/Nxtwatch");
   };
 
   const onLoginFailure = (errorMsg: string) => {
-    console.log("in login failed func");
-
     setLoginError({ showLoginError: true, loginErrorMsg: errorMsg });
   };
 
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = "https://apis.ccbp.in/login";
-
     const options = {
       method: "POST",
       body: JSON.stringify({ username: username, password: password }),
@@ -53,7 +51,6 @@ const LoginPage = () => {
 
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log(data);
 
     if (response.ok === true) {
       onLoginSuccess(data.jwt_token);
@@ -61,7 +58,6 @@ const LoginPage = () => {
       onLoginFailure(data.error_msg);
     }
   };
-
   const onShowPassword = () => {
     setShowpassword(!showPassword);
   };
@@ -78,15 +74,13 @@ const LoginPage = () => {
     return (
       <NxtwatchContext.Consumer>
         {(value) => {
-          const { isDarkMode } = value;
           return (
             <div className="input-container">
-              <UserNameHeading darkMode={isDarkMode} className="input-label">
+              <UserNameHeading className="input-label">
                 USERNAME
               </UserNameHeading>
               <div>
                 <UserNameInputSection
-                  darkMode={isDarkMode}
                   type="text"
                   id="username"
                   className="input-el"
@@ -106,30 +100,20 @@ const LoginPage = () => {
     return (
       <NxtwatchContext.Consumer>
         {(value) => {
-          const { isDarkMode } = value;
           return (
             <div className="input-container">
-              <PasswordHeading darkMode={isDarkMode} className="input-label">
+              <PasswordHeading className="input-label">
                 PASSWORD
               </PasswordHeading>
               <div>
                 <PasswordInputSection
-                  darkMode={isDarkMode}
                   type={showPassword ? "text" : "password"}
-                  id="password"
+                  id="passwprd"
                   className="input-el"
                   onChange={onChangeOfPassword}
                   value={password}
                   placeholder="Password"
                 />
-              </div>
-              <div>
-                <div>
-                  <input type="checkbox" onChange={onShowPassword} />
-                  <PasswordLabel darkMode={isDarkMode}>
-                    Show password
-                  </PasswordLabel>
-                </div>
               </div>
             </div>
           );
@@ -138,12 +122,9 @@ const LoginPage = () => {
     );
   };
 
-  const isLoggedIn = Cookies.get("jobby_app_jwt_token");
-
-  if (isLoggedIn !== undefined) {
-    return <Redirect to="/" />;
+  if (Cookies.get(jwtToken)) {
+    return <Redirect to="/Nxtwatch" />;
   }
-
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
@@ -151,34 +132,36 @@ const LoginPage = () => {
         return (
           <LoginFormContainer>
             <LoginFormItems>
-              <Formstyling
-                darkMode={isDarkMode}
-                className="form-container"
-                onSubmit={onFormSubmit}
-              >
+              <form className="form-container" onSubmit={onFormSubmit}>
                 <JobbyLogoImage
                   src={
                     isDarkMode
                       ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
                       : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
                   }
-                  alt="jobby-website-logo"
-                  className="logo-img"
+                  alt="website logo"
                 />
                 <div className="username-password-container">
                   {renderUsernameField()}
                   {renderPasswordField()}
                 </div>
+                <div>
+                  <input type="checkbox" onChange={onShowPassword} />
+
+                  <PasswordLabel darkMode={isDarkMode}>
+                    Show password
+                  </PasswordLabel>
+                </div>
                 <JobbyButton type="submit" className="login-btn">
                   Login
                 </JobbyButton>
-                <div></div>
+
                 {loginError.showLoginError && (
                   <ErrorMsg className="login-error-msg">
                     *{loginError.loginErrorMsg}
                   </ErrorMsg>
                 )}
-              </Formstyling>
+              </form>
             </LoginFormItems>
           </LoginFormContainer>
         );

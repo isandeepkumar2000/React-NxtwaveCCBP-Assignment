@@ -4,6 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { MdLocalFireDepartment } from "react-icons/md";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { formatDistanceToNow } from "date-fns";
 import {
   TrendingFailureContainer,
   TrendingFailureHeading,
@@ -17,6 +18,23 @@ import {
   TrendingVideoSuccessView,
 } from "./styleComponets";
 import SavedVideoItem from "../SavedVideoItem";
+import { Link } from "react-router-dom";
+import {
+  VideoItem,
+  VideoItemContent,
+  VideoItemDetail,
+  VideoItemImage,
+  VideoItemLogo,
+  VideoItemOtherDetail,
+  VideoItemOtherDetailContainer,
+  VideoItemTitle,
+} from "../HomeVideoItem/styleComponents";
+import {
+  VideoItemChannel,
+  VideoItemDetailContainer,
+  VideoItemImageContainer,
+} from "../SavedVideoItem/styleComponets";
+import { GoPrimitiveDot } from "react-icons/go";
 
 export type TendingContentType = {
   id: string;
@@ -38,7 +56,7 @@ export type TrendingContentStyle = {
 };
 
 const TrendingContent = () => {
-  const [trending, setTrending] = useState([]);
+  const [trending, setTrending] = useState<TendingContentType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
   useState(() => {
@@ -46,7 +64,7 @@ const TrendingContent = () => {
   });
 
   const getTrendingApiDetails = async () => {
-    const jwtToken = Cookies.get("jobby_app_jwt_token");
+    const jwtToken = Cookies.get("nxtwatch_app_jwt_token");
     const apiUrl = "https://apis.ccbp.in/videos/trending";
     const options = {
       method: "GET",
@@ -71,26 +89,78 @@ const TrendingContent = () => {
   };
 
   const renderTrendingVideosList = () => {
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <TrendingVideoSuccessView>
-            <TrendingVideoHeaderContainer darkMode={isDarkMode}>
-              <TrendingVideoHeaderIconContainer darkMode={isDarkMode}>
-                <MdLocalFireDepartment className="nxtwatch-savedVideo-icons" />
-              </TrendingVideoHeaderIconContainer>
-              <h1>Trending</h1>
-            </TrendingVideoHeaderContainer>
-            <TrendingVideoListContainer>
-              {trending.map((item) => (
-                <SavedVideoItem data={item} />
-              ))}
-            </TrendingVideoListContainer>
-          </TrendingVideoSuccessView>
-        );
-      }}
-    </NxtwatchContext.Consumer>;
+    return (
+      <NxtwatchContext.Consumer>
+        {(value) => {
+          const { isDarkMode } = value;
+          return (
+            <TrendingVideoSuccessView>
+              <TrendingVideoHeaderContainer darkMode={isDarkMode}>
+                <TrendingVideoHeaderIconContainer darkMode={isDarkMode}>
+                  <MdLocalFireDepartment className="nxtwatch-savedVideo-icons" />
+                </TrendingVideoHeaderIconContainer>
+                <h1>Trending</h1>
+              </TrendingVideoHeaderContainer>
+              <TrendingVideoListContainer>
+                {trending.map((data) => (
+                  <NxtwatchContext.Consumer>
+                    {(value) => {
+                      const { isDarkMode } = value;
+                      const date = formatDistanceToNow(
+                        new Date(data.publishedAt),
+                        {
+                          addSuffix: true,
+                        }
+                      );
+                      return (
+                        <Link
+                          to={"/Nxtwatch/video/" + data.id}
+                          className="nxtwatch-savedvideo-item"
+                        >
+                          <VideoItem>
+                            <VideoItemImageContainer>
+                              <VideoItemImage src={data.thumbnailUrl} alt="" />
+                            </VideoItemImageContainer>
+                            <VideoItemContent>
+                              <VideoItemLogo
+                                src={data.channel.profile_image_url}
+                                alt=""
+                              />
+                              <VideoItemDetail>
+                                <VideoItemTitle darkMode={isDarkMode}>
+                                  {data.title}
+                                </VideoItemTitle>
+                                <VideoItemDetailContainer darkMode={isDarkMode}>
+                                  <VideoItemChannel>
+                                    {data.channel.name}
+                                  </VideoItemChannel>
+                                  <GoPrimitiveDot className="nxtwatch-video-item-dot nxtwatch-video-item-dot-small" />
+                                  <VideoItemOtherDetailContainer
+                                    darkMode={isDarkMode}
+                                  >
+                                    <VideoItemOtherDetail>
+                                      {data.viewCount}
+                                    </VideoItemOtherDetail>
+                                    <GoPrimitiveDot className="nxtwatch-video-item-dot" />
+                                    <VideoItemOtherDetail>
+                                      {date}
+                                    </VideoItemOtherDetail>
+                                  </VideoItemOtherDetailContainer>
+                                </VideoItemDetailContainer>
+                              </VideoItemDetail>
+                            </VideoItemContent>
+                          </VideoItem>
+                        </Link>
+                      );
+                    }}
+                  </NxtwatchContext.Consumer>
+                ))}
+              </TrendingVideoListContainer>
+            </TrendingVideoSuccessView>
+          );
+        }}
+      </NxtwatchContext.Consumer>
+    );
   };
 
   const renderContent = () => {

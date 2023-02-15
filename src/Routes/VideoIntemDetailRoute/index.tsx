@@ -8,13 +8,13 @@ import {
   VideoPageRightSection,
 } from "./styleComponents";
 import { useParams } from "react-router-dom";
-import VideoDetails from "../../Components/VideoDetails";
+import VideoDetails from "../../Components/VideoItems";
 
 export type VideoItemsDetailsStyle = {
   darkMode: boolean;
 };
 
-const VideoItemDetailsRoute = () => {
+const VideoDetailsRoute = () => {
   const { id } = useParams<{ id: string }>();
   return (
     <NxtwatchContext.Consumer>
@@ -36,4 +36,4 @@ const VideoItemDetailsRoute = () => {
   );
 };
 
-export default VideoItemDetailsRoute;
+export default VideoDetailsRoute;

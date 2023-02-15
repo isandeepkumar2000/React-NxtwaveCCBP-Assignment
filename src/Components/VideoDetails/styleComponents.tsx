@@ -1,45 +1,64 @@
 import styled from "styled-components";
-import { VideoDetailsStyle } from ".";
-
-export const VideoDetailLoaderContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-`;
-export const VideoDetailFailureContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
+import { VideoDetailsStyle } from "../VideoItems";
+export const VideoContainer = styled.div`
+  height: 100vh;
   width: 100%;
-  text-align: center;
-  color: ${(props: VideoDetailsStyle) =>
+  overflow-y: auto;
+  background-color: ${(props: VideoDetailsStyle) =>
     props.darkMode ? "white" : "#231f20"};
-  @media (max-width: 768px) {
-    width: 90%;
-    margin: auto;
+  color: ${(props) => props.color};
+  overflow: auto;
+  padding: 20px 5px;
+`;
+
+export const VideoFrameContainer = styled.div`
+  width: 100%;
+  overflow: auto;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
-export const VideoDetailFailureImage = styled.img`
-  width: 100%;
-  max-width: 350px;
+export const ParaEl = styled.p`
+  font-size: 15px;
+  padding-left: 20px;
+
+  @media (min-width: 768px) {
+    align-self: flex-start;
+  }
+  @media (max-width: 767px) {
+    font-size: 13px;
+  }
 `;
-export const VideoDetailFailureHeading = styled.h2``;
-export const VideoDetailFailureText = styled.p`
-  margin-top: 0px;
-  font-size: 18px;
-  margin-bottom: 5px;
-  color: ${(props: VideoDetailsStyle) =>
-    props.darkMode ? "#94a3b8" : "#1e293b"};
+export const AttributesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 0;
+  align-items: center;
+  border-bottom: 2px solid;
+  margin: 0 10px;
 `;
-export const VideoDetailFailureRetryBtn = styled.button`
-  border-radius: 3px;
-  background-color: #6366f1;
+export const ChannelContainer = styled.div`
+  display: flex;
+  padding: 10px;
+  background-color: ${(props: VideoDetailsStyle) =>
+    props.darkMode ? "white" : "#231f20"};
+  align-items: center;
+`;
+
+export const ContentContainer = styled.div``;
+
+export const ImageEl = styled.img`
+  height: 40px;
+`;
+export const IconParas = styled.p`
+  cursor: pointer;
   color: white;
-  font-weight: bold;
-  border: 0px;
-  padding: 12px 30px;
-  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
 `;

@@ -23,7 +23,7 @@ const GamingRoute = () => {
             <HeaderNxtwatch />
             <GamingPageContent>
               <SideBar />
-              <GamingPageRightSection>
+              <GamingPageRightSection darkMode={isDarkMode}>
                 <GamingContent />
               </GamingPageRightSection>
             </GamingPageContent>

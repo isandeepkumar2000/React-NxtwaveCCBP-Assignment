@@ -17,6 +17,7 @@ import {
   GamingFailureRetryBtn,
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
+import { jwtToken } from "../../Constants/appConstants";
 
 export type GamingContentType = {
   id: string;
@@ -32,7 +33,7 @@ export type GamingContentStyle = {
 };
 
 const GamingContent = () => {
-  const [gameList, setGameList] = useState([]);
+  const [videoList, setvideoList] = useState([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
   useEffect(() => {
@@ -40,28 +41,35 @@ const GamingContent = () => {
   }, []);
 
   const getGamingApiDetails = async () => {
-    const JwtToken = Cookies.get("jobby_app_jwt_token");
-    const apiUrl = "https://apis.ccbp.in/videos/gaming";
-    const options = {
-      method: "GET",
-      Authorization: `Bearer ${JwtToken}`,
-    };
-    const responseData = await fetch(apiUrl, options);
-    if (responseData.ok === true) {
-      const data = await responseData.json();
-      const updatedData = data.map((game: GamingContentType) => ({
-        title: game.title,
-        id: game.id,
-        thumbnailUrl: game.thumbnail_url,
-        viewCount: game.view_count,
-      }));
-      setGameList({ ...updatedData });
-      setApiStatus(ApiStatusConstant.success);
-    } else {
+    try {
+      const Token = Cookies.get(jwtToken);
+      const response = await fetch(`https://apis.ccbp.in/videos/gaming`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${Token}`,
+        },
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        const updatedData = responseData.videos.map(
+          (video: GamingContentType) => ({
+            title: video.title,
+            id: video.id,
+            thumbnailUrl: video.thumbnail_url,
+            viewCount: video.view_count,
+          })
+        );
+
+        setvideoList({ ...updatedData });
+        setApiStatus(ApiStatusConstant.success);
+      } else {
+        setApiStatus(ApiStatusConstant.failed);
+      }
+    } catch (err) {
+      console.log(err);
       setApiStatus(ApiStatusConstant.failed);
     }
   };
-
   const renderGamingVideoList = () => {
     return (
       <NxtwatchContext.Consumer>
@@ -76,7 +84,7 @@ const GamingContent = () => {
                 <h1>Gaming</h1>
               </GamingVideoHeaderContainer>
               <GamingVideoListContainer>
-                {gameList.map((item) => (
+                {videoList.map((item) => (
                   <GameVideoItem data={item} />
                 ))}
               </GamingVideoListContainer>

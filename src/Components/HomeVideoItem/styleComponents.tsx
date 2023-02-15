@@ -3,8 +3,8 @@ import { HomeVideoItemStyleComp } from ".";
 
 export const VideoItem = styled.div`
   max-width: 450px;
-  @media(max-width:578px){
-    margin:auto;
+  @media (max-width: 578px) {
+    margin: auto;
   }
 `;
 
@@ -25,16 +25,19 @@ export const VideoItemLogo = styled.img`
 export const VideoItemTitle = styled.p`
   margin-top: 0px;
   line-height: 25px;
-  color: ${(props:HomeVideoItemStyleComp) => (props.darkMode ? "white" : "#231f20")};
+  color: ${(props: HomeVideoItemStyleComp) =>
+    props.darkMode ? "white" : "#231f20"};
 `;
 export const VideoItemChannel = styled.p`
-  color: ${(props:HomeVideoItemStyleComp) => (props.darkMode ? "#64748b" : "#64748b")};
+  color: ${(props: HomeVideoItemStyleComp) =>
+    props.darkMode ? "#64748b" : "#64748b"};
   margin: 10px 0px;
 `;
 export const VideoItemOtherDetailContainer = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props:HomeVideoItemStyleComp) => (props.darkMode ? "#64748b" : "#64748b")};
+  color: ${(props: HomeVideoItemStyleComp) =>
+    props.darkMode ? "#64748b" : "#64748b"};
 `;
 export const VideoItemOtherDetail = styled.p`
   margin: 0px 0px;

@@ -23,6 +23,7 @@ import {
 import LogoutPopup from "../LogoutPopUp";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import NavLinkNxtwatch from "../NavLink";
+import { jwtToken } from "../../Constants/appConstants";
 export type NavBarStyle = {
   darkMode: boolean;
 };
@@ -30,7 +31,7 @@ export type NavBarStyle = {
 const NavBar = () => {
   let history = useHistory();
   const logoutHandler = () => {
-    Cookies.remove("jobby_app_jwt_token");
+    Cookies.remove(jwtToken);
     history.replace("/Nxtwatch/login");
   };
 
@@ -98,7 +99,7 @@ const NavBar = () => {
                     isDarkMode ? "dark-nxtwatch-logout-popup" : ""
                   }`}
                 >
-                  {(close: void) => (
+                  {(close: () => void) => (
                     <LogoutPopup onClose={close} onConfirm={logoutHandler} />
                   )}
                 </Popup>
@@ -113,7 +114,7 @@ const NavBar = () => {
                     isDarkMode ? "dark-nxtwatch-logout-popup" : ""
                   }`}
                 >
-                  {(close: void) => (
+                  {(close: () => void) => (
                     <LogoutPopup onClose={close} onConfirm={logoutHandler} />
                   )}
                 </Popup>

@@ -15,5 +15,7 @@ export const GamingPageContent = styled.div`
 export const GamingPageRightSection = styled.div`
   width: 100%;
   height: 92vh;
+  background-color: ${(props: GamingRoute) =>
+    props.darkMode ? "black" : "#f9f9f9"};
   overflow-y: auto;
 `;
