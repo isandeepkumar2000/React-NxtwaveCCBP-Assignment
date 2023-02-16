@@ -18,6 +18,13 @@ import {
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
 import { jwtToken } from "../../Constants/appConstants";
+import { Link } from "react-router-dom";
+import {
+  GameItemContainer,
+  GameItemImage,
+  GameItemTitle,
+  GameItemViewCount,
+} from "../GameVideoItem/styleComponents";
 
 export type GamingContentType = {
   id: string;
@@ -33,12 +40,8 @@ export type GamingContentStyle = {
 };
 
 const GamingContent = () => {
-  const [videoList, setvideoList] = useState([]);
+  const [videoList, setvideoList] = useState<GamingContentType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
-
-  useEffect(() => {
-    getGamingApiDetails();
-  }, []);
 
   const getGamingApiDetails = async () => {
     try {
@@ -59,8 +62,7 @@ const GamingContent = () => {
             viewCount: video.view_count,
           })
         );
-
-        setvideoList({ ...updatedData });
+        setvideoList(updatedData);
         setApiStatus(ApiStatusConstant.success);
       } else {
         setApiStatus(ApiStatusConstant.failed);
@@ -70,7 +72,13 @@ const GamingContent = () => {
       setApiStatus(ApiStatusConstant.failed);
     }
   };
+
+  useEffect(() => {
+    getGamingApiDetails();
+  }, []);
+
   const renderGamingVideoList = () => {
+    console.log(videoList);
     return (
       <NxtwatchContext.Consumer>
         {(value) => {
@@ -84,8 +92,28 @@ const GamingContent = () => {
                 <h1>Gaming</h1>
               </GamingVideoHeaderContainer>
               <GamingVideoListContainer>
-                {videoList.map((item) => (
-                  <GameVideoItem data={item} />
+                {videoList.map((data) => (
+                  <NxtwatchContext.Consumer>
+                    {(value) => {
+                      const { isDarkMode } = value;
+                      return (
+                        <Link
+                          to={"/Nxtwatch/video/" + data.id}
+                          className="nxtwatch-gamevideo-item"
+                        >
+                          <GameItemContainer>
+                            <GameItemImage src={data.thumbnailUrl} />
+                            <GameItemTitle darkMode={isDarkMode}>
+                              {data.title}
+                            </GameItemTitle>
+                            <GameItemViewCount darkMode={isDarkMode}>
+                              {data.viewCount} Watching Worldwide
+                            </GameItemViewCount>
+                          </GameItemContainer>
+                        </Link>
+                      );
+                    }}
+                  </NxtwatchContext.Consumer>
                 ))}
               </GamingVideoListContainer>
             </GamingVideoSuccessView>

@@ -19,12 +19,34 @@ import {
   TrendingVideoSuccessView,
 } from "./styleComponents";
 import { jwtToken } from "../../Constants/appConstants";
+import { Link } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import {
+  VideoItem,
+  VideoItemChannel,
+  VideoItemContent,
+  VideoItemDetail,
+  VideoItemImage,
+  VideoItemLogo,
+  VideoItemOtherDetail,
+  VideoItemOtherDetailContainer,
+  VideoItemTitle,
+} from "../HomeVideoItem/styleComponents";
+import {
+  VideoItemDetailContainer,
+  VideoItemImageContainer,
+} from "../SavedVideoItem/styleComponets";
+import { GoPrimitiveDot } from "react-icons/go";
 
 export type TrebdingType = {
   title: string;
   id: string;
   thumbnailUrl: string;
-  channel: string;
+
+  channel: {
+    name: string;
+    profile_image_url: string;
+  };
   viewCount: string;
   publishedAt: string;
   thumbnail_url: string;
@@ -37,40 +59,45 @@ export type trendingStyle = {
 };
 
 const TrendingContent = () => {
-  const [videosList, setVideoList] = useState([]);
+  const [videosList, setVideoList] = useState<TrebdingType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
-  useState(() => {
-    getTrendingVideosList();
-  });
-
-  const getTrendingVideosList = async () => {
-    const Token = Cookies.get(jwtToken);
-    const response = await fetch(`https://apis.ccbp.in/videos/trending`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${Token}`,
-      },
-    });
-    if (response.ok) {
-      const responseData = await response.json();
-      const updatedData = responseData.videos.map((video: TrebdingType) => ({
-        title: video.title,
-        id: video.id,
-        thumbnailUrl: video.thumbnail_url,
-        channel: video.channel,
-        viewCount: video.view_count,
-        publishedAt: video.published_at,
-      }));
-
-      setVideoList({ ...updatedData });
-      setApiStatus(ApiStatusConstant.success);
-    } else {
+  const getGamingApiDetails = async () => {
+    try {
+      const Token = Cookies.get(jwtToken);
+      const response = await fetch(`https://apis.ccbp.in/videos/trending`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${Token}`,
+        },
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        const updatedData = responseData.videos.map((video: TrebdingType) => ({
+          title: video.title,
+          id: video.id,
+          thumbnailUrl: video.thumbnail_url,
+          channel: video.channel,
+          viewCount: video.view_count,
+          publishedAt: video.published_at,
+        }));
+        setVideoList(updatedData);
+        setApiStatus(ApiStatusConstant.success);
+      } else {
+        setApiStatus(ApiStatusConstant.failed);
+      }
+    } catch (err) {
+      console.log(err);
       setApiStatus(ApiStatusConstant.failed);
     }
   };
 
+  useState(() => {
+    getGamingApiDetails();
+  });
+
   const renderTrendingVideosList = () => {
+    console.log(videosList);
     return (
       <NxtwatchContext.Consumer>
         {(value) => {
@@ -83,8 +110,58 @@ const TrendingContent = () => {
                 <h1>Trending</h1>
               </TrendingVideoHeaderContainer>
               <TrendingVideoListContainer>
-                {videosList.map((item) => (
-                  <SavedVideoItem data={item} />
+                {videosList.map((data) => (
+                  <NxtwatchContext.Consumer>
+                    {(value) => {
+                      const { isDarkMode } = value;
+                      const date = formatDistanceToNow(
+                        new Date(data.publishedAt),
+                        {
+                          addSuffix: true,
+                        }
+                      );
+                      return (
+                        <Link
+                          to={"/Nxtwatch/video/" + data.id}
+                          className="nxtwatch-savedvideo-item"
+                        >
+                          <VideoItem>
+                            <VideoItemImageContainer>
+                              <VideoItemImage src={data.thumbnailUrl} alt="" />
+                            </VideoItemImageContainer>
+                            <VideoItemContent>
+                              <VideoItemLogo
+                                src={data.channel.profile_image_url}
+                                alt=""
+                              />
+                              <VideoItemDetail>
+                                <VideoItemTitle darkMode={isDarkMode}>
+                                  {data.title}
+                                </VideoItemTitle>
+                                <VideoItemDetailContainer darkMode={isDarkMode}>
+                                  <VideoItemChannel darkMode={isDarkMode}>
+                                    {data.channel.name}
+                                  </VideoItemChannel>
+                                  <GoPrimitiveDot className="nxtwatch-video-item-dot nxtwatch-video-item-dot-small" />
+                                  <VideoItemOtherDetailContainer
+                                    darkMode={isDarkMode}
+                                  >
+                                    <VideoItemOtherDetail>
+                                      {data.viewCount}
+                                    </VideoItemOtherDetail>
+                                    <GoPrimitiveDot className="nxtwatch-video-item-dot" />
+                                    <VideoItemOtherDetail>
+                                      {date}
+                                    </VideoItemOtherDetail>
+                                  </VideoItemOtherDetailContainer>
+                                </VideoItemDetailContainer>
+                              </VideoItemDetail>
+                            </VideoItemContent>
+                          </VideoItem>
+                        </Link>
+                      );
+                    }}
+                  </NxtwatchContext.Consumer>
                 ))}
               </TrendingVideoListContainer>
             </TrendingVideoSuccessView>

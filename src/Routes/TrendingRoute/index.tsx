@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../../Components/NavBar";
-import HeaderNxtwatch from "../../Components/NavBar";
+
 import SideBar from "../../Components/SideBar";
 import TrendingContent from "../../Components/TrendingContent";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";

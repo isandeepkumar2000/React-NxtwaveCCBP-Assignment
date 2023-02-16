@@ -101,47 +101,50 @@ const VideoDetails: React.FC<Idtype> = () => {
     }
   };
 
-  useEffect(() => {
-    getDetail();
-  });
-
-  const getDetail = async () => {
-    const Token = Cookies.get(jwtToken);
-    const url = `https://apis.ccbp.in/videos/${id}`;
-    const options = {
-      headers: {
-        Authorization: `Bearer ${Token}`,
-      },
-      method: "GET",
-    };
-    const response = await fetch(url, options);
-    if (response.ok) {
-      const responseData = await response.json();
-      const data = responseData.video_details;
-      const convertedData = {
-        channel: data.channel,
-        description: data.description,
-        id: data.id,
-        publishedAt: data.published_at,
-        thumbnailUrl: data.thumbnail_url,
-        title: data.title,
-        videoUrl: data.video_url,
-        viewCount: data.view_count,
-      };
-      const channelData = {
-        name: data.channel.name,
-        profileImageUrl: data.channel.profile_image_url,
-        subscriberCount: data.channel.subscriber_count,
-      };
-      setVideoDetails({ ...convertedData });
-      setApiStatus(ApiStatusConstant.success);
-      setChannelDataObj({ ...channelData });
-      setChannelDataObj(ApiStatusConstant.success);
-    } else {
+  const getGamingApiDetails = async () => {
+    try {
+      const Tokens = Cookies.get(jwtToken);
+      const response = await fetch(`https://apis.ccbp.in/videos/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${Tokens}`,
+        },
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        const data = responseData.video_details;
+        const convertedData = {
+          channel: data.channel,
+          description: data.description,
+          id: data.id,
+          publishedAt: data.published_at,
+          thumbnailUrl: data.thumbnail_url,
+          title: data.title,
+          videoUrl: data.video_url,
+          viewCount: data.view_count,
+        };
+        const channelData = {
+          name: data.channel.name,
+          profileImageUrl: data.channel.profile_image_url,
+          subscriberCount: data.channel.subscriber_count,
+        };
+        setVideoDetails(convertedData);
+        setApiStatus(ApiStatusConstant.success);
+        setChannelDataObj(channelData);
+        setChannelDataObj(ApiStatusConstant.success);
+      } else {
+        setApiStatus(ApiStatusConstant.failed);
+        setChannelDataObj(ApiStatusConstant.failed);
+      }
+    } catch (err) {
+      console.log(err);
       setApiStatus(ApiStatusConstant.failed);
-      setChannelDataObj(ApiStatusConstant.failed);
     }
   };
+
+  useEffect(() => {
+    getGamingApiDetails();
+  }, []);
 
   const renderVideoDetails = (props: VideodetailSend) => {
     const { videoDetail, channelDataObj } = props;
@@ -168,13 +171,13 @@ const VideoDetails: React.FC<Idtype> = () => {
                 </ParaEl>
                 <ChannelContainer darkMode={isDarkMode}>
                   <IconParas onClick={isLiked}>
-                    <AiOutlineLike size={20} /> Like
+                    <AiOutlineLike /> Like
                   </IconParas>
                   <IconParas onClick={isDisliked}>
-                    <AiOutlineDislike size={20} /> Dislike
+                    <AiOutlineDislike /> Dislike
                   </IconParas>
                   <IconParas onClick={onSave}>
-                    <MdPlaylistAdd size={20} /> {saved ? "Saved" : "Save"}
+                    <MdPlaylistAdd />
                   </IconParas>
                 </ChannelContainer>
               </AttributesContainer>
@@ -230,7 +233,7 @@ const VideoDetails: React.FC<Idtype> = () => {
                 <VideoDetailFailureText darkMode={isDarkMode}>
                   Please try again.
                 </VideoDetailFailureText>
-                <VideoDetailFailureRetryBtn onClick={getDetail}>
+                <VideoDetailFailureRetryBtn onClick={getGamingApiDetails}>
                   Retry
                 </VideoDetailFailureRetryBtn>
               </VideoDetailFailureContainer>

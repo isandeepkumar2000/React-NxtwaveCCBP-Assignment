@@ -106,12 +106,12 @@ const TrendingContent = () => {
                   <NxtwatchContext.Consumer>
                     {(value) => {
                       const { isDarkMode } = value;
-                      const date = formatDistanceToNow(
-                        new Date(data.publishedAt),
-                        {
-                          addSuffix: true,
-                        }
-                      );
+                      // const date = formatDistanceToNow(
+                      //   new Date(data.publishedAt),
+                      //   {
+                      //     addSuffix: true,
+                      //   }
+
                       return (
                         <Link
                           to={"/Nxtwatch/video/" + data.id}
@@ -142,9 +142,9 @@ const TrendingContent = () => {
                                       {data.viewCount}
                                     </VideoItemOtherDetail>
                                     <GoPrimitiveDot className="nxtwatch-video-item-dot" />
-                                    <VideoItemOtherDetail>
+                                    {/* <VideoItemOtherDetail>
                                       {date}
-                                    </VideoItemOtherDetail>
+                                    </VideoItemOtherDetail> */}
                                   </VideoItemOtherDetailContainer>
                                 </VideoItemDetailContainer>
                               </VideoItemDetail>

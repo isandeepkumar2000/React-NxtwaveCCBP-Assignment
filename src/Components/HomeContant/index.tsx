@@ -57,52 +57,48 @@ interface GettingPP {
 
 const HomeContent: React.FC<GettingPP> = (props) => {
   const { searchValue } = props;
-
   const [videoList, setVideoList] = useState<VideoTypeList[]>([]);
-
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
-  useEffect(() => {
-    getVideoList();
-  }, []);
-
-  const getVideoList = async () => {
-    const JwtToken = Cookies.get(jwtToken);
-    const response = await fetch(
-      `https://apis.ccbp.in/videos/all?search=${searchValue}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${JwtToken}`,
-        },
+  const getGamingApiDetails = async () => {
+    try {
+      const Tokens = Cookies.get(jwtToken);
+      const response = await fetch(
+        `https://apis.ccbp.in/videos/all?search=${searchValue}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${Tokens}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const responseData = await response.json();
+        const updatedData = responseData.videos.map((video: VideoTypeList) => ({
+          title: video.title,
+          id: video.id,
+          thumbnailUrl: video.thumbnail_url,
+          channel: video.channel,
+          viewCount: video.view_count,
+          publishedAt: video.published_at,
+        }));
+        setVideoList(updatedData);
+        setApiStatus(ApiStatusConstant.success);
+      } else {
+        setApiStatus(ApiStatusConstant.failed);
       }
-    );
-    if (response.ok === true) {
-      const data = await response.json();
-      console.log({ data });
-      const updatedData = data.videos.map((video: VideoTypeList) => ({
-        title: video.title,
-        id: video.id,
-        thumbnailUrl: video.thumbnail_url,
-        channel: video.channel,
-        viewCount: video.view_count,
-        publishedAt: video.published_at,
-      }));
-      if (data.total === 0) {
-        setVideoList({ ...updatedData });
-        setApiStatus(ApiStatusConstant.empty);
-        return;
-      }
-      setVideoList(updatedData);
-      setApiStatus(ApiStatusConstant.success);
-    } else {
+    } catch (err) {
+      console.log(err);
       setApiStatus(ApiStatusConstant.failed);
     }
-
-    console.log({ apiStatus });
   };
 
+  useState(() => {
+    getGamingApiDetails();
+  });
+
   const renderVideoList = () => {
+    console.log(videoList);
     return (
       <div>
         {videoList.map((video) => {
@@ -186,7 +182,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
                   <HomeFailureText darkMode={isDarkMode}>
                     Please try again.
                   </HomeFailureText>
-                  <HomeFailureRetryBtn onClick={getVideoList}>
+                  <HomeFailureRetryBtn onClick={getGamingApiDetails}>
                     Retry
                   </HomeFailureRetryBtn>
                 </HomeFailureContainer>
@@ -204,7 +200,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
                   <HomeEmptyText darkMode={isDarkMode}>
                     Try different keyword or remove search filters
                   </HomeEmptyText>
-                  <HomeFailureRetryBtn onClick={getVideoList}>
+                  <HomeFailureRetryBtn onClick={getGamingApiDetails}>
                     Retry
                   </HomeFailureRetryBtn>
                 </HomeEmptyContainer>

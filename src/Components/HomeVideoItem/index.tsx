@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-import { VideoTypeList } from "../HomeContant";
+// import { VideoTypeList } from "../HomeContant";
 import { GoPrimitiveDot } from "react-icons/go";
 import { formatDistanceToNow } from "date-fns";
 import {
@@ -21,12 +21,11 @@ export type HomeVideoItemStyleComp = {
   darkMode: boolean;
 };
 
-interface HomeVideoPrp {
-  data: VideoTypeList;
-}
+// interface HomeVideoPrp {
+//   data: VideoTypeList;
+// }
 
-const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
-  const { data } = props;
+const HomeVideoItem = () => {
   return (
     <></>
     // <NxtwatchContext.Consumer>
