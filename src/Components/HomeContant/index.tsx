@@ -72,6 +72,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
           },
         }
       );
+      console.log(response);
       if (response.ok) {
         const responseData = await response.json();
         const updatedData = responseData.videos.map((video: VideoTypeList) => ({
