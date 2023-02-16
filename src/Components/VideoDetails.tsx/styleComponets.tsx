@@ -30,7 +30,6 @@ export const VideoItemActionText = styled.div`
   margin-left: 5px;
   font-weight: bold;
 `;
-
 export const VideoItemLogo = styled.img`
   width: 40px;
 `;
@@ -83,9 +82,6 @@ export const VideoItemOtherDetail = styled.p`
   margin: 0px 0px;
 `;
 
-
-
-
 export const VideoDetailLoaderContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -100,22 +96,24 @@ export const VideoDetailFailureContainer = styled.div`
   min-height: 80vh;
   width: 100%;
   text-align: center;
-  color: ${(props: VideoDetailsStyle) => (props.darkMode ? "white" : "#231f20")};
+  color: ${(props: VideoDetailsStyle) =>
+    props.darkMode ? "white" : "#231f20"};
   @media (max-width: 768px) {
     width: 90%;
     margin: auto;
   }
 `;
 export const VideoDetailFailureImage = styled.img`
-  width: 100%;
-  max-width: 350px;
+  width: 97%;
+  height: 454px;
 `;
 export const VideoDetailFailureHeading = styled.h2``;
 export const VideoDetailFailureText = styled.p`
   margin-top: 0px;
   font-size: 18px;
   margin-bottom: 5px;
-  color: ${(props: VideoDetailsStyle) => (props.darkMode ? "#94a3b8" : "#1e293b")};
+  color: ${(props: VideoDetailsStyle) =>
+    props.darkMode ? "#94a3b8" : "#1e293b"};
 `;
 export const VideoDetailFailureRetryBtn = styled.button`
   border-radius: 3px;

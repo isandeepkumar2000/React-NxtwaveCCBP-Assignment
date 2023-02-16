@@ -11,6 +11,7 @@ export const VideoItem = styled.div`
 export const VideoItemContent = styled.div`
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
   margin-top: 10px;
 `;
 export const VideoItemDetail = styled.div`
@@ -25,20 +26,23 @@ export const VideoItemLogo = styled.img`
 export const VideoItemTitle = styled.p`
   margin-top: 0px;
   line-height: 25px;
+  margin-top: 10px;
   color: ${(props: HomeVideoItemStyleComp) =>
     props.darkMode ? "white" : "#231f20"};
 `;
 export const VideoItemChannel = styled.p`
   color: ${(props: HomeVideoItemStyleComp) =>
-    props.darkMode ? "#64748b" : "#64748b"};
+    props.darkMode ? "white" : "#64748b"};
   margin: 10px 0px;
 `;
 export const VideoItemOtherDetailContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  font-family: initial, sans-serif;
   color: ${(props: HomeVideoItemStyleComp) =>
-    props.darkMode ? "#64748b" : "#64748b"};
+    props.darkMode ? "white" : "#64748b"};
 `;
 export const VideoItemOtherDetail = styled.p`
-  margin: 0px 0px;
+  margin: 0px 5px;
 `;

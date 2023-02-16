@@ -1,7 +1,7 @@
 import React from "react";
 
 const NxtwatchContext = React.createContext({
-  isDarkMode: false,
+  isDarkMode: true,
   toggleDarkMode: () => {},
   showBanner: true,
   closeBanner: () => {},

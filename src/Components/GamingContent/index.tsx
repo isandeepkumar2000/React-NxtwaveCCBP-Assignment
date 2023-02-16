@@ -92,26 +92,11 @@ const GamingContent = () => {
                 <h1>Gaming</h1>
               </GamingVideoHeaderContainer>
               <GamingVideoListContainer>
-                {videoList.map((data) => (
+                {videoList.map((item) => (
                   <NxtwatchContext.Consumer>
                     {(value) => {
                       const { isDarkMode } = value;
-                      return (
-                        <Link
-                          to={"/Nxtwatch/video/" + data.id}
-                          className="nxtwatch-gamevideo-item"
-                        >
-                          <GameItemContainer>
-                            <GameItemImage src={data.thumbnailUrl} />
-                            <GameItemTitle darkMode={isDarkMode}>
-                              {data.title}
-                            </GameItemTitle>
-                            <GameItemViewCount darkMode={isDarkMode}>
-                              {data.viewCount} Watching Worldwide
-                            </GameItemViewCount>
-                          </GameItemContainer>
-                        </Link>
-                      );
+                      return <GameVideoItem key={item.id} data={item} />;
                     }}
                   </NxtwatchContext.Consumer>
                 ))}

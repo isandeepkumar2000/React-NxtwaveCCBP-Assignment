@@ -20,7 +20,7 @@ const NavLinkNxtwatch = () => {
           <NavLinksContainer>
             <NavLink
               exact
-              to="/Nxtwatch"
+              to="/"
               activeClassName={`active-navlink ${
                 isDarkMode ? "dark-active-navlink" : ""
               }`}

@@ -26,28 +26,30 @@ const Home = () => {
   };
 
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode, showBanner } = value;
-        return (
-          <HomePage darkMode={isDarkMode}>
-            <HeaderNxtwatch />
-            <HomePageContent>
-              <SideBar />
-              <HomePageRightSections>
-                {showBanner && <Banner />}
-                <SearchBar
-                  searchValue={searchValue}
-                  onChangeSearch={onChangeSearch}
-                  clearInput={onClearInput}
-                />
-                <HomeContent searchValue={searchValue} />
-              </HomePageRightSections>
-            </HomePageContent>
-          </HomePage>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <>
+      <NxtwatchContext.Consumer>
+        {(value) => {
+          const { isDarkMode, showBanner } = value;
+          return (
+            <HomePage darkMode={isDarkMode}>
+              <HeaderNxtwatch />
+              <HomePageContent>
+                <SideBar />
+                <HomePageRightSections>
+                  {showBanner && <Banner />}
+                  <SearchBar
+                    searchValue={searchValue}
+                    onChangeSearch={onChangeSearch}
+                    clearInput={onClearInput}
+                  />
+                  <HomeContent searchValue={searchValue} />
+                </HomePageRightSections>
+              </HomePageContent>
+            </HomePage>
+          );
+        }}
+      </NxtwatchContext.Consumer>
+    </>
   );
 };
 
