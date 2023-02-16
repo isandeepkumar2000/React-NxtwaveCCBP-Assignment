@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/React-NotificationCCBP-Assignment/static/css/main.f2e6afbe.css",
-    "main.js": "/React-NotificationCCBP-Assignment/static/js/main.84e3e096.js",
+    "main.js": "/React-NotificationCCBP-Assignment/static/js/main.1f11206b.js",
     "static/js/787.d744dec0.chunk.js": "/React-NotificationCCBP-Assignment/static/js/787.d744dec0.chunk.js",
     "index.html": "/React-NotificationCCBP-Assignment/index.html",
     "main.f2e6afbe.css.map": "/React-NotificationCCBP-Assignment/static/css/main.f2e6afbe.css.map",
-    "main.84e3e096.js.map": "/React-NotificationCCBP-Assignment/static/js/main.84e3e096.js.map",
+    "main.1f11206b.js.map": "/React-NotificationCCBP-Assignment/static/js/main.1f11206b.js.map",
     "787.d744dec0.chunk.js.map": "/React-NotificationCCBP-Assignment/static/js/787.d744dec0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f2e6afbe.css",
-    "static/js/main.84e3e096.js"
+    "static/js/main.1f11206b.js"
   ]
 }
