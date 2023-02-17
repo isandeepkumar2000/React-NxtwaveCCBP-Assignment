@@ -74,16 +74,17 @@ const VideoDetailsItems: React.FC<VideoItemPp> = (props) => {
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
-        const { isDarkMode, toggleSavedVideo } = value;
+        const { isDarkMode, savedVideo } = value;
         const onSaveButtonClicked = () => {
           setSaveVideo(!saveVideo);
-          toggleSavedVideo();
         };
 
         const date = formatDistanceToNow(new Date(data.publishedAt), {
           addSuffix: true,
         });
-
+        if (saveVideo) {
+          savedVideo.push(data);
+        }
         return (
           <VideoItemContent>
             <Player

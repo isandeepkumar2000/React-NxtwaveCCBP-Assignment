@@ -1,16 +1,18 @@
 import React from "react";
-
-const NxtwatchContext = React.createContext({
+import { VideoDetailType } from "../Components/VideoDetails.tsx";
+interface NxtwatchContextType {
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+  showBanner: boolean;
+  closeBanner: () => void;
+  savedVideo: VideoDetailType[];
+}
+const NxtwatchContext = React.createContext<NxtwatchContextType>({
   isDarkMode: true,
   toggleDarkMode: () => {},
   showBanner: true,
   closeBanner: () => {},
   savedVideo: [],
-  toggleSavedVideo: () => {},
-  // likedVideo: [],
-  // toggleLikedVideo: () => {},
-  // dislikedVideo: [],
-  // toggleDislikedVideo: () => {},
 });
 
 export default NxtwatchContext;

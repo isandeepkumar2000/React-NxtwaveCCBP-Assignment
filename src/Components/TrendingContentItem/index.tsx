@@ -2,62 +2,71 @@ import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { TendingContentType } from "../TrendingContent";
 import { formatDistanceToNow } from "date-fns";
-import { Link } from "react-router-dom";
+
+import { GoPrimitiveDot } from "react-icons/go";
+
 import {
   ContainerLink,
   VideoItem,
-  VideoItemChannel,
-  VideoItemContent,
-  VideoItemDetail,
   VideoItemDetailContainer,
   VideoItemImage,
   VideoItemImageContainer,
+} from "../SavedVideoItem/styleComponets";
+import {
+  VideoItemChannel,
+  VideoItemContent,
+  VideoItemDetail,
   VideoItemLogo,
+  VideoItemTitle,
+} from "../VideoDetails.tsx/styleComponets";
+import {
   VideoItemOtherDetail,
   VideoItemOtherDetailContainer,
-  VideoItemTitle,
-} from "./styleComponets";
-import { GoPrimitiveDot } from "react-icons/go";
-import { VideoDetailType } from "../VideoDetails.tsx";
+} from "./styleComponents";
 
 interface SavedVideoPp {
-  data: VideoDetailType;
+  trending: TendingContentType;
 }
 
 export type SavedVideoStyle = {
   darkMode: boolean;
 };
 
-const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
-  const { data } = props;
+const TrendingContentItem: React.FC<SavedVideoPp> = (props) => {
+  const { trending } = props;
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
         const { isDarkMode } = value;
-        const date = formatDistanceToNow(new Date(data.publishedAt), {
+        const date = formatDistanceToNow(new Date(trending.publishedAt), {
           addSuffix: true,
         });
         return (
           <ContainerLink
-            to={"/Nxtwatch/video/" + data.id}
+            to={"/Nxtwatch/video/" + trending.id}
             className="nxtwatch-savedvideo-item"
           >
             <VideoItem>
               <VideoItemImageContainer>
-                <VideoItemImage src={data.thumbnailUrl} alt="" />
+                <VideoItemImage src={trending.thumbnailUrl} alt="" />
               </VideoItemImageContainer>
               <VideoItemContent>
-                <VideoItemLogo src={data.channel.profile_image_url} alt="" />
+                <VideoItemLogo
+                  src={trending.channel.profile_image_url}
+                  alt=""
+                />
                 <VideoItemDetail>
                   <VideoItemTitle darkMode={isDarkMode}>
-                    {data.title}
+                    {trending.title}
                   </VideoItemTitle>
                   <VideoItemDetailContainer darkMode={isDarkMode}>
-                    <VideoItemChannel>{data.channel.name}</VideoItemChannel>
+                    <VideoItemChannel darkMode={isDarkMode}>
+                      {trending.channel.name}
+                    </VideoItemChannel>
                     <GoPrimitiveDot className="nxtwatch-video-item-dot nxtwatch-video-item-dot-small" />
                     <VideoItemOtherDetailContainer>
                       <VideoItemOtherDetail>
-                        {data.viewCount}
+                        {trending.viewCount}
                       </VideoItemOtherDetail>
                       <GoPrimitiveDot className="nxtwatch-video-item-dot" />
                       <VideoItemOtherDetail>{date}</VideoItemOtherDetail>
@@ -73,4 +82,4 @@ const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
   );
 };
 
-export default SavedVideoItem;
+export default TrendingContentItem;

@@ -52,6 +52,7 @@ const SavedVideoRoute = () => {
       <NxtwatchContext.Consumer>
         {(value) => {
           const { savedVideo, isDarkMode } = value;
+          console.log(savedVideo, "saved");
           return (
             <SavedVideoFilledContainer>
               <SavedVideoHeaderContainer darkMode={isDarkMode}>
@@ -77,14 +78,15 @@ const SavedVideoRoute = () => {
       {(value) => {
         const { isDarkMode, savedVideo } = value;
         const empty = savedVideo.length > 0 ? false : true;
+
         return (
           <SavedVideoPage darkMode={isDarkMode}>
             <NavBar />
             <SavedVideoPageContent>
               <SideBar />
               <SavedVideoPageRightSection>
-                {empty && renderEmptyView()}
-                {!empty && renderSavedVideoList()}
+                {/* {renderEmptyView()} */}
+                {renderSavedVideoList()}
               </SavedVideoPageRightSection>
             </SavedVideoPageContent>
           </SavedVideoPage>

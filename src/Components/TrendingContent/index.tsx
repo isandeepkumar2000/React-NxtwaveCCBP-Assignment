@@ -36,6 +36,7 @@ import {
 } from "../SavedVideoItem/styleComponets";
 import { GoPrimitiveDot } from "react-icons/go";
 import { jwtToken } from "../../Constants/appConstants";
+import TrendingContentItem from "../TrendingContentItem";
 
 export type TendingContentType = {
   id: string;
@@ -114,7 +115,7 @@ const TrendingContent = () => {
                 </TrendingVideoHeaderContainer>
                 <TrendingVideoListContainer>
                   {trending.map((item) => {
-                    return <SavedVideoItem key={item.id} data={item} />;
+                    return <TrendingContentItem key={item.id} trending={item} />;
                   })}
                 </TrendingVideoListContainer>
               </TrendingVideoSuccessView>

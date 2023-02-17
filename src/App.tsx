@@ -24,10 +24,6 @@ const App = () => {
     SetIsDarkMode(!isDarkMode);
   };
 
-  const toggleSavedVideo = () => {
-    // setSavedVideo({ savedVideosList: [...savedVideosList, data] });
-  };
-
   return (
     <NxtwatchContext.Provider
       value={{
@@ -36,7 +32,6 @@ const App = () => {
         savedVideo,
         toggleDarkMode: toggleDarkMode,
         closeBanner: closeBanner,
-        toggleSavedVideo: toggleSavedVideo,
       }}
     >
       <BrowserRouter>
@@ -65,7 +60,7 @@ const App = () => {
             component={VideoDetailsRoute}
           />
           <Route path="/Nxtwatch/not-found" component={NotFoundRoute} />
-          <Redirect to="not-found" />
+          <Redirect to="/Nxtwatch/not-found" />
         </Switch>
       </BrowserRouter>
     </NxtwatchContext.Provider>

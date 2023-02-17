@@ -30,7 +30,7 @@ const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
-        const { isDarkMode } = value;
+        const { isDarkMode, savedVideo } = value;
         const date = formatDistanceToNow(new Date(data.publishedAt), {
           addSuffix: true,
         });
