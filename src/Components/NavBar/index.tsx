@@ -1,5 +1,3 @@
-import { Component } from "react";
-
 import { Link, withRouter } from "react-router-dom";
 import Cookies from "js-cookie";
 import { FiLogOut } from "react-icons/fi";

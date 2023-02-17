@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import LoginPage from "./Components/LoginPage";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
-
 import ProtectedRoute from "./ProtectRoute";
 import Home from "./Routes/HomeRoute";
 import TrendingRoute from "./Routes/TrendingRoute";
 import GamingRoute from "./Routes/GamingRoute";
-import VideoItemDetailsRoute from "./Routes/VideoIntemDetailRoute";
 import NxtwatchContext from "./Contexts/NxtWatchContexts";
 import NotFoundRoute from "./Routes/NotFoundRoute";
 import VideoDetailsRoute from "./Routes/VideoIntemDetailRoute";
@@ -15,7 +13,7 @@ import SavedVideoRoute from "./Routes/SavedvideoRoute";
 const App = () => {
   const [isDarkMode, SetIsDarkMode] = useState(true);
   const [showBanner, setShowBanner] = useState(true);
-  const [savedVideo, setSavedVideo] = useState([]);
+  const [savedVideo] = useState([]);
 
   const closeBanner = () => {
     setShowBanner(false);
@@ -37,7 +35,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/Nxtwatch/login" component={LoginPage} />
-          <ProtectedRoute exact path="/Nxtwatch" component={Home} />
+          <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute
             exact
             path={`/Nxtwatch/trending`}
@@ -50,7 +48,7 @@ const App = () => {
           />
           <ProtectedRoute
             exact
-            path={`/Nxtwatch/savedvideos`}
+            path={`/Nxtwatch/savedVideos`}
             component={SavedVideoRoute}
           />
 

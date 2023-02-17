@@ -9,7 +9,7 @@ import {
   GamingPageRightSection,
 } from "./styleComponents";
 
-export type GamingRoute = {
+export type GamingRoutes = {
   darkMode: boolean;
 };
 

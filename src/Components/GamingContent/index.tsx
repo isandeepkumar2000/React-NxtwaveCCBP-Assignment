@@ -18,13 +18,6 @@ import {
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
 import { jwtToken } from "../../Constants/appConstants";
-import { Link } from "react-router-dom";
-import {
-  GameItemContainer,
-  GameItemImage,
-  GameItemTitle,
-  GameItemViewCount,
-} from "../GameVideoItem/styleComponents";
 
 export type GamingContentType = {
   id: string;
@@ -95,7 +88,6 @@ const GamingContent = () => {
                 {videoList.map((item) => (
                   <NxtwatchContext.Consumer>
                     {(value) => {
-                      const { isDarkMode } = value;
                       return <GameVideoItem key={item.id} data={item} />;
                     }}
                   </NxtwatchContext.Consumer>

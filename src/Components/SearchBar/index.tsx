@@ -13,13 +13,13 @@ export type SearchBarStyle = {
   darkMode: boolean;
 };
 
-interface SerachBarPp {
-  searchValue: any;
+interface SearchBarProp {
+  searchValue: string;
   onChangeSearch: any;
   clearInput: any;
 }
 
-const SearchBar: React.FC<SerachBarPp> = (props) => {
+const SearchBar: React.FC<SearchBarProp> = (props) => {
   const { searchValue, onChangeSearch, clearInput } = props;
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeSearch(e.target.value);

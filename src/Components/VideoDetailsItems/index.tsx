@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-import { Link } from "react-router-dom";
+
 import { formatDistanceToNow } from "date-fns";
 import { GoPrimitiveDot } from "react-icons/go";
 import Player from "react-player";
 import {
-  VideoItem,
   VideoItemChannel,
   VideoItemContent,
   VideoItemDetail,
-  VideoItemImage,
   VideoItemLogo,
   VideoItemOtherDetail,
   VideoItemOtherDetailContainer,

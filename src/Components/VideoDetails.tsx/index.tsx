@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
-
 import Cookies from "js-cookie";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { ThreeDots } from "react-loader-spinner";
@@ -16,9 +15,7 @@ import {
 
 import { jwtToken } from "../../Constants/appConstants";
 import VideoDetailsItems from "../VideoDetailsItems";
-interface VideoDetailsState {
-  data: VideoDetailType;
-}
+
 export type VideoDetailType = {
   title: string;
   id: string;
@@ -35,11 +32,7 @@ export type VideoDetailType = {
   };
 };
 
-interface VideodetailSend {
-  videoDetail: VideoDetailType;
-  channelDataObj: ChannelType;
-}
-interface Idtype {
+interface VideoIdType {
   id: string;
 }
 
@@ -56,7 +49,7 @@ export type VideoDetailsStyleActive = {
   isActive: boolean;
 };
 
-const VideoDetails: React.FC<Idtype> = (props) => {
+const VideoDetails: React.FC<VideoIdType> = (props) => {
   const { id } = props;
   const [videoDetail, setVideoDetails] = useState<VideoDetailType | null>(null);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
@@ -98,7 +91,7 @@ const VideoDetails: React.FC<Idtype> = (props) => {
 
   useEffect(() => {
     getGamingApiDetails();
-  }, []);
+  });
 
   const renderVideoDetails = () => {
     return <VideoDetailsItems data={videoDetail as VideoDetailType} />;

@@ -17,7 +17,7 @@ import {
   WebsiteImage,
 } from "./styleComponents";
 
-export type LoginPage = {
+export type LoginPages = {
   darkMode: boolean;
 };
 

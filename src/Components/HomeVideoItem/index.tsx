@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { GoPrimitiveDot } from "react-icons/go";
 import { formatDistanceToNow } from "date-fns";
@@ -30,7 +29,7 @@ const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
-        const { isDarkMode, savedVideo } = value;
+        const { isDarkMode } = value;
         const date = formatDistanceToNow(new Date(data.publishedAt), {
           addSuffix: true,
         });

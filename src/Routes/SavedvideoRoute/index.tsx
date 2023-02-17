@@ -1,4 +1,3 @@
-import { Component } from "react";
 import NavBar from "../../Components/NavBar";
 import SideBar from "../../Components/SideBar";
 
@@ -85,8 +84,8 @@ const SavedVideoRoute = () => {
             <SavedVideoPageContent>
               <SideBar />
               <SavedVideoPageRightSection>
-                {/* {renderEmptyView()} */}
-                {renderSavedVideoList()}
+                {empty && renderEmptyView()}
+                {!empty && renderSavedVideoList()}
               </SavedVideoPageRightSection>
             </SavedVideoPageContent>
           </SavedVideoPage>

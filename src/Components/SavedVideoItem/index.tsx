@@ -1,8 +1,8 @@
 import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-import { TendingContentType } from "../TrendingContent";
+
 import { formatDistanceToNow } from "date-fns";
-import { Link } from "react-router-dom";
+
 import {
   ContainerLink,
   VideoItem,

@@ -4,7 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { MdLocalFireDepartment } from "react-icons/md";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-import { formatDistanceToNow } from "date-fns";
+
 import {
   TrendingFailureContainer,
   TrendingFailureHeading,
@@ -17,24 +17,6 @@ import {
   TrendingVideoListContainer,
   TrendingVideoSuccessView,
 } from "./styleComponets";
-import SavedVideoItem from "../SavedVideoItem";
-import { Link } from "react-router-dom";
-import {
-  VideoItem,
-  VideoItemContent,
-  VideoItemDetail,
-  VideoItemImage,
-  VideoItemLogo,
-  VideoItemOtherDetail,
-  VideoItemOtherDetailContainer,
-  VideoItemTitle,
-} from "../HomeVideoItem/styleComponents";
-import {
-  VideoItemChannel,
-  VideoItemDetailContainer,
-  VideoItemImageContainer,
-} from "../SavedVideoItem/styleComponets";
-import { GoPrimitiveDot } from "react-icons/go";
 import { jwtToken } from "../../Constants/appConstants";
 import TrendingContentItem from "../TrendingContentItem";
 
@@ -115,7 +97,9 @@ const TrendingContent = () => {
                 </TrendingVideoHeaderContainer>
                 <TrendingVideoListContainer>
                   {trending.map((item) => {
-                    return <TrendingContentItem key={item.id} trending={item} />;
+                    return (
+                      <TrendingContentItem key={item.id} trending={item} />
+                    );
                   })}
                 </TrendingVideoListContainer>
               </TrendingVideoSuccessView>
@@ -146,7 +130,6 @@ const TrendingContent = () => {
             case ApiStatusConstant.failed:
               return (
                 <>
-                  <p>Nahi</p>
                   <TrendingFailureContainer darkMode={isDarkMode}>
                     <TrendingFailureImage
                       src={

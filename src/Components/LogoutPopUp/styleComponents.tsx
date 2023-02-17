@@ -25,5 +25,5 @@ export const LogoutPopupConfirmBtn = styled.button`
   background-color: #3b82f6;
 `;
 export const LogoutPoputHeader = styled.p`
-  color: ${(props: LogoutStyle) => (props.darkMode ? "white" : "#00306e")};
+  color: ${(props: LogoutStyle) => (props.darkMode ? "white" : "#3b82f6")};
 `;
