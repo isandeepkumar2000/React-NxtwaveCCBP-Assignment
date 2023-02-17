@@ -2,7 +2,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
+import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 
 import { jwtToken } from "../../Constants/appConstants";

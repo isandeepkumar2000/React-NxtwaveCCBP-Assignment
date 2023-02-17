@@ -91,7 +91,7 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
 
   useEffect(() => {
     getGamingApiDetails();
-  });
+  }, []);
 
   const renderVideoDetails = () => {
     return <VideoDetailsItems data={videoDetail as VideoDetailType} />;

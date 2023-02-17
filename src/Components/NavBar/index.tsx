@@ -4,7 +4,7 @@ import { FiLogOut } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Popup from "reactjs-popup";
-
+import React from "react";
 import { useHistory } from "react-router-dom";
 import {
   Avatar,

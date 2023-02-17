@@ -82,3 +82,5 @@ export const LoginFormConatiner = styled.div`
   flex-direction: column;
   margin-top: 100px;
 `;
+
+

@@ -1,6 +1,6 @@
 import NavBar from "../../Components/NavBar";
 import SideBar from "../../Components/SideBar";
-
+import React from "react";
 import { MdLocalFireDepartment } from "react-icons/md";
 import "./index.css";
 import SavedVideoItem from "../../Components/SavedVideoItem";

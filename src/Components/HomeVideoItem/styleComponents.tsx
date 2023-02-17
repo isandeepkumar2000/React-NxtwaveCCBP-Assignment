@@ -39,14 +39,24 @@ export const VideoItemChannel = styled.p`
     props.darkMode ? "white" : "#64748b"};
   margin: 10px 0px;
 `;
-export const VideoItemOtherDetailContainer = styled.div`
+export const VideoItemOtherDetailContainerss = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   font-family: initial, sans-serif;
   color: ${(props: HomeVideoItemStyleComp) =>
     props.darkMode ? "white" : "#64748b"};
 `;
+
+export const VideoItemOtherDetailContainer = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-family: initial, sans-serif;
+  color: ${(props: HomeVideoItemStyleComp) =>
+    props.darkMode ? "white" : "#64748b"};
+`;
+
 export const VideoItemOtherDetail = styled.p`
   margin: 0px 5px;
 `;

@@ -11,7 +11,7 @@ import {
   VideoItemImage,
   VideoItemLogo,
   VideoItemOtherDetail,
-  VideoItemOtherDetailContainer,
+  VideoItemOtherDetailContainerss,
   VideoItemTitle,
 } from "./styleComponents";
 import { ContainerLink } from "../SavedVideoItem/styleComponets";
@@ -49,13 +49,13 @@ const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
                   <VideoItemChannel darkMode={isDarkMode}>
                     {data.channel.name}
                   </VideoItemChannel>
-                  <VideoItemOtherDetailContainer darkMode={isDarkMode}>
+                  <VideoItemOtherDetailContainerss darkMode={isDarkMode}>
                     <VideoItemOtherDetail>
                       {data.viewCount}
                     </VideoItemOtherDetail>
                     <GoPrimitiveDot className="nxtwatch-video-item-dot" />
                     <VideoItemOtherDetail>{date}</VideoItemOtherDetail>
-                  </VideoItemOtherDetailContainer>
+                  </VideoItemOtherDetailContainerss>
                 </VideoItemDetail>
               </VideoItemContent>
             </VideoItem>

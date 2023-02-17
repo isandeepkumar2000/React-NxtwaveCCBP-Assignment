@@ -1,5 +1,6 @@
 import { Redirect, Route } from "react-router-dom";
 import Cookie from "js-cookie";
+import React from "react";
 import { jwtToken } from "./Constants/appConstants";
 
 const ProtectedRoute = (props: any) => {

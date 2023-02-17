@@ -1,6 +1,7 @@
 import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import {
+  ContFormConatiner,
   LogoutActionContainer,
   LogoutPopupCancelBtn,
   LogoutPopupConfirmBtn,
@@ -22,7 +23,7 @@ const LogOutPopup = (props: LogoutButtonType) => {
       {(value) => {
         const { isDarkMode } = value;
         return (
-          <>
+          <ContFormConatiner darkMode={isDarkMode}>
             <LogoutPoputHeader darkMode={isDarkMode}>
               Are you sure you want to logout?
             </LogoutPoputHeader>
@@ -34,7 +35,7 @@ const LogOutPopup = (props: LogoutButtonType) => {
                 Confirm
               </LogoutPopupConfirmBtn>
             </LogoutActionContainer>
-          </>
+          </ContFormConatiner>
         );
       }}
     </NxtwatchContext.Consumer>
