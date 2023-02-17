@@ -16,6 +16,7 @@ export const VideoItemContent = styled.div`
 `;
 export const VideoItemDetail = styled.div`
   margin-left: 10px;
+  width: 100%;
 `;
 export const VideoItemImage = styled.img`
   width: 100%;
@@ -27,6 +28,9 @@ export const VideoItemTitle = styled.p`
   margin-top: 0px;
   line-height: 25px;
   margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: initial, sans-serif;
   color: ${(props: HomeVideoItemStyleComp) =>
     props.darkMode ? "white" : "#231f20"};
 `;

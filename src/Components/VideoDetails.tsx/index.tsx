@@ -89,7 +89,6 @@ const VideoDetails: React.FC<Idtype> = (props) => {
         setApiStatus(ApiStatusConstant.success);
       } else {
         setApiStatus(ApiStatusConstant.failed);
-        // console.log("failed api");
       }
     } catch (err) {
       console.log(err);
@@ -102,7 +101,6 @@ const VideoDetails: React.FC<Idtype> = (props) => {
   }, []);
 
   const renderVideoDetails = () => {
-    console.log("call");
     return <VideoDetailsItems data={videoDetail as VideoDetailType} />;
   };
 

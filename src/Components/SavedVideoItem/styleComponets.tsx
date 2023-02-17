@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SavedVideoStyle } from ".";
+import { Link } from "react-router-dom";
 
 export const VideoItem = styled.div`
   display: grid;
@@ -21,6 +22,7 @@ export const VideoItemContent = styled.div`
   @media (max-width: 768px) {
     min-width: 0px;
   }
+
   @media (max-width: 578px) {
     display: flex;
     align-items: flex-start;
@@ -40,6 +42,10 @@ export const VideoItemImage = styled.img`
   min-width: 275px;
   max-height: 300px;
 `;
+export const ContainerLink = styled(Link)`
+  text-decoration: none;
+`
+
 
 export const VideoItemDetail = styled.div`
   margin-left: 20px;
@@ -71,8 +77,7 @@ export const VideoItemTitle = styled.h3`
   }
 `;
 export const VideoItemDetailContainer = styled.div`
-  color: ${(props: SavedVideoStyle) =>
-    props.darkMode ? "#94a3b8" : "#64748b"};
+  color: ${(props: SavedVideoStyle) => (props.darkMode ? "white" : "#64748b")};
   @media (max-width: 578px) {
     display: flex;
     align-items: center;

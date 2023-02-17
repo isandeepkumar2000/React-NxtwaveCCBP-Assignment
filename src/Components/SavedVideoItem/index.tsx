@@ -4,6 +4,7 @@ import { TendingContentType } from "../TrendingContent";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 import {
+  ContainerLink,
   VideoItem,
   VideoItemChannel,
   VideoItemContent,
@@ -36,7 +37,7 @@ const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
           addSuffix: true,
         });
         return (
-          <Link
+          <ContainerLink
             to={"/Nxtwatch/video/" + data.id}
             className="nxtwatch-savedvideo-item"
           >
@@ -64,7 +65,7 @@ const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
                 </VideoItemDetail>
               </VideoItemContent>
             </VideoItem>
-          </Link>
+          </ContainerLink>
         );
       }}
     </NxtwatchContext.Consumer>

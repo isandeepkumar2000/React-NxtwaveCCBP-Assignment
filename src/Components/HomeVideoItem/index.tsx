@@ -15,6 +15,7 @@ import {
   VideoItemOtherDetailContainer,
   VideoItemTitle,
 } from "./styleComponents";
+import { ContainerLink } from "../SavedVideoItem/styleComponets";
 
 export type HomeVideoItemStyleComp = {
   darkMode: boolean;
@@ -34,7 +35,7 @@ const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
           addSuffix: true,
         });
         return (
-          <Link
+          <ContainerLink
             to={"/Nxtwatch/video/" + data.id}
             className="nxtwatch-video-item"
           >
@@ -59,7 +60,7 @@ const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
                 </VideoItemDetail>
               </VideoItemContent>
             </VideoItem>
-          </Link>
+          </ContainerLink>
         );
       }}
     </NxtwatchContext.Consumer>

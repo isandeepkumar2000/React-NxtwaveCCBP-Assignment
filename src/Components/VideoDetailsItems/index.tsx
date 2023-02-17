@@ -71,18 +71,14 @@ const VideoDetailsItems: React.FC<VideoItemPp> = (props) => {
     }
   };
 
-  const isSaved = async () => {
-    if (saveVideo) {
-      await setSaveVideo(false);
-    } else {
-      await setLinked(true);
-    }
-  };
-  console.log(data);
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
-        const { isDarkMode } = value;
+        const { isDarkMode, toggleSavedVideo } = value;
+        const onSaveButtonClicked = () => {
+          setSaveVideo(!saveVideo);
+          toggleSavedVideo();
+        };
 
         const date = formatDistanceToNow(new Date(data.publishedAt), {
           addSuffix: true,
@@ -124,7 +120,10 @@ const VideoDetailsItems: React.FC<VideoItemPp> = (props) => {
                       <AiOutlineDislike />
                       <VideoItemActionText>Dislike</VideoItemActionText>
                     </VideoItemActionBtn>
-                    <VideoItemActionBtn isActive={saveVideo} onClick={isSaved}>
+                    <VideoItemActionBtn
+                      isActive={saveVideo}
+                      onClick={onSaveButtonClicked}
+                    >
                       <RiPlayListAddLine />
                       <VideoItemActionText>Save</VideoItemActionText>
                     </VideoItemActionBtn>

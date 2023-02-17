@@ -12,15 +12,15 @@ import {
   InputField,
   InputLabel,
   LoginButton,
+  LoginFormConatiner,
   PasswordLabel,
   WebsiteImage,
 } from "./styleComponents";
+
 export type LoginPage = {
   darkMode: boolean;
 };
-export type LoginIsDark = {
-  isDarkMode: boolean;
-};
+
 const LoginPage = () => {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -78,44 +78,48 @@ const LoginPage = () => {
       {(value) => {
         const { isDarkMode } = value;
         return (
-          <FormContainer onSubmit={submitForm} darkMode={isDarkMode}>
-            <WebsiteImage
-              src={
-                isDarkMode
-                  ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-                  : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-              }
-              alt="website logo"
-            />
-            <InputLabel darkMode={isDarkMode}>USERNAME</InputLabel>
-            <InputField
-              type="text"
-              id="username"
-              value={username}
-              placeholder="Username"
-              onChange={onChangeUsername}
-              darkMode={isDarkMode}
-            />
-            <InputLabel darkMode={isDarkMode}>PASSWORD</InputLabel>
-            <InputField
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              placeholder="Password"
-              onChange={onChangePassword}
-              darkMode={isDarkMode}
-            />
-            <div>
-              <input type="checkbox" onChange={onShowPassword} />
-              <PasswordLabel darkMode={isDarkMode}>Show password</PasswordLabel>
-            </div>
-            <LoginButton type="submit">Login</LoginButton>
-            {loginError.showLoginError && (
-              <ErrorMessage className="login-error-msg">
-                *{loginError.loginErrorMsg}
-              </ErrorMessage>
-            )}
-          </FormContainer>
+          <LoginFormConatiner>
+            <FormContainer onSubmit={submitForm} darkMode={isDarkMode}>
+              <WebsiteImage
+                src={
+                  isDarkMode
+                    ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                    : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                }
+                alt="website logo"
+              />
+              <InputLabel darkMode={isDarkMode}>USERNAME</InputLabel>
+              <InputField
+                type="text"
+                id="username"
+                value={username}
+                placeholder="Username"
+                onChange={onChangeUsername}
+                darkMode={isDarkMode}
+              />
+              <InputLabel darkMode={isDarkMode}>PASSWORD</InputLabel>
+              <InputField
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                placeholder="Password"
+                onChange={onChangePassword}
+                darkMode={isDarkMode}
+              />
+              <div>
+                <input type="checkbox" onChange={onShowPassword} />
+                <PasswordLabel darkMode={isDarkMode}>
+                  Show password
+                </PasswordLabel>
+              </div>
+              <LoginButton type="submit">Login</LoginButton>
+              {loginError.showLoginError && (
+                <ErrorMessage className="login-error-msg">
+                  *{loginError.loginErrorMsg}
+                </ErrorMessage>
+              )}
+            </FormContainer>
+          </LoginFormConatiner>
         );
       }}
     </NxtwatchContext.Consumer>

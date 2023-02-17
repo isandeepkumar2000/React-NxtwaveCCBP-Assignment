@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { jwtToken } from "../../Constants/appConstants";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
@@ -7,6 +7,7 @@ import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import HomeVideoItem from "../HomeVideoItem";
 
 import {
+  FailureImage,
   HomeEmptyContainer,
   HomeEmptyHeading,
   HomeEmptyImage,
@@ -18,6 +19,10 @@ import {
   HomeFailureText,
   HomeLoaderContainer,
   HomeVideoListContainer,
+  NoResultsMsg,
+  NoSearchResultsContainer,
+  RetryButtonInFailure,
+  Suggestion,
 } from "./styleComponents";
 
 export type HomeContentStyleComponentsType = {
@@ -82,9 +87,9 @@ const HomeContent: React.FC<GettingPP> = (props) => {
     }
   };
 
-  useState(() => {
+  useEffect(() => {
     getGamingApiDetails();
-  });
+  }, [searchValue]);
 
   const renderVideoList = () => {
     console.log(videoList);
@@ -96,6 +101,30 @@ const HomeContent: React.FC<GettingPP> = (props) => {
       </HomeVideoListContainer>
     );
   };
+  const renderNoSearchResults = () => {
+    return (
+      <NxtwatchContext.Consumer>
+        {(value) => {
+          const { isDarkMode } = value;
+          return (
+            <NoSearchResultsContainer>
+              <FailureImage
+                alt="no videos"
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              />
+              <NoResultsMsg darkMode={isDarkMode}>
+                No Search results found
+              </NoResultsMsg>
+              <Suggestion darkMode={isDarkMode}>
+                Try different key words or remove search filter
+              </Suggestion>
+              <RetryButtonInFailure>Retry</RetryButtonInFailure>
+            </NoSearchResultsContainer>
+          );
+        }}
+      </NxtwatchContext.Consumer>
+    );
+  };
 
   const renderContent = () => {
     return (
@@ -103,7 +132,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
         <NxtwatchContext.Consumer>
           {(value) => {
             const { isDarkMode } = value;
-         
+
             switch (apiStatus) {
               case ApiStatusConstant.loading:
                 return (
@@ -167,7 +196,11 @@ const HomeContent: React.FC<GettingPP> = (props) => {
     );
   };
 
-  return <div>{renderContent()}</div>;
+  return (
+    <div>
+      {videoList.length === 0 ? renderNoSearchResults() : renderContent()}
+    </div>
+  );
 };
 
 export default HomeContent;

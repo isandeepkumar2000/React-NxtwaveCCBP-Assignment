@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import { LoginIsDark, LoginPage } from ".";
+import { LoginPage } from ".";
 
+export type LoginIsDark = {
+  isDarkMode: boolean;
+};
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  padding: 40px;
+  padding: 40px 100px;
   margin: 10px;
   background-color: ${(props: LoginPage) =>
     props.darkMode ? "#0f0f0f" : "white"};
@@ -15,7 +18,7 @@ export const FormContainer = styled.form`
   }
 `;
 export const WebsiteImage = styled.img`
-  max-width: 150px;
+  width: 150px;
   align-self: center;
   margin-bottom: 20px;
 `;
@@ -33,8 +36,7 @@ export const PasswordLabel = styled.label`
   margin-left: 5px;
 `;
 export const InputField = styled.input`
-  background-color: ${(props: LoginPage) =>
-    props.darkMode ? "#0f0f0f" : "transperent"};
+  box-shadow: rgba(202, 52, 52, 0.24) 0px 3px 8px;
   color: black;
   border: 1px solid
     ${(props: LoginPage) => (props.darkMode ? "#475569" : "#cbd5e1")};
@@ -67,8 +69,16 @@ export const LoginButton = styled.button`
   font-weight: bold;
   border: 0px;
   padding: 10px;
-  width: 300px;
+  width: 100%;
   @media (max-width: 420px) {
     width: 250px;
   }
+`;
+
+export const LoginFormConatiner = styled.div`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
 `;

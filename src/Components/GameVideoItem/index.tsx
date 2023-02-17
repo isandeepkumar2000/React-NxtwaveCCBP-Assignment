@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { GamingContentType } from "../GamingContent";
+import { ContainerLink } from "../SavedVideoItem/styleComponets";
 import {
   GameItemContainer,
   GameItemImage,
@@ -24,7 +25,7 @@ const GameVideoItem: React.FC<GameVideoPr> = (props) => {
       {(value) => {
         const { isDarkMode } = value;
         return (
-          <Link
+          <ContainerLink
             to={"/Nxtwatch/video/" + data.id}
             className="nxtwatch-gamevideo-item"
           >
@@ -35,7 +36,7 @@ const GameVideoItem: React.FC<GameVideoPr> = (props) => {
                 {data.viewCount} Watching Worldwide
               </GameItemViewCount>
             </GameItemContainer>
-          </Link>
+          </ContainerLink>
         );
       }}
     </NxtwatchContext.Consumer>

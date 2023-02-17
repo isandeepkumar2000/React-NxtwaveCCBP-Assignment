@@ -45,6 +45,6 @@ export const GameItemTitle = styled.h3`
 `;
 export const GameItemViewCount = styled.p`
   color: ${(props: GameVideItemStyle) =>
-    props.darkMode ? "#64748b" : "#475569"};
+    props.darkMode ? "white" : "#475569"};
   margin-top: 0px;
 `;

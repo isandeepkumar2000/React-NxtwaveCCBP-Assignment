@@ -14,7 +14,7 @@ export const VideoItemHr = styled.hr`
 export const VideoItemTopSection = styled.div``;
 export const VideoItemBottomSection = styled.div`
   display: flex;
- 
+
   align-items: flex-start;
 `;
 export const VideoItemBottomRight = styled.div`
@@ -45,7 +45,8 @@ export const VideoItemChannel = styled.p`
   margin: 0px 0px 10px;
 `;
 export const VideoItemSubscriber = styled.p`
-  color: ${(props: VideoItemStyle) => (props.darkMode ? "#64748b" : "#64748b")};
+  color: ${(props: VideoItemStyle) =>
+    props.darkMode ? "#475569" : "##231f20"};
   margin: 10px 0px;
   font-size: 15px;
 `;
@@ -67,6 +68,7 @@ export const VideoItemOtherDetailContainer = styled.div`
 export const VideoItemOtherDetailLeft = styled.div`
   display: flex;
   align-items: center;
+
   @media (max-width: 768px) {
     margin-bottom: 10px;
   }

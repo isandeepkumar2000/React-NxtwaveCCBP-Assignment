@@ -84,3 +84,32 @@ export const HomeEmptyText = styled.p`
   color: ${(props: HomeContentStyleComponentsType) =>
     props.darkMode ? "#94a3b8" : "#1e293b"};
 `;
+
+export const NoSearchResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+  width: 100%;
+`;
+export const NoResultsMsg = styled.h1`
+  color: ${(props: HomeContentStyleComponentsType) =>
+    !props.darkMode ? "#0f0f0f" : "#f9f9f9"};
+`;
+
+export const Suggestion = styled.p`
+  color: ${(props: HomeContentStyleComponentsType) =>
+    !props.darkMode ? "#0f0f0f" : "#f9f9f9"};
+`;
+export const RetryButtonInFailure = styled.button`
+  background-color: #4f46e5;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  height: 40px;
+  width: 10%;
+`;
+export const FailureImage = styled.img`
+  margin-top: 50px;
+  width: 25%;
+`
