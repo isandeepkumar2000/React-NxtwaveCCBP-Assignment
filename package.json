@@ -55,6 +55,6 @@
     "@types/js-cookie": "^3.0.2",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
-    "gh-pages": "^5.0.0"
+   
   }
 }
