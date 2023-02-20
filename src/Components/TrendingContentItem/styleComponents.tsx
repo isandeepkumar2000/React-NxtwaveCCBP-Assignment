@@ -15,6 +15,12 @@ export const VideoItemOtherDetailContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+export const VideoItemOtherDetailContainerBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  margin-bottom: 9px;
+`;
 export const VideoItemOtherDetail = styled.p`
   margin: 0px 0px;
 `;

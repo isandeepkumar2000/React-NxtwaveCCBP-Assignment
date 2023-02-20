@@ -50,7 +50,7 @@ export const VideoItemOtherDetailContainerss = styled.div`
 
 export const VideoItemOtherDetailContainer = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   font-family: initial, sans-serif;
   color: ${(props: HomeVideoItemStyleComp) =>

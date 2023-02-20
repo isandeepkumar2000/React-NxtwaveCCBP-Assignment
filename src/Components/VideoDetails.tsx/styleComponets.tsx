@@ -67,9 +67,11 @@ export const VideoItemOtherDetailContainer = styled.div`
     align-items: flex-start;
   }
 `;
+
 export const VideoItemOtherDetailLeft = styled.div`
   display: flex;
   align-items: center;
+
   @media (max-width: 768px) {
     margin-bottom: 10px;
   }

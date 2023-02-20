@@ -34,21 +34,13 @@ const App = () => {
     >
       <BrowserRouter>
         <Switch>
-          <Route exact path="/Nxtwatch/login" component={LoginPage} />
+          <Route exact path="/login" component={LoginPage} />
           <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path={`/trending`} component={TrendingRoute} />
+          <ProtectedRoute exact path={`/gaming`} component={GamingRoute} />
           <ProtectedRoute
             exact
-            path={`/Nxtwatch/trending`}
-            component={TrendingRoute}
-          />
-          <ProtectedRoute
-            exact
-            path={`/Nxtwatch/gaming`}
-            component={GamingRoute}
-          />
-          <ProtectedRoute
-            exact
-            path={`/Nxtwatch/savedVideos`}
+            path={`savedVideos`}
             component={SavedVideoRoute}
           />
 
@@ -57,8 +49,8 @@ const App = () => {
             path={`/Nxtwatch/video/:id`}
             component={VideoDetailsRoute}
           />
-          <Route path="/Nxtwatch/not-found" component={NotFoundRoute} />
-          <Redirect to="/Nxtwatch/not-found" />
+          <Route path="/notfound" component={NotFoundRoute} />
+          <Redirect to="/notfound" />
         </Switch>
       </BrowserRouter>
     </NxtwatchContext.Provider>

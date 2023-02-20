@@ -6,7 +6,7 @@ import { jwtToken } from "./Constants/appConstants";
 const ProtectedRoute = (props: any) => {
   const token = Cookie.get(jwtToken);
   if (token === undefined) {
-    return <Redirect to="/Nxtwatch/login" />;
+    return <Redirect to="/login" />;
   }
   return <Route {...props} />;
 };

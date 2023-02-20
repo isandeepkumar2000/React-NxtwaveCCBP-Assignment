@@ -86,3 +86,12 @@ export const NavLinkContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const NavLinkContainerBox = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props: NavBarStyle) =>
+    props.darkMode ? "#white" : "white"};
+`;

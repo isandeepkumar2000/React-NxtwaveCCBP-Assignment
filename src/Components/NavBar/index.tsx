@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Popup from "reactjs-popup";
 import React from "react";
+import "./index.css";
 import { useHistory } from "react-router-dom";
 import {
   Avatar,
@@ -15,6 +16,7 @@ import {
   Nav,
   NavContent,
   NavLinkContainer,
+  NavLinkContainerBox,
   NavRightSection,
   WebsiteLogo,
 } from "./styleComponents";
@@ -30,7 +32,7 @@ const NavBar = () => {
   let history = useHistory();
   const logoutHandler = () => {
     Cookies.remove(jwtToken);
-    history.replace("/Nxtwatch/login");
+    history.replace("/login");
   };
 
   return (
@@ -83,9 +85,9 @@ const NavBar = () => {
                           className="hamburger-close-icon"
                         />
                       </HamburgerBtn>
-                      <NavLinkContainer>
+                      <NavLinkContainerBox darkMode={isDarkMode}>
                         <NavLinkNxtwatch />
-                      </NavLinkContainer>
+                      </NavLinkContainerBox>
                     </div>
                   )}
                 </Popup>

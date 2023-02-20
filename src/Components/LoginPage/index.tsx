@@ -34,7 +34,7 @@ const LoginPage = () => {
   const onLoginSuccess = (token: string) => {
     Cookies.set(jwtToken, token, { expires: 2, path: "/" });
 
-    history.replace("/Nxtwatch");
+    history.replace("/");
   };
 
   const onLoginFailure = (errorMsg: string) => {
@@ -71,7 +71,7 @@ const LoginPage = () => {
   };
 
   if (Cookies.get(jwtToken)) {
-    return <Redirect to="/Nxtwatch" />;
+    return <Redirect to="/" />;
   }
   return (
     <NxtwatchContext.Consumer>

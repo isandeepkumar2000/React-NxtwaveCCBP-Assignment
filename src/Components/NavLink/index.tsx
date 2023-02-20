@@ -31,7 +31,7 @@ const NavLinkNxtwatch = () => {
             </NavLink>
             <NavLink
               exact
-              to="/Nxtwatch/trending"
+              to="/trending"
               activeClassName={`active-navlink ${
                 isDarkMode ? "dark-active-navlink" : ""
               }`}
@@ -42,7 +42,7 @@ const NavLinkNxtwatch = () => {
             </NavLink>
             <NavLink
               exact
-              to="/Nxtwatch/gaming"
+              to="/gaming"
               activeClassName={`active-navlink ${
                 isDarkMode ? "dark-active-navlink" : ""
               }`}
@@ -53,7 +53,7 @@ const NavLinkNxtwatch = () => {
             </NavLink>
             <NavLink
               exact
-              to="/Nxtwatch/savedVideos"
+              to="/savedVideos"
               activeClassName={`active-navlink ${
                 isDarkMode ? "dark-active-navlink" : ""
               }`}
