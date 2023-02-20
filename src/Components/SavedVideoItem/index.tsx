@@ -54,7 +54,7 @@ const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
                   </VideoItemTitle>
                   <VideoItemDetailContainer darkMode={isDarkMode}>
                     <VideoItemChannel>{data.channel.name}</VideoItemChannel>
-                    <GoPrimitiveDot className="nxtwatch-video-item-dot nxtwatch-video-item-dot-small" />
+                    {/* <GoPrimitiveDot className="nxtwatch-video-item-dot nxtwatch-video-item-dot-small" /> */}
                     <VideoItemOtherDetailContainer>
                       <VideoItemOtherDetail>
                         {data.viewCount}

@@ -40,7 +40,7 @@ const App = () => {
           <ProtectedRoute exact path={`/gaming`} component={GamingRoute} />
           <ProtectedRoute
             exact
-            path={`savedVideos`}
+            path={`/savedVideos`}
             component={SavedVideoRoute}
           />
 
