@@ -8,7 +8,7 @@ interface NxtwatchContextType {
   savedVideo: VideoDetailType[];
 }
 const NxtwatchContext = React.createContext<NxtwatchContextType>({
-  isDarkMode: true,
+  isDarkMode: false,
   toggleDarkMode: () => {},
   showBanner: true,
   closeBanner: () => {},

@@ -10,6 +10,7 @@ import NotFoundRoute from "./Routes/NotFoundRoute";
 import VideoDetailsRoute from "./Routes/VideoIntemDetailRoute";
 import SavedVideoRoute from "./Routes/SavedvideoRoute";
 import LoginRoute from "./Routes/LoginRoute";
+import HomeRoute from "./Routes/HomeRoute";
 
 const App = () => {
   const [isDarkMode, SetIsDarkMode] = useState(true);
@@ -36,22 +37,22 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={LoginRoute} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path={`/trending`} component={TrendingRoute} />
-          <ProtectedRoute exact path={`/gaming`} component={GamingRoute} />
+          <ProtectedRoute path="/" component={HomeRoute} />
+          <ProtectedRoute exact path="/trending" component={TrendingRoute} />
+          <ProtectedRoute exact path="/gaming" component={GamingRoute} />
           <ProtectedRoute
             exact
-            path={`/savedVideos`}
+            path="/savedVideos"
             component={SavedVideoRoute}
           />
 
           <ProtectedRoute
             exact
-            path={`/Nxtwatch/video/:id`}
+            path="/video/:id"
             component={VideoDetailsRoute}
           />
-          <Route exact path="/notfound" component={NotFoundRoute} />
-          <Redirect to="/notfound" />
+          <Route path="/not-found" component={NotFoundRoute} />
+          <Redirect to="not-found" />
         </Switch>
       </BrowserRouter>
     </NxtwatchContext.Provider>

@@ -25,7 +25,7 @@ const GameVideoItem: React.FC<GameVideoPr> = (props) => {
         const { isDarkMode } = value;
         return (
           <ContainerLink
-            to={"/Nxtwatch/video/" + data.id}
+            to={"/video/" + data.id}
             className="nxtwatch-gamevideo-item"
           >
             <GameItemContainer>

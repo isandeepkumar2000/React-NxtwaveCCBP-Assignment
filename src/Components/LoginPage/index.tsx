@@ -45,7 +45,7 @@ const LoginPage = observer((props: LoginPageProps) => {
   } = props;
 
   const onLoginSuccess = (token: string) => {
-    Cookies.set(jwtToken, token, { expires: 2, path: "/" });
+    Cookies.set(jwtToken, token, { expires: 4, path: "/" });
 
     history.replace("/");
   };

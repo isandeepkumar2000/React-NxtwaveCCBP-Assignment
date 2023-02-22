@@ -42,7 +42,7 @@ const NavBar = () => {
         return (
           <Nav darkMode={isDarkMode}>
             <NavContent>
-              <Link to="/Nxtwatch">
+              <Link to="/">
                 <WebsiteLogo
                   src={
                     isDarkMode
