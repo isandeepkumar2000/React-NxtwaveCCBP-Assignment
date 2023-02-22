@@ -80,7 +80,6 @@ export const LoginFormConatiner = styled.div`
   justify-items: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 221px;
+  height: 880px;
 `;
-
-

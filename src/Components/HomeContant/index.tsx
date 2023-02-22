@@ -1,9 +1,11 @@
 import Cookies from "js-cookie";
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { jwtToken } from "../../Constants/appConstants";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { HomeContentStore } from "../../MobxStore/HomeContentStore";
 import HomeVideoItem from "../HomeVideoItem";
 
 import {
@@ -46,12 +48,11 @@ export type VideoTypeList = {
 };
 interface GettingPP {
   searchValue: string;
+  homeContentStore: HomeContentStore;
 }
 
-const HomeContent: React.FC<GettingPP> = (props) => {
-  const { searchValue } = props;
-  const [videoList, setVideoList] = useState<VideoTypeList[]>([]);
-  const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
+const HomeContent: React.FC<GettingPP> = observer((props) => {
+  const { searchValue, homeContentStore } = props;
 
   const getGamingApiDetails = async () => {
     try {
@@ -65,7 +66,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
           },
         }
       );
-      console.log(response);
+  
       if (response.ok) {
         const responseData = await response.json();
         const updatedData = responseData.videos.map((video: VideoTypeList) => ({
@@ -76,26 +77,25 @@ const HomeContent: React.FC<GettingPP> = (props) => {
           viewCount: video.view_count,
           publishedAt: video.published_at,
         }));
-        setVideoList(updatedData);
-        setApiStatus(ApiStatusConstant.success);
+        homeContentStore.setHomeList(updatedData);
+        homeContentStore.setApiStatus(ApiStatusConstant.success);
       } else {
-        setApiStatus(ApiStatusConstant.failed);
+        homeContentStore.setApiStatus(ApiStatusConstant.failed);
       }
     } catch (err) {
-      console.log(err);
-      setApiStatus(ApiStatusConstant.failed);
+      
+      homeContentStore.setApiStatus(ApiStatusConstant.failed);
     }
   };
 
   useEffect(() => {
     getGamingApiDetails();
-  }, [searchValue]);
+  }, [searchValue, homeContentStore.apiStatus]);
 
   const renderVideoList = () => {
-    console.log(videoList);
     return (
       <HomeVideoListContainer>
-        {videoList.map((video) => {
+        {homeContentStore.home.map((video) => {
           return <HomeVideoItem key={video.id} data={video} />;
         })}
       </HomeVideoListContainer>
@@ -133,7 +133,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
           {(value) => {
             const { isDarkMode } = value;
 
-            switch (apiStatus) {
+            switch (homeContentStore.apiStatus) {
               case ApiStatusConstant.loading:
                 return (
                   <HomeLoaderContainer>
@@ -198,9 +198,11 @@ const HomeContent: React.FC<GettingPP> = (props) => {
 
   return (
     <div>
-      {videoList.length === 0 ? renderNoSearchResults() : renderContent()}
+      {homeContentStore.home.length === 0
+        ? renderNoSearchResults()
+        : renderContent()}
     </div>
   );
-};
+});
 
 export default HomeContent;

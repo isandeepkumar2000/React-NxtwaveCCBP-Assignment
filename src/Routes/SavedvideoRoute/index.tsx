@@ -51,7 +51,7 @@ const SavedVideoRoute = () => {
       <NxtwatchContext.Consumer>
         {(value) => {
           const { savedVideo, isDarkMode } = value;
-          console.log(savedVideo, "saved");
+
           return (
             <SavedVideoFilledContainer>
               <SavedVideoHeaderContainer darkMode={isDarkMode}>

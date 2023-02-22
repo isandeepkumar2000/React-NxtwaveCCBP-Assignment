@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar";
 
 import SideBar from "../../Components/SideBar";
 import TrendingContent from "../../Components/TrendingContent";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { TrendingContentStore } from "../../MobxStore/TrendingContentStore";
 import {
   TrendingPage,
   TrendingPageContent,
@@ -25,7 +26,9 @@ const TrendingRoute = () => {
             <TrendingPageContent>
               <SideBar />
               <TrendingPageRightSection darkMode={isDarkMode}>
-                <TrendingContent />
+                <TrendingContent
+                  trendingContentStore={new TrendingContentStore()}
+                />
               </TrendingPageRightSection>
             </TrendingPageContent>
           </TrendingPage>

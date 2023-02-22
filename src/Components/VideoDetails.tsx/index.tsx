@@ -84,7 +84,6 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
         setApiStatus(ApiStatusConstant.failed);
       }
     } catch (err) {
-      console.log(err);
       setApiStatus(ApiStatusConstant.failed);
     }
   };
@@ -98,7 +97,6 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
   };
 
   const renderContent = () => {
-    console.log("API STATUS_testing", apiStatus);
     return (
       <NxtwatchContext.Consumer>
         {(value) => {

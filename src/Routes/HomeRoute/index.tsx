@@ -10,6 +10,7 @@ import {
   HomePageContent,
   HomePageRightSections,
 } from "./styleComponents";
+import { HomeContentStore } from "../../MobxStore/HomeContentStore";
 
 export type HomeStyle = {
   darkMode: boolean;
@@ -17,6 +18,7 @@ export type HomeStyle = {
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState("");
+  
 
   const onChangeSearch = (value: string) => {
     setSearchValue(value);
@@ -42,7 +44,7 @@ const Home = () => {
                     onChangeSearch={onChangeSearch}
                     clearInput={onClearInput}
                   />
-                  <HomeContent searchValue={searchValue} />
+                  <HomeContent searchValue={searchValue} homeContentStore = {new HomeContentStore}/>
                 </HomePageRightSections>
               </HomePageContent>
             </HomePage>
