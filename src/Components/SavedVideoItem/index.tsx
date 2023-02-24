@@ -39,7 +39,7 @@ const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
         });
         return (
           <ContainerLink
-            to={"/video/" + data.id}
+            to={"/Nxtwatch/video/" + data.id}
             className="nxtwatch-savedvideo-item"
           >
             <VideoItem>

@@ -45,7 +45,7 @@ const TrendingContentItem: React.FC<SavedVideoPp> = (props) => {
         });
         return (
           <ContainerLink
-            to={"/video/" + trending.id}
+            to={"/Nxtwatch/video/" + trending.id}
             className="nxtwatch-savedVideo-item"
           >
             <VideoItem>

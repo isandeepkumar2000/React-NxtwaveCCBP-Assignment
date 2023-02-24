@@ -35,7 +35,7 @@ const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
         });
         return (
           <ContainerLink
-            to={"/video/" + data.id}
+            to={"/Nxtwatch/video/" + data.id}
             className="nxtwatch-video-item"
           >
             <VideoItem>

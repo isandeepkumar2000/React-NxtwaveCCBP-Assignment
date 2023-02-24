@@ -15,7 +15,7 @@ export type HomeStyle = {
   darkMode: boolean;
 };
 
-const HomeRoute = () => {
+const Home = () => {
   const [searchValue, setSearchValue] = useState("");
 
   const onChangeSearch = (value: string) => {
@@ -53,4 +53,4 @@ const HomeRoute = () => {
   );
 };
 
-export default HomeRoute;
+export default Home;
