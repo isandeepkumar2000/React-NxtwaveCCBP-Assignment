@@ -18,6 +18,8 @@ import {
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
 import { jwtToken } from "../../Constants/appConstants";
+import { GamingContentStore } from "../../MobxStore/GamingContentStore";
+import { observer } from "mobx-react-lite";
 
 export type GamingContentType = {
   id: string;
@@ -32,38 +34,15 @@ export type GamingContentStyle = {
   darkMode: boolean;
 };
 
-const GamingContent = () => {
-  const [videoList, setvideoList] = useState<GamingContentType[]>([]);
-  const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
+interface GamingContantProps {
+  gamingRouteStore: GamingContentStore;
+}
 
-  const getGamingApiDetails = async () => {
-    try {
-      const Token = Cookies.get(jwtToken);
-      const response = await fetch(`https://apis.ccbp.in/videos/gaming`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${Token}`,
-        },
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        const updatedData = responseData.videos.map(
-          (video: GamingContentType) => ({
-            title: video.title,
-            id: video.id,
-            thumbnailUrl: video.thumbnail_url,
-            viewCount: video.view_count,
-          })
-        );
-        setvideoList(updatedData);
-        setApiStatus(ApiStatusConstant.success);
-      } else {
-        setApiStatus(ApiStatusConstant.failed);
-      }
-    } catch (err) {
-      console.log(err);
-      setApiStatus(ApiStatusConstant.failed);
-    }
+const GamingContent = observer((props: GamingContantProps) => {
+  const { gamingRouteStore } = props;
+
+  const getGamingApiDetails = () => {
+    gamingRouteStore.fetchGamingList();
   };
 
   useEffect(() => {
@@ -71,7 +50,6 @@ const GamingContent = () => {
   }, []);
 
   const renderGamingVideoList = () => {
-    console.log(videoList);
     return (
       <NxtwatchContext.Consumer>
         {(value) => {
@@ -85,7 +63,7 @@ const GamingContent = () => {
                 <h1>Gaming</h1>
               </GamingVideoHeaderContainer>
               <GamingVideoListContainer>
-                {videoList.map((item) => (
+                {gamingRouteStore.gaming.map((item) => (
                   <NxtwatchContext.Consumer>
                     {(value) => {
                       return <GameVideoItem key={item.id} data={item} />;
@@ -105,7 +83,7 @@ const GamingContent = () => {
       <NxtwatchContext.Consumer>
         {(value) => {
           const { isDarkMode } = value;
-          switch (apiStatus) {
+          switch (gamingRouteStore.apiStatus) {
             case ApiStatusConstant.loading:
               return (
                 <GamingLoaderContainer>
@@ -152,6 +130,6 @@ const GamingContent = () => {
   };
 
   return <div>{renderContent()}</div>;
-};
+});
 
 export default GamingContent;

@@ -3,6 +3,7 @@ import GamingContent from "../../Components/GamingContent";
 import HeaderNxtwatch from "../../Components/NavBar";
 import SideBar from "../../Components/SideBar";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { GamingContentStore } from "../../MobxStore/GamingContentStore";
 import {
   GamingPage,
   GamingPageContent,
@@ -12,6 +13,7 @@ import {
 export type GamingRoutes = {
   darkMode: boolean;
 };
+const GamingRouteStore = new GamingContentStore();
 
 const GamingRoute = () => {
   return (
@@ -24,7 +26,7 @@ const GamingRoute = () => {
             <GamingPageContent>
               <SideBar />
               <GamingPageRightSection darkMode={isDarkMode}>
-                <GamingContent />
+                <GamingContent gamingRouteStore={GamingRouteStore} />
               </GamingPageRightSection>
             </GamingPageContent>
           </GamingPage>

@@ -1,9 +1,11 @@
 import Cookies from "js-cookie";
+import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { jwtToken } from "../../Constants/appConstants";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { HomeContentStore } from "../../MobxStore/HomeContentStore";
 import HomeVideoItem from "../HomeVideoItem";
 
 import {
@@ -45,57 +47,24 @@ export type VideoTypeList = {
   published_at: string;
 };
 interface GettingPP {
-  searchValue: string;
+  homeContentStore: HomeContentStore;
 }
 
-const HomeContent: React.FC<GettingPP> = (props) => {
-  const { searchValue } = props;
-  const [videoList, setVideoList] = useState<VideoTypeList[]>([]);
-  const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
+const HomeContent: React.FC<GettingPP> = observer((props) => {
+  const { homeContentStore } = props;
 
   const getGamingApiDetails = async () => {
-    try {
-      const Tokens = Cookies.get(jwtToken);
-      const response = await fetch(
-        `https://apis.ccbp.in/videos/all?search=${searchValue}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${Tokens}`,
-          },
-        }
-      );
-      console.log(response);
-      if (response.ok) {
-        const responseData = await response.json();
-        const updatedData = responseData.videos.map((video: VideoTypeList) => ({
-          title: video.title,
-          id: video.id,
-          thumbnailUrl: video.thumbnail_url,
-          channel: video.channel,
-          viewCount: video.view_count,
-          publishedAt: video.published_at,
-        }));
-        setVideoList(updatedData);
-        setApiStatus(ApiStatusConstant.success);
-      } else {
-        setApiStatus(ApiStatusConstant.failed);
-      }
-    } catch (err) {
-      console.log(err);
-      setApiStatus(ApiStatusConstant.failed);
-    }
+    homeContentStore.fetchHomeList(homeContentStore.searchValue);
   };
 
   useEffect(() => {
     getGamingApiDetails();
-  }, [searchValue]);
+  }, [homeContentStore.searchValue]);
 
   const renderVideoList = () => {
-    console.log(videoList);
     return (
       <HomeVideoListContainer>
-        {videoList.map((video) => {
+        {homeContentStore.home.map((video) => {
           return <HomeVideoItem key={video.id} data={video} />;
         })}
       </HomeVideoListContainer>
@@ -133,7 +102,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
           {(value) => {
             const { isDarkMode } = value;
 
-            switch (apiStatus) {
+            switch (homeContentStore.apiStatus) {
               case ApiStatusConstant.loading:
                 return (
                   <HomeLoaderContainer>
@@ -198,9 +167,11 @@ const HomeContent: React.FC<GettingPP> = (props) => {
 
   return (
     <div>
-      {videoList.length === 0 ? renderNoSearchResults() : renderContent()}
+      {homeContentStore.home.length === 0
+        ? renderNoSearchResults()
+        : renderContent()}
     </div>
   );
-};
+});
 
 export default HomeContent;

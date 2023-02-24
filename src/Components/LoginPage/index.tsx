@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-
+import { observer } from "mobx-react-lite";
 import { jwtToken } from "../../Constants/appConstants";
 import {
   ErrorMessage,
@@ -16,23 +16,36 @@ import {
   PasswordLabel,
   WebsiteImage,
 } from "./styleComponents";
+import { LoginFormStore } from "../../MobxStore/LoginStore";
 
 export type LoginPages = {
   darkMode: boolean;
 };
 
-const LoginPage = () => {
+interface LoginPageProps {
+  loginFormStore: LoginFormStore;
+}
+
+const LoginPage = observer((props: LoginPageProps) => {
+  const { loginFormStore } = props;
   const history = useHistory();
-  const [username, setUsername] = useState("");
   const [showPassword, setShowpassword] = useState(false);
-  const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState({
     showLoginError: false,
     loginErrorMsg: "",
   });
+  const {
+    loginFormStore: {
+      password,
+      setPassword,
+      username,
+      setUserName,
+      submitForm,
+    },
+  } = props;
 
   const onLoginSuccess = (token: string) => {
-    Cookies.set(jwtToken, token, { expires: 2, path: "/" });
+    Cookies.set(jwtToken, token, { expires: 4, path: "/" });
 
     history.replace("/");
   };
@@ -41,33 +54,20 @@ const LoginPage = () => {
     setLoginError({ showLoginError: true, loginErrorMsg: errorMsg });
   };
 
-  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const url = "https://apis.ccbp.in/login";
-    const options = {
-      method: "POST",
-      body: JSON.stringify({ username: username, password: password }),
-    };
-
-    const response = await fetch(url, options);
-    const data = await response.json();
-
-    if (response.ok === true) {
-      onLoginSuccess(data.jwt_token);
-    } else {
-      onLoginFailure(data.error_msg);
-    }
+    submitForm(onLoginSuccess, onLoginFailure);
   };
   const onShowPassword = () => {
     setShowpassword(!showPassword);
   };
 
   const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+    loginFormStore.setUserName(e.target.value);
   };
 
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+    loginFormStore.setPassword(e.target.value);
   };
 
   if (Cookies.get(jwtToken)) {
@@ -79,7 +79,7 @@ const LoginPage = () => {
         const { isDarkMode } = value;
         return (
           <LoginFormConatiner>
-            <FormContainer onSubmit={submitForm} darkMode={isDarkMode}>
+            <FormContainer onSubmit={onSubmitForm} darkMode={isDarkMode}>
               <WebsiteImage
                 src={
                   isDarkMode
@@ -124,6 +124,6 @@ const LoginPage = () => {
       }}
     </NxtwatchContext.Consumer>
   );
-};
+});
 
 export default LoginPage;

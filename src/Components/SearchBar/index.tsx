@@ -8,19 +8,20 @@ import {
   SearchInputField,
   SearchLogoContainers,
 } from "./styleComponents";
+import { HomeContentStore } from "../../MobxStore/HomeContentStore";
 
 export type SearchBarStyle = {
   darkMode: boolean;
 };
 
 interface SearchBarProp {
-  searchValue: string;
   onChangeSearch: any;
   clearInput: any;
+  homeContentStore: HomeContentStore;
 }
 
 const SearchBar: React.FC<SearchBarProp> = (props) => {
-  const { searchValue, onChangeSearch, clearInput } = props;
+  const { homeContentStore, onChangeSearch, clearInput } = props;
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeSearch(e.target.value);
   };
@@ -35,12 +36,12 @@ const SearchBar: React.FC<SearchBarProp> = (props) => {
           >
             <SearchInput
               placeholder="Search"
-              value={searchValue}
+              value={homeContentStore.searchValue}
               onChange={onChangeInput}
               type="text"
               darkMode={isDarkMode}
             />
-            {searchValue.length > 0 && (
+            {homeContentStore.searchValue.length > 0 && (
               <MdOutlineClear
                 className={`nxtwatch-clear-logo ${
                   isDarkMode && "dark-nxtwatch-clear-logo"

@@ -1,7 +1,5 @@
-
-
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { MdLocalFireDepartment } from "react-icons/md";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
@@ -19,8 +17,9 @@ import {
   TrendingVideoListContainer,
   TrendingVideoSuccessView,
 } from "./styleComponets";
-import { jwtToken } from "../../Constants/appConstants";
 import TrendingContentItem from "../TrendingContentItem";
+import { TrendingContentStore } from "../../MobxStore/TrendingContentStore";
+import { observer } from "mobx-react";
 
 export type TendingContentType = {
   id: string;
@@ -41,46 +40,20 @@ export type TrendingContentStyle = {
   darkMode: boolean;
 };
 
-const TrendingContent = () => {
-  const [trending, setTrending] = useState<TendingContentType[]>([]);
-  const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
+interface trendingContentProps {
+  trendingContentStore: TrendingContentStore;
+}
+
+const TrendingContent = observer((props: trendingContentProps) => {
+  const { trendingContentStore } = props;
 
   const getTrendingVideosList = async () => {
-    try {
-      const Token = Cookies.get(jwtToken);
-      const response = await fetch(`https://apis.ccbp.in/videos/trending`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${Token}`,
-        },
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        const updatedData = responseData.videos.map(
-          (video: TendingContentType) => ({
-            title: video.title,
-            id: video.id,
-            thumbnailUrl: video.thumbnail_url,
-            channel: video.channel,
-            viewCount: video.view_count,
-            publishedAt: video.published_at,
-          })
-        );
-        setTrending(updatedData);
-        setApiStatus(ApiStatusConstant.success);
-      } else {
-        console.log("not response");
-        setApiStatus(ApiStatusConstant.failed);
-      }
-    } catch (err) {
-      console.log(err);
-      setApiStatus(ApiStatusConstant.failed);
-    }
+    trendingContentStore.fetchTrendingList();
   };
 
   useEffect(() => {
     getTrendingVideosList();
-  }, []);
+  }, [trendingContentStore.apiStatus]);
 
   const renderTrendingVideosList = () => {
     return (
@@ -98,7 +71,7 @@ const TrendingContent = () => {
                   <h1>Trending</h1>
                 </TrendingVideoHeaderContainer>
                 <TrendingVideoListContainer>
-                  {trending.map((item) => {
+                  {trendingContentStore.trending.map((item) => {
                     return (
                       <TrendingContentItem key={item.id} trending={item} />
                     );
@@ -118,7 +91,7 @@ const TrendingContent = () => {
       <NxtwatchContext.Consumer>
         {(value) => {
           const { isDarkMode } = value;
-          switch (apiStatus) {
+          switch (trendingContentStore.apiStatus) {
             case ApiStatusConstant.loading:
               return (
                 <TrendingLoaderContainer>
@@ -167,6 +140,6 @@ const TrendingContent = () => {
   };
 
   return <>{renderContent()}</>;
-};
+});
 
 export default TrendingContent;

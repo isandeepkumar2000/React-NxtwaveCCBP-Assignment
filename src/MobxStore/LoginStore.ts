@@ -1,11 +1,8 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable } from "mobx";
 
 export class LoginFormStore {
-  username: string = "";
-  password: string = "";
-  error: boolean = false;
-  error_msg: string = "";
-
+  @observable username: string = "";
+  @observable password: string = "";
   constructor() {
     makeAutoObservable(this);
   }
@@ -36,10 +33,5 @@ export class LoginFormStore {
   setPassword(value: string) {
     this.password = value;
   }
-  setError(value: boolean) {
-    this.error = value;
-  }
-  setErrorMsg(value: string) {
-    this.error_msg = value;
-  }
+
 }

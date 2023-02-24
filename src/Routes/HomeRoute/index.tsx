@@ -10,19 +10,26 @@ import {
   HomePageContent,
   HomePageRightSections,
 } from "./styleComponents";
+import { HomeContentStore } from "../../MobxStore/HomeContentStore";
 
 export type HomeStyle = {
   darkMode: boolean;
 };
 
-const Home = () => {
-  const [searchValue, setSearchValue] = useState("");
+interface HomeRoutes {
+  homeContentContainerRoute: HomeContentStore;
+}
+
+const homeContentStore = new HomeContentStore();
+
+const HomeRoutes = (props: HomeRoutes) => {
+  const { homeContentContainerRoute } = props;
 
   const onChangeSearch = (value: string) => {
-    setSearchValue(value);
+    homeContentContainerRoute.setSearchValue(value);
   };
   const onClearInput = () => {
-    setSearchValue("");
+    homeContentContainerRoute.setSearchValue("");
   };
 
   return (
@@ -38,11 +45,12 @@ const Home = () => {
                 <HomePageRightSections>
                   {showBanner && <Banner />}
                   <SearchBar
-                    searchValue={searchValue}
+                    // searchValue={homeContentContainerRoute.searchValue}
+                    homeContentStore={homeContentStore}
                     onChangeSearch={onChangeSearch}
                     clearInput={onClearInput}
                   />
-                  <HomeContent searchValue={searchValue} />
+                  <HomeContent homeContentStore={homeContentStore} />
                 </HomePageRightSections>
               </HomePageContent>
             </HomePage>
@@ -53,4 +61,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeRoutes;

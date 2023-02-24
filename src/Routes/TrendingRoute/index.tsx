@@ -4,6 +4,7 @@ import NavBar from "../../Components/NavBar";
 import SideBar from "../../Components/SideBar";
 import TrendingContent from "../../Components/TrendingContent";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { TrendingContentStore } from "../../MobxStore/TrendingContentStore";
 import {
   TrendingPage,
   TrendingPageContent,
@@ -13,6 +14,9 @@ import {
 export type TrendingRouteStyle = {
   darkMode: boolean;
 };
+
+
+const trendingContentStore = new TrendingContentStore()
 
 const TrendingRoute = () => {
   return (
@@ -25,7 +29,7 @@ const TrendingRoute = () => {
             <TrendingPageContent>
               <SideBar />
               <TrendingPageRightSection darkMode={isDarkMode}>
-                <TrendingContent />
+                <TrendingContent trendingContentStore = {trendingContentStore}/>
               </TrendingPageRightSection>
             </TrendingPageContent>
           </TrendingPage>
