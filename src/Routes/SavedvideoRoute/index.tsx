@@ -83,6 +83,7 @@ const SavedVideoRoute = () => {
         return (
           <SavedVideoPage darkMode={isDarkMode}>
             <NavBar />
+
             <SavedVideoPageContent>
               <SideBar />
               <SavedVideoPageRightSection>
