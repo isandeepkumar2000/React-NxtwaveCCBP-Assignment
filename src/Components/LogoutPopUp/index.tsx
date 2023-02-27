@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import {
   ContFormConatiner,
@@ -17,6 +18,7 @@ interface LogoutButtonType {
 }
 
 const LogOutPopup = (props: LogoutButtonType) => {
+  const { t } = useTranslation();
   const { onClose, onConfirm } = props;
   return (
     <NxtwatchContext.Consumer>
@@ -25,14 +27,14 @@ const LogOutPopup = (props: LogoutButtonType) => {
         return (
           <ContFormConatiner darkMode={isDarkMode}>
             <LogoutPoputHeader darkMode={isDarkMode}>
-              Are you sure you want to logout?
+              {t("Are you sure you want to logout")}
             </LogoutPoputHeader>
             <LogoutActionContainer>
               <LogoutPopupCancelBtn onClick={onClose} darkMode={isDarkMode}>
-                Cancel
+                {t("cancle")}
               </LogoutPopupCancelBtn>
               <LogoutPopupConfirmBtn onClick={onConfirm}>
-                Confirm
+                {t("confirm")}
               </LogoutPopupConfirmBtn>
             </LogoutActionContainer>
           </ContFormConatiner>

@@ -3,6 +3,7 @@ import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import Cookies from "js-cookie";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { ThreeDots } from "react-loader-spinner";
+import { useTranslation } from "react-i18next";
 
 import {
   VideoDetailFailureContainer,
@@ -50,6 +51,7 @@ export type VideoDetailsStyleActive = {
 };
 
 const VideoDetails: React.FC<VideoIdType> = (props) => {
+  const { t } = useTranslation();
   const { id } = props;
   const [videoDetail, setVideoDetails] = useState<VideoDetailType | null>(null);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
@@ -126,16 +128,16 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
                     alt="failure"
                   />
                   <VideoDetailFailureHeading>
-                    Oops! Something went wrong
+                    {t("something_wrong_msg")}
                   </VideoDetailFailureHeading>
                   <VideoDetailFailureText darkMode={isDarkMode}>
                     We are having some trouble to complete your request.
                   </VideoDetailFailureText>
                   <VideoDetailFailureText darkMode={isDarkMode}>
-                    Please try again.
+                    {t("please_try_again")}
                   </VideoDetailFailureText>
                   <VideoDetailFailureRetryBtn onClick={getGamingApiDetails}>
-                    Retry
+                    {t("retry")}
                   </VideoDetailFailureRetryBtn>
                 </VideoDetailFailureContainer>
               );

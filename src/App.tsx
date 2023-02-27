@@ -9,11 +9,16 @@ import NxtwatchContext from "./Contexts/NxtWatchContexts";
 import NotFoundRoute from "./Routes/NotFoundRoute";
 import VideoDetailsRoute from "./Routes/VideoIntemDetailRoute";
 import SavedVideoRoute from "./Routes/SavedvideoRoute";
+import i18n from "./I18n Folder/i18next";
 
 const App = () => {
   const [isDarkMode, SetIsDarkMode] = useState(true);
   const [showBanner, setShowBanner] = useState(true);
   const [savedVideo] = useState([]);
+  const onChangeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    i18n.changeLanguage(e.target.value);
+    localStorage.setItem("lan", e.target.value);
+  };
 
   const closeBanner = () => {
     setShowBanner(false);
@@ -32,6 +37,10 @@ const App = () => {
         closeBanner: closeBanner,
       }}
     >
+      <select className="changeLanguage" onChange={onChangeLanguage}>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+      </select>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={LoginPage} />

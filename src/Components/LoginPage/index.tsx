@@ -16,12 +16,14 @@ import {
   PasswordLabel,
   WebsiteImage,
 } from "./styleComponents";
+import { useTranslation } from "react-i18next";
 
 export type LoginPages = {
   darkMode: boolean;
 };
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [showPassword, setShowpassword] = useState(false);
@@ -88,7 +90,7 @@ const LoginPage = () => {
                 }
                 alt="website logo"
               />
-              <InputLabel darkMode={isDarkMode}>USERNAME</InputLabel>
+              <InputLabel darkMode={isDarkMode}>{t("username")}</InputLabel>
               <InputField
                 type="text"
                 id="username"
@@ -97,7 +99,7 @@ const LoginPage = () => {
                 onChange={onChangeUsername}
                 darkMode={isDarkMode}
               />
-              <InputLabel darkMode={isDarkMode}>PASSWORD</InputLabel>
+              <InputLabel darkMode={isDarkMode}>{t("password")}</InputLabel>
               <InputField
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -109,10 +111,10 @@ const LoginPage = () => {
               <div>
                 <input type="checkbox" onChange={onShowPassword} />
                 <PasswordLabel darkMode={isDarkMode}>
-                  Show password
+                  {t("show")} {t("password")}
                 </PasswordLabel>
               </div>
-              <LoginButton type="submit">Login</LoginButton>
+              <LoginButton type="submit">{t("login")}</LoginButton>
               {loginError.showLoginError && (
                 <ErrorMessage className="login-error-msg">
                   *{loginError.loginErrorMsg}

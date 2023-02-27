@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ThreeDots } from "react-loader-spinner";
 import { jwtToken } from "../../Constants/appConstants";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
@@ -49,6 +50,7 @@ interface GettingPP {
 }
 
 const HomeContent: React.FC<GettingPP> = (props) => {
+  const { t } = useTranslation();
   const { searchValue } = props;
   const [videoList, setVideoList] = useState<VideoTypeList[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
@@ -118,7 +120,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
               <Suggestion darkMode={isDarkMode}>
                 Try different key words or remove search filter
               </Suggestion>
-              <RetryButtonInFailure>Retry</RetryButtonInFailure>
+              <RetryButtonInFailure> {t("retry")}</RetryButtonInFailure>
             </NoSearchResultsContainer>
           );
         }}
@@ -156,16 +158,16 @@ const HomeContent: React.FC<GettingPP> = (props) => {
                       alt=" Failure"
                     />
                     <HomeFailureHeading>
-                      Oops! Something went Wrong
+                      {t("something_wrong_msg")}
                     </HomeFailureHeading>
                     <HomeFailureText darkMode={isDarkMode}>
                       We are having some trouble to complete your request.
                     </HomeFailureText>
                     <HomeFailureText darkMode={isDarkMode}>
-                      Please try again.
+                      {t("please_try_again")}
                     </HomeFailureText>
                     <HomeFailureRetryBtn onClick={getGamingApiDetails}>
-                      Retry
+                      {t("retry")}
                     </HomeFailureRetryBtn>
                   </HomeFailureContainer>
                 );

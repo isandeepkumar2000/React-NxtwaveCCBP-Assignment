@@ -18,11 +18,13 @@ import {
   SavedVideoPageRightSection,
 } from "./styleComponents";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { useTranslation } from "react-i18next";
 export type SavedVideoStyle = {
   darkMode: boolean;
 };
 
 const SavedVideoRoute = () => {
+  const { t } = useTranslation();
   const renderEmptyView = () => {
     return (
       <NxtwatchContext.Consumer>
@@ -35,10 +37,10 @@ const SavedVideoRoute = () => {
                 alt="empty"
               />
               <SavedVideoEmptyHeading darkMode={isDarkMode}>
-                No saved videos found
+                {t("no")} {t("Saved Videos")} {t("found")}
               </SavedVideoEmptyHeading>
               <SavedVideoEmptyText darkMode={isDarkMode}>
-                You can save your video while watching them
+                {t("no_saved_video_msg")}
               </SavedVideoEmptyText>
             </SavedVideoEmptyContainer>
           );
@@ -58,7 +60,7 @@ const SavedVideoRoute = () => {
                 <SavedVideoHeaderIconContainer darkMode={isDarkMode}>
                   <MdLocalFireDepartment className="nxtwatch-savedVideo-icons" />
                 </SavedVideoHeaderIconContainer>
-                <h1>Saved Videos</h1>
+                <h1>{t("Saved Videos")}</h1>
               </SavedVideoHeaderContainer>
               <SavedVideoListContainer>
                 {savedVideo.map((item) => (

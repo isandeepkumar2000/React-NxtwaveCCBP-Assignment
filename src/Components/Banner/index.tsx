@@ -1,6 +1,8 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import {
   BannerBtn,
   BannerContainer,
@@ -10,6 +12,7 @@ import {
 } from "./styleComponets";
 
 const Banner = () => {
+  const { t } = useTranslation();
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
@@ -23,8 +26,10 @@ const Banner = () => {
               />
               <IoMdClose onClick={closeBanner} />
             </BannerImageContainer>
-            <BannerText>Buy Nxt Watch Premium prepaid plan with UPI</BannerText>
-            <BannerBtn>GET IT NOW</BannerBtn>
+            <BannerText>
+              {t("Buy Nxt Watch Premium prepaid plan with UPI")}
+            </BannerText>
+            <BannerBtn>{t("get_it_now")}</BannerBtn>
           </BannerContainer>
         );
       }}
@@ -32,4 +37,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default withTranslation()(Banner);

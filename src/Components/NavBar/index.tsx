@@ -24,11 +24,13 @@ import LogoutPopup from "../LogoutPopUp";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import NavLinkNxtwatch from "../NavLink";
 import { jwtToken } from "../../Constants/appConstants";
+import { useTranslation } from "react-i18next";
 export type NavBarStyle = {
   darkMode: boolean;
 };
 
 const NavBar = () => {
+  const { t } = useTranslation();
   let history = useHistory();
   const logoutHandler = () => {
     Cookies.remove(jwtToken);
@@ -94,7 +96,9 @@ const NavBar = () => {
                 <Avatar src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png" />
                 <Popup
                   modal
-                  trigger={<LogoutBtn darkMode={isDarkMode}>Logout</LogoutBtn>}
+                  trigger={
+                    <LogoutBtn darkMode={isDarkMode}>{t("logout")}</LogoutBtn>
+                  }
                   className={`nxtwatch-logout-popup ${
                     isDarkMode ? "dark-nxtwatch-logout-popup" : ""
                   }`}

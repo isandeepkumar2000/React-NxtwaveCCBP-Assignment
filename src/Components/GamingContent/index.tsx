@@ -4,6 +4,7 @@ import { IoLogoGameControllerB } from "react-icons/io";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { ThreeDots } from "react-loader-spinner";
+import { useTranslation } from "react-i18next";
 import {
   GamingFailureContainer,
   GamingFailureHeading,
@@ -33,6 +34,7 @@ export type GamingContentStyle = {
 };
 
 const GamingContent = () => {
+  const { t } = useTranslation();
   const [videoList, setvideoList] = useState<GamingContentType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
@@ -82,7 +84,7 @@ const GamingContent = () => {
                 <GamingVideoHeaderIconContainer darkMode={isDarkMode}>
                   <IoLogoGameControllerB className="nxtwatch-savedVideo-icons" />
                 </GamingVideoHeaderIconContainer>
-                <h1>Gaming</h1>
+                <h1> {t("Gaming")}</h1>
               </GamingVideoHeaderContainer>
               <GamingVideoListContainer>
                 {videoList.map((item) => (
@@ -128,16 +130,16 @@ const GamingContent = () => {
                     alt="failure"
                   />
                   <GamingFailureHeading>
-                    Oops! Something went wrong
+                    {t("something_wrong_msg")}
                   </GamingFailureHeading>
                   <GamingFailureText darkMode={isDarkMode}>
                     We are having some trouble to complete your request.
                   </GamingFailureText>
                   <GamingFailureText darkMode={isDarkMode}>
-                    Please try again.
+                    {t("please_try_again")}
                   </GamingFailureText>
                   <GamingFailureRetryBtn onClick={getGamingApiDetails}>
-                    Retry
+                    {t("retry")}
                   </GamingFailureRetryBtn>
                 </GamingFailureContainer>
               );

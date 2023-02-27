@@ -1,11 +1,10 @@
-
-
 import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { MdLocalFireDepartment } from "react-icons/md";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
+import { useTranslation } from "react-i18next";
 
 import {
   TrendingFailureContainer,
@@ -42,6 +41,7 @@ export type TrendingContentStyle = {
 };
 
 const TrendingContent = () => {
+  const { t } = useTranslation();
   const [trending, setTrending] = useState<TendingContentType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
@@ -95,7 +95,7 @@ const TrendingContent = () => {
                   <TrendingVideoHeaderIconContainer darkMode={isDarkMode}>
                     <MdLocalFireDepartment className="nxtwatch-savedVideo-icons" />
                   </TrendingVideoHeaderIconContainer>
-                  <h1>Trending</h1>
+                  <h1>{t("Trending")}</h1>
                 </TrendingVideoHeaderContainer>
                 <TrendingVideoListContainer>
                   {trending.map((item) => {
@@ -142,16 +142,16 @@ const TrendingContent = () => {
                       alt="failure"
                     />
                     <TrendingFailureHeading>
-                      Oops! Something went wrong
+                      Oops! {t("something_wrong_msg_detail")}
                     </TrendingFailureHeading>
                     <TrendingFailureText darkMode={isDarkMode}>
                       We are having some trouble to complete your request.
                     </TrendingFailureText>
                     <TrendingFailureText darkMode={isDarkMode}>
-                      Please try again.
+                      {t("please_try_again")}
                     </TrendingFailureText>
                     <TrendingFailureRetryBtn onClick={getTrendingVideosList}>
-                      Retry
+                      {t("retry")}
                     </TrendingFailureRetryBtn>
                   </TrendingFailureContainer>
                 </>

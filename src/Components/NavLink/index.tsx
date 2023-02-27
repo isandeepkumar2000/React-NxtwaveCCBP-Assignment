@@ -6,12 +6,14 @@ import { AiFillHome, AiFillFire } from "react-icons/ai";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { NavLinksContainer, NavLinkText } from "./styleComponents";
+import { useTranslation } from "react-i18next";
 
 export type NavLinkType = {
   darkMode: boolean;
 };
 
 const NavLinkNxtwatch = () => {
+  const { t } = useTranslation();
   return (
     <NxtwatchContext.Consumer>
       {(value) => {
@@ -27,7 +29,7 @@ const NavLinkNxtwatch = () => {
               className="nxtwatch-navlink"
             >
               <AiFillHome className="nxtwatch-navlink-icons" />
-              <NavLinkText darkMode={isDarkMode}>Home</NavLinkText>
+              <NavLinkText darkMode={isDarkMode}>{t("Home")}</NavLinkText>
             </NavLink>
             <NavLink
               exact
@@ -38,7 +40,7 @@ const NavLinkNxtwatch = () => {
               className="nxtwatch-navlink"
             >
               <AiFillFire className="nxtwatch-navlink-icons" />
-              <NavLinkText darkMode={isDarkMode}>Trending</NavLinkText>
+              <NavLinkText darkMode={isDarkMode}>{t("Trending")}</NavLinkText>
             </NavLink>
             <NavLink
               exact
@@ -49,7 +51,7 @@ const NavLinkNxtwatch = () => {
               className="nxtwatch-navlink"
             >
               <IoLogoGameControllerB className="nxtwatch-navlink-icons" />
-              <NavLinkText darkMode={isDarkMode}>Gaming</NavLinkText>
+              <NavLinkText darkMode={isDarkMode}>{t("Gaming")}</NavLinkText>
             </NavLink>
             <NavLink
               exact
@@ -60,7 +62,9 @@ const NavLinkNxtwatch = () => {
               className="nxtwatch-navlink"
             >
               <RiPlayListAddFill className="nxtwatch-navlink-icons" />
-              <NavLinkText darkMode={isDarkMode}>Saved Videos</NavLinkText>
+              <NavLinkText darkMode={isDarkMode}>
+                {t("Saved Videos")}
+              </NavLinkText>
             </NavLink>
           </NavLinksContainer>
         );
