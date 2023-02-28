@@ -51,6 +51,7 @@ const LoginPage = () => {
 
     const response = await fetch(url, options);
     const data = await response.json();
+    console.log(data, "huyyy i am data of Loginpage");
 
     if (response.ok === true) {
       onLoginSuccess(data.jwt_token);
