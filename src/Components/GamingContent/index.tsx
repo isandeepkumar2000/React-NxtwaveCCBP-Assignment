@@ -18,19 +18,10 @@ import {
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
 import { jwtToken } from "../../Constants/appConstants";
+import { GamingContentType } from "../../ComponentsTypes";
+import FailureView from "../Failure";
 
-export type GamingContentType = {
-  id: string;
-  title: string;
-  thumbnail_url: string;
-  view_count: string;
-  thumbnailUrl: string;
-  viewCount: string;
-};
 
-export type GamingContentStyle = {
-  darkMode: boolean;
-};
 
 const GamingContent = () => {
   const [videoList, setvideoList] = useState<GamingContentType[]>([]);
@@ -118,28 +109,7 @@ const GamingContent = () => {
               );
             case ApiStatusConstant.failed:
               return (
-                <GamingFailureContainer darkMode={isDarkMode}>
-                  <GamingFailureImage
-                    src={
-                      isDarkMode
-                        ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-                        : "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-                    }
-                    alt="failure"
-                  />
-                  <GamingFailureHeading>
-                    Oops! Something went wrong
-                  </GamingFailureHeading>
-                  <GamingFailureText darkMode={isDarkMode}>
-                    We are having some trouble to complete your request.
-                  </GamingFailureText>
-                  <GamingFailureText darkMode={isDarkMode}>
-                    Please try again.
-                  </GamingFailureText>
-                  <GamingFailureRetryBtn onClick={getGamingApiDetails}>
-                    Retry
-                  </GamingFailureRetryBtn>
-                </GamingFailureContainer>
+                <FailureView/>
               );
             case ApiStatusConstant.success:
               return renderGamingVideoList();

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { NavBarStyle } from ".";
+import { NavBarStyle } from "../../ComponentsTypes";
+
 
 export const Nav = styled.nav`
   background-color: ${(props: NavBarStyle) =>

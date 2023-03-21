@@ -4,9 +4,6 @@ import ContactUs from "../ContactOus";
 import NavLinkNxtwatch from "../NavLink";
 import { SideBarPage } from "./styleComponets";
 
-export type SideBarType = {
-  darkMode: boolean;
-};
 
 const SideBar = () => {
   return (

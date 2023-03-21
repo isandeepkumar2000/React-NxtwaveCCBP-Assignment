@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-
 import { formatDistanceToNow } from "date-fns";
 import { GoPrimitiveDot } from "react-icons/go";
 import Player from "react-player";
@@ -91,6 +90,7 @@ const VideoDetailsItems: React.FC<VideoItemPp> = (props) => {
               width="100%"
               className="nxtwatch-video-player"
             />
+
             <VideoItemDetail>
               <VideoItemTopSection className="Container">
                 <VideoItemTitle darkMode={isDarkMode}>

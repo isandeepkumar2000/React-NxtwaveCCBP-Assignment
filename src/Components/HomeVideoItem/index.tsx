@@ -2,7 +2,7 @@ import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { GoPrimitiveDot } from "react-icons/go";
 import { formatDistanceToNow } from "date-fns";
-import { VideoTypeList } from "../HomeContant";
+
 import {
   VideoItem,
   VideoItemChannel,
@@ -15,14 +15,9 @@ import {
   VideoItemTitle,
 } from "./styleComponents";
 import { ContainerLink } from "../SavedVideoItem/styleComponets";
+import { HomeVideoPrp, VideoTypeList } from "../../ComponentsTypes";
 
-export type HomeVideoItemStyleComp = {
-  darkMode: boolean;
-};
 
-interface HomeVideoPrp {
-  data: VideoTypeList;
-}
 
 const HomeVideoItem: React.FC<HomeVideoPrp> = (props) => {
   const { data } = props;

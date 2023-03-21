@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { TrendingContentStyle } from ".";
+import { TrendingContentStyle } from "../../ComponentsTypes";
+
 
 export const TrendingVideoSuccessView = styled.div``;
 export const TrendingVideoListContainer = styled.div`

@@ -15,6 +15,7 @@ import {
 
 import { jwtToken } from "../../Constants/appConstants";
 import VideoDetailsItems from "../VideoDetailsItems";
+import FailureView from "../Failure";
 
 export type VideoDetailType = {
   title: string;
@@ -116,28 +117,7 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
               );
             case ApiStatusConstant.failed:
               return (
-                <VideoDetailFailureContainer darkMode={isDarkMode}>
-                  <VideoDetailFailureImage
-                    src={
-                      isDarkMode
-                        ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-                        : "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-                    }
-                    alt="failure"
-                  />
-                  <VideoDetailFailureHeading>
-                    Oops! Something went wrong
-                  </VideoDetailFailureHeading>
-                  <VideoDetailFailureText darkMode={isDarkMode}>
-                    We are having some trouble to complete your request.
-                  </VideoDetailFailureText>
-                  <VideoDetailFailureText darkMode={isDarkMode}>
-                    Please try again.
-                  </VideoDetailFailureText>
-                  <VideoDetailFailureRetryBtn onClick={getGamingApiDetails}>
-                    Retry
-                  </VideoDetailFailureRetryBtn>
-                </VideoDetailFailureContainer>
+               <FailureView />
               );
             case ApiStatusConstant.success:
               return renderVideoDetails();

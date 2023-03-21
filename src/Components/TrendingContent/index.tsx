@@ -21,25 +21,9 @@ import {
 } from "./styleComponets";
 import { jwtToken } from "../../Constants/appConstants";
 import TrendingContentItem from "../TrendingContentItem";
+import FailureView from "../Failure";
+import { TendingContentType } from "../../ComponentsTypes";
 
-export type TendingContentType = {
-  id: string;
-  title: string;
-  thumbnail_url: string;
-  channel: {
-    name: string;
-    profile_image_url: string;
-  };
-  view_count: string;
-  published_at: string;
-  viewCount: string;
-  thumbnailUrl: string;
-  publishedAt: string;
-};
-
-export type TrendingContentStyle = {
-  darkMode: boolean;
-};
 
 const TrendingContent = () => {
   const [trending, setTrending] = useState<TendingContentType[]>([]);
@@ -132,28 +116,7 @@ const TrendingContent = () => {
             case ApiStatusConstant.failed:
               return (
                 <>
-                  <TrendingFailureContainer darkMode={isDarkMode}>
-                    <TrendingFailureImage
-                      src={
-                        isDarkMode
-                          ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-                          : "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-                      }
-                      alt="failure"
-                    />
-                    <TrendingFailureHeading>
-                      Oops! Something went wrong
-                    </TrendingFailureHeading>
-                    <TrendingFailureText darkMode={isDarkMode}>
-                      We are having some trouble to complete your request.
-                    </TrendingFailureText>
-                    <TrendingFailureText darkMode={isDarkMode}>
-                      Please try again.
-                    </TrendingFailureText>
-                    <TrendingFailureRetryBtn onClick={getTrendingVideosList}>
-                      Retry
-                    </TrendingFailureRetryBtn>
-                  </TrendingFailureContainer>
+                 <FailureView/>
                 </>
               );
             case ApiStatusConstant.success:

@@ -1,8 +1,9 @@
 import Cookies from "js-cookie";
 import { jwtToken } from "../Constants/appConstants";
 import { action, makeAutoObservable, observable } from "mobx";
-import { GamingContentType } from "../Components/GamingContent";
+
 import ApiStatusConstant from "../ConstantsApiStatus/ApiConstantStatus";
+import { GamingContentType } from "../ComponentsTypes";
 
 export class GamingContentStore {
   gaming: GamingContentType[] = [];

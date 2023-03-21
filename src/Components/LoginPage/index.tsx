@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-
 import { jwtToken } from "../../Constants/appConstants";
 import {
   ErrorMessage,
@@ -51,7 +50,7 @@ const LoginPage = () => {
 
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log(data, "huyyy i am data of Loginpage");
+    
 
     if (response.ok === true) {
       onLoginSuccess(data.jwt_token);

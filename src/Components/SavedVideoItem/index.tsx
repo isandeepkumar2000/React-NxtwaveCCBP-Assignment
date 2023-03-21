@@ -19,14 +19,9 @@ import {
 } from "./styleComponets";
 import { GoPrimitiveDot } from "react-icons/go";
 import { VideoDetailType } from "../VideoDetails.tsx";
+import { SavedVideoPp } from "../../ComponentsTypes";
 
-interface SavedVideoPp {
-  data: VideoDetailType;
-}
 
-export type SavedVideoStyle = {
-  darkMode: boolean;
-};
 
 const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
   const { data } = props;

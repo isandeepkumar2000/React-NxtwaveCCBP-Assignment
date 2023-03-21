@@ -1,8 +1,9 @@
 import ApiStatusConstant from "../ConstantsApiStatus/ApiConstantStatus";
 import { action, makeAutoObservable, observable } from "mobx";
-import { VideoTypeList } from "../Components/HomeContant";
+
 import { jwtToken } from "../Constants/appConstants";
 import Cookies from "js-cookie";
+import { VideoTypeList } from "../ComponentsTypes";
 
 export class HomeContentStore {
   home: VideoTypeList[] = [];

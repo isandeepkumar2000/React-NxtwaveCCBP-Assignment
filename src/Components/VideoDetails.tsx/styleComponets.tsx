@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { VideoDetailsStyle, VideoDetailsStyleActive } from ".";
+import { VideoDetailsStyle, VideoDetailsStyleActive } from "../../ComponentsTypes";
+
 
 export const VideoItemContent = styled.div`
   padding: 30px 20px;

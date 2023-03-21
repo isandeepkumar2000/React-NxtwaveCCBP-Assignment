@@ -8,16 +8,8 @@ import {
   SearchInputField,
   SearchLogoContainers,
 } from "./styleComponents";
+import { SearchBarProp } from "../../ComponentsTypes";
 
-export type SearchBarStyle = {
-  darkMode: boolean;
-};
-
-interface SearchBarProp {
-  searchValue: string;
-  onChangeSearch: any;
-  clearInput: any;
-}
 
 const SearchBar: React.FC<SearchBarProp> = (props) => {
   const { searchValue, onChangeSearch, clearInput } = props;

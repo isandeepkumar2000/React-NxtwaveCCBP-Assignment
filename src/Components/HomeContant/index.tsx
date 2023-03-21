@@ -24,29 +24,10 @@ import {
   RetryButtonInFailure,
   Suggestion,
 } from "./styleComponents";
+import FailureView from "../Failure";
+import { GettingPP, VideoTypeList } from "../../ComponentsTypes";
 
-export type HomeContentStyleComponentsType = {
-  darkMode: boolean;
-};
 
-export type VideoTypeList = {
-  channel: {
-    name: string;
-    profile_image_url: string;
-  };
-  title: string;
-  id: string;
-  thumbnailUrl: string;
-
-  viewCount: string;
-  publishedAt: string;
-  thumbnail_url: string;
-  view_count: string;
-  published_at: string;
-};
-interface GettingPP {
-  searchValue: string;
-}
 
 const HomeContent: React.FC<GettingPP> = (props) => {
   const { searchValue } = props;
@@ -107,19 +88,9 @@ const HomeContent: React.FC<GettingPP> = (props) => {
         {(value) => {
           const { isDarkMode } = value;
           return (
-            <NoSearchResultsContainer>
-              <FailureImage
-                alt="no videos"
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-              />
-              <NoResultsMsg darkMode={isDarkMode}>
-                No Search results found
-              </NoResultsMsg>
-              <Suggestion darkMode={isDarkMode}>
-                Try different key words or remove search filter
-              </Suggestion>
-              <RetryButtonInFailure>Retry</RetryButtonInFailure>
-            </NoSearchResultsContainer>
+            <>
+            <FailureView/>
+            </>
           );
         }}
       </NxtwatchContext.Consumer>
@@ -146,28 +117,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
                 );
               case ApiStatusConstant.failed:
                 return (
-                  <HomeFailureContainer darkMode={isDarkMode}>
-                    <HomeFailureImage
-                      src={
-                        isDarkMode
-                          ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-                          : "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-                      }
-                      alt=" Failure"
-                    />
-                    <HomeFailureHeading>
-                      Oops! Something went Wrong
-                    </HomeFailureHeading>
-                    <HomeFailureText darkMode={isDarkMode}>
-                      We are having some trouble to complete your request.
-                    </HomeFailureText>
-                    <HomeFailureText darkMode={isDarkMode}>
-                      Please try again.
-                    </HomeFailureText>
-                    <HomeFailureRetryBtn onClick={getGamingApiDetails}>
-                      Retry
-                    </HomeFailureRetryBtn>
-                  </HomeFailureContainer>
+                 <FailureView/>
                 );
               case ApiStatusConstant.success:
                 return renderVideoList();

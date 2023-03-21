@@ -1,6 +1,6 @@
 import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-import { TendingContentType } from "../TrendingContent";
+
 import { formatDistanceToNow } from "date-fns";
 import "./index.css";
 
@@ -25,6 +25,7 @@ import {
   VideoItemOtherDetailContainer,
   VideoItemOtherDetailContainerBox,
 } from "./styleComponents";
+import { TendingContentType } from "../../ComponentsTypes";
 
 interface SavedVideoPp {
   trending: TendingContentType;

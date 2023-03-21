@@ -49,8 +49,8 @@ const App = () => {
             path={`/Nxtwatch/video/:id`}
             component={VideoDetailsRoute}
           />
-          <Route path="/notfound" component={NotFoundRoute} />
-          <Redirect to="/notfound" />
+          <Route path="/not-found" component={NotFoundRoute} />
+          <Redirect to="/not-found" />
         </Switch>
       </BrowserRouter>
     </NxtwatchContext.Provider>

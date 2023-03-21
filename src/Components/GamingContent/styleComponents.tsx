@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { GamingContentStyle } from "../../ComponentsTypes";
 
-import { GamingContentStyle } from ".";
+
 
 export const GamingVideoSuccessView = styled.div``;
 export const GamingVideoListContainer = styled.div`

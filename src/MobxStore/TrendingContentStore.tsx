@@ -1,8 +1,9 @@
 import Cookies from "js-cookie";
-import { TendingContentType } from "../Components/TrendingContent";
+
 import { jwtToken } from "../Constants/appConstants";
 import ApiStatusConstant from "../ConstantsApiStatus/ApiConstantStatus";
 import { action, makeAutoObservable, observable } from "mobx";
+import { TendingContentType } from "../ComponentsTypes";
 
 export class TrendingContentStore {
   trending: TendingContentType[] = [];

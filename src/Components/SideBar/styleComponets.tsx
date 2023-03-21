@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { SideBarType } from ".";
+import { SideBarType } from "../../ComponentsTypes";
+
 
 export const SideBarPage = styled.div`
   background-color: ${(props: SideBarType) =>

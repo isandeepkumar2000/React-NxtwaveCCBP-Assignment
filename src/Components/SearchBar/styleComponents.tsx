@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { SearchBarStyle } from ".";
+import { SearchBarStyle } from "../../ComponentsTypes";
+
 
 export const SearchLogoContainers = styled.div`
   background-color: ${(props: SearchBarStyle) =>

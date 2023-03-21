@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { SavedVideoStyle } from ".";
+
 import { Link } from "react-router-dom";
+import { SavedVideoStyle } from "../../ComponentsTypes";
 
 export const VideoItem = styled.div`
   display: grid;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { HomeVideoItemStyleComp } from ".";
+import { HomeVideoItemStyleComp } from "../../ComponentsTypes";
+
 
 export const VideoItem = styled.div`
   max-width: 450px;

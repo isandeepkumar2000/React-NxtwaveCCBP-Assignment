@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { LogoutStyle } from "./index";
+import { LogoutStyle } from "../../ComponentsTypes";
+
 
 export const LogoutActionContainer = styled.div`
   display: flex;

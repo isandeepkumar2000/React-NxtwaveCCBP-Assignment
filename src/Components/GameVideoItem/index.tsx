@@ -1,6 +1,6 @@
 import React from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
-import { GamingContentType } from "../GamingContent";
+
 import { ContainerLink } from "../SavedVideoItem/styleComponets";
 import {
   GameItemContainer,
@@ -8,6 +8,7 @@ import {
   GameItemTitle,
   GameItemViewCount,
 } from "./styleComponents";
+import { GamingContentType } from "../../ComponentsTypes";
 
 interface GameVideoPr {
   data: GamingContentType;

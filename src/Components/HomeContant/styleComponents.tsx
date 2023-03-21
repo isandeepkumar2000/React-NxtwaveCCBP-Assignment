@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { HomeContentStyleComponentsType } from ".";
+import { HomeContentStyleComponentsType } from "../../ComponentsTypes";
+
 
 export const HomeVideoListContainer = styled.div`
   margin: 0px 30px;

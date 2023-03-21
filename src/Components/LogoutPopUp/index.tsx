@@ -7,14 +7,9 @@ import {
   LogoutPopupConfirmBtn,
   LogoutPoputHeader,
 } from "./styleComponents";
+import { LogoutButtonType } from "../../ComponentsTypes";
 
-export type LogoutStyle = {
-  darkMode: boolean;
-};
-interface LogoutButtonType {
-  onClose: () => void;
-  onConfirm: () => void;
-}
+
 
 const LogOutPopup = (props: LogoutButtonType) => {
   const { onClose, onConfirm } = props;

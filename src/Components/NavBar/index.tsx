@@ -24,9 +24,7 @@ import LogoutPopup from "../LogoutPopUp";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import NavLinkNxtwatch from "../NavLink";
 import { jwtToken } from "../../Constants/appConstants";
-export type NavBarStyle = {
-  darkMode: boolean;
-};
+
 
 const NavBar = () => {
   let history = useHistory();
