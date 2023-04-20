@@ -37,9 +37,10 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={LoginRoute} />
-          <ProtectedRoute path="/" component={HomeRoute} />
+
           <ProtectedRoute exact path="/trending" component={TrendingRoute} />
           <ProtectedRoute exact path="/gaming" component={GamingRoute} />
+
           <ProtectedRoute
             exact
             path="/savedVideos"
@@ -51,6 +52,7 @@ const App = () => {
             path="/video/:id"
             component={VideoDetailsRoute}
           />
+          <ProtectedRoute path="/" component={HomeRoute} />
           <Route path="/not-found" component={NotFoundRoute} />
           <Redirect to="not-found" />
         </Switch>
