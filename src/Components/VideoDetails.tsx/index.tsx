@@ -5,11 +5,6 @@ import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { ThreeDots } from "react-loader-spinner";
 
 import {
-  VideoDetailFailureContainer,
-  VideoDetailFailureHeading,
-  VideoDetailFailureImage,
-  VideoDetailFailureRetryBtn,
-  VideoDetailFailureText,
   VideoDetailLoaderContainer,
 } from "./styleComponets";
 
@@ -114,6 +109,7 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
                     width={80}
                   />
                 </VideoDetailLoaderContainer>
+          
               );
             case ApiStatusConstant.failed:
               return (

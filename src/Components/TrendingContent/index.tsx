@@ -8,11 +8,6 @@ import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 
 import {
-  TrendingFailureContainer,
-  TrendingFailureHeading,
-  TrendingFailureImage,
-  TrendingFailureRetryBtn,
-  TrendingFailureText,
   TrendingLoaderContainer,
   TrendingVideoHeaderContainer,
   TrendingVideoHeaderIconContainer,

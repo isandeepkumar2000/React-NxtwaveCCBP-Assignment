@@ -18,10 +18,8 @@ import {
   VideoItemTitle,
 } from "./styleComponets";
 import { GoPrimitiveDot } from "react-icons/go";
-import { VideoDetailType } from "../VideoDetails.tsx";
+
 import { SavedVideoPp } from "../../ComponentsTypes";
-
-
 
 const SavedVideoItem: React.FC<SavedVideoPp> = (props) => {
   const { data } = props;

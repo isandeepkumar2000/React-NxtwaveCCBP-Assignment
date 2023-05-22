@@ -7,8 +7,8 @@ import TrendingRoute from "./Routes/TrendingRoute";
 import GamingRoute from "./Routes/GamingRoute";
 import NxtwatchContext from "./Contexts/NxtWatchContexts";
 import NotFoundRoute from "./Routes/NotFoundRoute";
-import VideoDetailsRoute from "./Routes/VideoIntemDetailRoute";
 import SavedVideoRoute from "./Routes/SavedvideoRoute";
+import VideoDetailsRoute from "./Routes/VideoIntemDetailRoute";
 
 const App = () => {
   const [isDarkMode, SetIsDarkMode] = useState(true);

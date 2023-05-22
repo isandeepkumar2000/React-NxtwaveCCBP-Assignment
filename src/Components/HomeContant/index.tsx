@@ -7,27 +7,16 @@ import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import HomeVideoItem from "../HomeVideoItem";
 
 import {
-  FailureImage,
   HomeEmptyContainer,
   HomeEmptyHeading,
   HomeEmptyImage,
   HomeEmptyText,
-  HomeFailureContainer,
-  HomeFailureHeading,
-  HomeFailureImage,
   HomeFailureRetryBtn,
-  HomeFailureText,
   HomeLoaderContainer,
   HomeVideoListContainer,
-  NoResultsMsg,
-  NoSearchResultsContainer,
-  RetryButtonInFailure,
-  Suggestion,
 } from "./styleComponents";
 import FailureView from "../Failure";
 import { GettingPP, VideoTypeList } from "../../ComponentsTypes";
-
-
 
 const HomeContent: React.FC<GettingPP> = (props) => {
   const { searchValue } = props;
@@ -89,7 +78,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
           const { isDarkMode } = value;
           return (
             <>
-            <FailureView/>
+              <FailureView />
             </>
           );
         }}
@@ -116,9 +105,7 @@ const HomeContent: React.FC<GettingPP> = (props) => {
                   </HomeLoaderContainer>
                 );
               case ApiStatusConstant.failed:
-                return (
-                 <FailureView/>
-                );
+                return <FailureView />;
               case ApiStatusConstant.success:
                 return renderVideoList();
               case ApiStatusConstant.empty:

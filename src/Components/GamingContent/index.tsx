@@ -5,23 +5,16 @@ import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { ThreeDots } from "react-loader-spinner";
 import {
-  GamingFailureContainer,
-  GamingFailureHeading,
-  GamingFailureImage,
-  GamingFailureText,
   GamingLoaderContainer,
   GamingVideoHeaderContainer,
   GamingVideoHeaderIconContainer,
   GamingVideoListContainer,
   GamingVideoSuccessView,
-  GamingFailureRetryBtn,
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
 import { jwtToken } from "../../Constants/appConstants";
 import { GamingContentType } from "../../ComponentsTypes";
 import FailureView from "../Failure";
-
-
 
 const GamingContent = () => {
   const [videoList, setvideoList] = useState<GamingContentType[]>([]);
@@ -108,9 +101,7 @@ const GamingContent = () => {
                 </GamingLoaderContainer>
               );
             case ApiStatusConstant.failed:
-              return (
-                <FailureView/>
-              );
+              return <FailureView />;
             case ApiStatusConstant.success:
               return renderGamingVideoList();
             default:
