@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoLogoGameControllerB } from "react-icons/io";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
@@ -13,10 +13,11 @@ import {
 } from "./styleComponents";
 import GameVideoItem from "../GameVideoItem";
 import { jwtToken } from "../../Constants/appConstants";
-import { GamingContentType } from "../../ComponentsTypes";
+import { GamingContentType, NxtwatchContextType } from "../../ComponentsTypes";
 import FailureView from "../Failure";
 
 const GamingContent = () => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   const [videoList, setvideoList] = useState<GamingContentType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
@@ -55,61 +56,44 @@ const GamingContent = () => {
   }, []);
 
   const renderGamingVideoList = () => {
-    console.log(videoList);
     return (
-      <NxtwatchContext.Consumer>
-        {(value) => {
-          const { isDarkMode } = value;
-          return (
-            <GamingVideoSuccessView>
-              <GamingVideoHeaderContainer darkMode={isDarkMode}>
-                <GamingVideoHeaderIconContainer darkMode={isDarkMode}>
-                  <IoLogoGameControllerB className="nxtwatch-savedVideo-icons" />
-                </GamingVideoHeaderIconContainer>
-                <h1>Gaming</h1>
-              </GamingVideoHeaderContainer>
-              <GamingVideoListContainer>
-                {videoList.map((item) => (
-                  <NxtwatchContext.Consumer>
-                    {(value) => {
-                      return <GameVideoItem key={item.id} data={item} />;
-                    }}
-                  </NxtwatchContext.Consumer>
-                ))}
-              </GamingVideoListContainer>
-            </GamingVideoSuccessView>
-          );
-        }}
-      </NxtwatchContext.Consumer>
+      <GamingVideoSuccessView>
+        <GamingVideoHeaderContainer darkMode={isDarkMode}>
+          <GamingVideoHeaderIconContainer darkMode={isDarkMode}>
+            <IoLogoGameControllerB className="nxtwatch-savedVideo-icons" />
+          </GamingVideoHeaderIconContainer>
+          <h1>Gaming</h1>
+        </GamingVideoHeaderContainer>
+        <GamingVideoListContainer>
+          {videoList.map((item) => (
+            <>
+              <GameVideoItem key={item.id} data={item} />;
+            </>
+          ))}
+        </GamingVideoListContainer>
+      </GamingVideoSuccessView>
     );
   };
 
   const renderContent = () => {
-    return (
-      <NxtwatchContext.Consumer>
-        {(value) => {
-          const { isDarkMode } = value;
-          switch (apiStatus) {
-            case ApiStatusConstant.loading:
-              return (
-                <GamingLoaderContainer>
-                  <ThreeDots
-                    color={isDarkMode ? "white" : "#1e293b"}
-                    height={80}
-                    width={80}
-                  />
-                </GamingLoaderContainer>
-              );
-            case ApiStatusConstant.failed:
-              return <FailureView />;
-            case ApiStatusConstant.success:
-              return renderGamingVideoList();
-            default:
-              return null;
-          }
-        }}
-      </NxtwatchContext.Consumer>
-    );
+    switch (apiStatus) {
+      case ApiStatusConstant.loading:
+        return (
+          <GamingLoaderContainer>
+            <ThreeDots
+              color={isDarkMode ? "white" : "#1e293b"}
+              height={80}
+              width={80}
+            />
+          </GamingLoaderContainer>
+        );
+      case ApiStatusConstant.failed:
+        return <FailureView />;
+      case ApiStatusConstant.success:
+        return renderGamingVideoList();
+      default:
+        return null;
+    }
   };
 
   return <div>{renderContent()}</div>;

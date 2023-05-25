@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import {
@@ -8,27 +8,35 @@ import {
   BannerImageContainer,
   BannerText,
 } from "./styleComponets";
+import { NxtwatchContextType } from "../../ComponentsTypes";
 
 const Banner = () => {
+  
+
+  const { showBanner, closeBanner } = useContext<NxtwatchContextType>(
+    NxtwatchContext
+  );
+
+  const handleBannerClose = () => {
+    closeBanner();
+  };
+
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { closeBanner } = value;
-        return (
-          <BannerContainer>
-            <BannerImageContainer>
-              <BannerImage
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                alt="logo"
-              />
-              <IoMdClose onClick={closeBanner} />
-            </BannerImageContainer>
-            <BannerText>Buy Nxt Watch Premium prepaid plan with UPI</BannerText>
-            <BannerBtn>GET IT NOW</BannerBtn>
-          </BannerContainer>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <>
+      {showBanner && (
+        <BannerContainer>
+          <BannerImageContainer>
+            <BannerImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+              alt="logo"
+            />
+            <IoMdClose onClick={handleBannerClose} />
+          </BannerImageContainer>
+          <BannerText>Buy Nxt Watch Premium prepaid plan with UPI</BannerText>
+          <BannerBtn>GET IT NOW</BannerBtn>
+        </BannerContainer>
+      )}
+    </>
   );
 };
 

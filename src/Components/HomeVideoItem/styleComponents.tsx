@@ -40,7 +40,7 @@ export const VideoItemChannel = styled.p`
     props.darkMode ? "white" : "#64748b"};
   margin: 10px 0px;
 `;
-export const VideoItemOtherDetailContainerss = styled.div`
+export const VideoItemOtherDetailContainerships = styled.div`
   display: flex;
   /* justify-content: space-between; */
   align-items: center;

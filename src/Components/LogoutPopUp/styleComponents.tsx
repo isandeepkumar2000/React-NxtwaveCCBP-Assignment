@@ -25,14 +25,13 @@ export const LogoutPopupConfirmBtn = styled.button`
   font-weight: bold;
   background-color: #3b82f6;
 `;
-export const LogoutPoputHeader = styled.p`
+export const LogoutPopupHeader = styled.p`
   color: ${(props: LogoutStyle) => (props.darkMode ? "#3b82f6" : "#3b82f6")};
 `;
 
-export const ContFormConatiner = styled.div`
+export const ContFormContainer = styled.div`
   background-color: ${(props: LogoutStyle) =>
     props.darkMode ? "white" : "black"};
   padding: 10px 20px;
-
   border-radius: 10px;
 `;

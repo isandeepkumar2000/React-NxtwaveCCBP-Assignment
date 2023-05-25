@@ -1,39 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import {
-  ContFormConatiner,
+  ContFormContainer,
   LogoutActionContainer,
   LogoutPopupCancelBtn,
   LogoutPopupConfirmBtn,
-  LogoutPoputHeader,
+  LogoutPopupHeader,
 } from "./styleComponents";
-import { LogoutButtonType } from "../../ComponentsTypes";
-
-
+import { LogoutButtonType, NxtwatchContextType } from "../../ComponentsTypes";
 
 const LogOutPopup = (props: LogoutButtonType) => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   const { onClose, onConfirm } = props;
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <ContFormConatiner darkMode={isDarkMode}>
-            <LogoutPoputHeader darkMode={isDarkMode}>
-              Are you sure you want to logout?
-            </LogoutPoputHeader>
-            <LogoutActionContainer>
-              <LogoutPopupCancelBtn onClick={onClose} darkMode={isDarkMode}>
-                Cancel
-              </LogoutPopupCancelBtn>
-              <LogoutPopupConfirmBtn onClick={onConfirm}>
-                Confirm
-              </LogoutPopupConfirmBtn>
-            </LogoutActionContainer>
-          </ContFormConatiner>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <ContFormContainer darkMode={isDarkMode}>
+      <LogoutPopupHeader darkMode={isDarkMode}>
+        Are you sure you want to logout?
+      </LogoutPopupHeader>
+      <LogoutActionContainer>
+        <LogoutPopupCancelBtn onClick={onClose} darkMode={isDarkMode}>
+          Cancel
+        </LogoutPopupCancelBtn>
+        <LogoutPopupConfirmBtn onClick={onConfirm}>
+          Confirm
+        </LogoutPopupConfirmBtn>
+      </LogoutActionContainer>
+    </ContFormContainer>
   );
 };
 

@@ -1,59 +1,40 @@
-import React, { useState } from "react";
-import LoginPage from "./Components/LoginPage";
+import React from "react";
 import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
+import LoginPage from "./Components/LoginPage";
 import ProtectedRoute from "./ProtectRoute";
 import Home from "./Routes/HomeRoute";
 import TrendingRoute from "./Routes/TrendingRoute";
 import GamingRoute from "./Routes/GamingRoute";
-import NxtwatchContext from "./Contexts/NxtWatchContexts";
+import SavedVideoRoute from "./Routes/SavedVideoRoute";
+
 import NotFoundRoute from "./Routes/NotFoundRoute";
-import SavedVideoRoute from "./Routes/SavedvideoRoute";
-import VideoDetailsRoute from "./Routes/VideoIntemDetailRoute";
+import NxtwatchProvider from "./Contexts/NxtwatchContextFunctionality";
+import VideoDetailsRoute from "./Routes/VideoItemsDetailRoute";
 
-const App = () => {
-  const [isDarkMode, SetIsDarkMode] = useState(true);
-  const [showBanner, setShowBanner] = useState(true);
-  const [savedVideo] = useState([]);
-
-  const closeBanner = () => {
-    setShowBanner(false);
-  };
-  const toggleDarkMode = () => {
-    SetIsDarkMode(!isDarkMode);
-  };
-
+const App: React.FC = () => {
   return (
-    <NxtwatchContext.Provider
-      value={{
-        isDarkMode,
-        showBanner,
-        savedVideo,
-        toggleDarkMode: toggleDarkMode,
-        closeBanner: closeBanner,
-      }}
-    >
+    <NxtwatchProvider>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={LoginPage} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path={`/trending`} component={TrendingRoute} />
-          <ProtectedRoute exact path={`/gaming`} component={GamingRoute} />
+          <ProtectedRoute exact path="/trending" component={TrendingRoute} />
+          <ProtectedRoute exact path="/gaming" component={GamingRoute} />
           <ProtectedRoute
             exact
-            path={`/savedVideos`}
+            path="/savedVideos"
             component={SavedVideoRoute}
           />
-
           <ProtectedRoute
             exact
-            path={`/Nxtwatch/video/:id`}
+            path="/Nxtwatch/video/:id"
             component={VideoDetailsRoute}
           />
           <Route path="/not-found" component={NotFoundRoute} />
           <Redirect to="/not-found" />
         </Switch>
       </BrowserRouter>
-    </NxtwatchContext.Provider>
+    </NxtwatchProvider>
   );
 };
 

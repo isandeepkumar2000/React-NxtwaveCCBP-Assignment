@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import GamingContent from "../../Components/GamingContent";
 import HeaderNxtwatch from "../../Components/NavBar";
 import SideBar from "../../Components/SideBar";
@@ -8,29 +8,24 @@ import {
   GamingPageContent,
   GamingPageRightSection,
 } from "./styleComponents";
+import { NxtwatchContextType } from "../../ComponentsTypes";
 
 export type GamingRoutes = {
   darkMode: boolean;
 };
 
 const GamingRoute = () => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <GamingPage darkMode={isDarkMode}>
-            <HeaderNxtwatch />
-            <GamingPageContent>
-              <SideBar />
-              <GamingPageRightSection darkMode={isDarkMode}>
-                <GamingContent />
-              </GamingPageRightSection>
-            </GamingPageContent>
-          </GamingPage>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <GamingPage darkMode={isDarkMode}>
+      <HeaderNxtwatch />
+      <GamingPageContent>
+        <SideBar />
+        <GamingPageRightSection darkMode={isDarkMode}>
+          <GamingContent />
+        </GamingPageRightSection>
+      </GamingPageContent>
+    </GamingPage>
   );
 };
 

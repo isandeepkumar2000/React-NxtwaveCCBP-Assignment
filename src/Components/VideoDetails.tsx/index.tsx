@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
 import Cookies from "js-cookie";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { ThreeDots } from "react-loader-spinner";
 
-import {
-  VideoDetailLoaderContainer,
-} from "./styleComponets";
+import { VideoDetailLoaderContainer } from "./styleComponets";
 
 import { jwtToken } from "../../Constants/appConstants";
 import VideoDetailsItems from "../VideoDetailsItems";
 import FailureView from "../Failure";
+import { NxtwatchContextType } from "../../ComponentsTypes";
 
 export type VideoDetailType = {
   title: string;
   id: string;
   thumbnailUrl: string;
   videoUrl: string;
-
   viewCount: string;
   publishedAt: string;
   description: string;
@@ -46,6 +44,7 @@ export type VideoDetailsStyleActive = {
 };
 
 const VideoDetails: React.FC<VideoIdType> = (props) => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   const { id } = props;
   const [videoDetail, setVideoDetails] = useState<VideoDetailType | null>(null);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
@@ -94,35 +93,24 @@ const VideoDetails: React.FC<VideoIdType> = (props) => {
   };
 
   const renderContent = () => {
-    console.log("API STATUS_testing", apiStatus);
-    return (
-      <NxtwatchContext.Consumer>
-        {(value) => {
-          const { isDarkMode } = value;
-          switch (apiStatus) {
-            case ApiStatusConstant.loading:
-              return (
-                <VideoDetailLoaderContainer>
-                  <ThreeDots
-                    color={isDarkMode ? "white" : "#1e293b"}
-                    height={80}
-                    width={80}
-                  />
-                </VideoDetailLoaderContainer>
-          
-              );
-            case ApiStatusConstant.failed:
-              return (
-               <FailureView />
-              );
-            case ApiStatusConstant.success:
-              return renderVideoDetails();
-            default:
-              return null;
-          }
-        }}
-      </NxtwatchContext.Consumer>
-    );
+    switch (apiStatus) {
+      case ApiStatusConstant.loading:
+        return (
+          <VideoDetailLoaderContainer>
+            <ThreeDots
+              color={isDarkMode ? "white" : "#1e293b"}
+              height={80}
+              width={80}
+            />
+          </VideoDetailLoaderContainer>
+        );
+      case ApiStatusConstant.failed:
+        return <FailureView />;
+      case ApiStatusConstant.success:
+        return renderVideoDetails();
+      default:
+        return null;
+    }
   };
 
   return <div>{renderContent()}</div>;

@@ -6,7 +6,8 @@ const NxtwatchContext = React.createContext<NxtwatchContextType>({
   toggleDarkMode: () => {},
   showBanner: true,
   closeBanner: () => {},
-  savedVideo: []
+  savedVideo: [],
+  setSavedVideo: () => {},
 });
 
 export default NxtwatchContext;

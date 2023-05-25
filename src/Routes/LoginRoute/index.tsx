@@ -1,23 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import LoginPage from "../../Components/LoginPage";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import { LoginPageStyle } from "./styleComponents";
+import { NxtwatchContextType } from "../../ComponentsTypes";
 export type LoginRouteStyle = {
   darkMode: boolean;
 };
 
 const LoginRoute = () => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <LoginPageStyle darkMode={isDarkMode}>
-            <LoginPage />
-          </LoginPageStyle>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <LoginPageStyle darkMode={isDarkMode}>
+      <LoginPage />
+    </LoginPageStyle>
   );
 };
 

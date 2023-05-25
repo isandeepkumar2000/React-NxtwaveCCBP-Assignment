@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { jwtToken } from "../../Constants/appConstants";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
@@ -16,9 +16,14 @@ import {
   HomeVideoListContainer,
 } from "./styleComponents";
 import FailureView from "../Failure";
-import { GettingPP, VideoTypeList } from "../../ComponentsTypes";
+import {
+  GettingPP,
+  NxtwatchContextType,
+  VideoTypeList,
+} from "../../ComponentsTypes";
 
 const HomeContent: React.FC<GettingPP> = (props) => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   const { searchValue } = props;
   const [videoList, setVideoList] = useState<VideoTypeList[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
@@ -73,66 +78,48 @@ const HomeContent: React.FC<GettingPP> = (props) => {
   };
   const renderNoSearchResults = () => {
     return (
-      <NxtwatchContext.Consumer>
-        {(value) => {
-          const { isDarkMode } = value;
-          return (
-            <>
-              <FailureView />
-            </>
-          );
-        }}
-      </NxtwatchContext.Consumer>
-    );
-  };
-
-  const renderContent = () => {
-    return (
       <>
-        <NxtwatchContext.Consumer>
-          {(value) => {
-            const { isDarkMode } = value;
-
-            switch (apiStatus) {
-              case ApiStatusConstant.loading:
-                return (
-                  <HomeLoaderContainer>
-                    <ThreeDots
-                      color={isDarkMode ? "white" : "#1e293b"}
-                      height={80}
-                      width={80}
-                    />
-                  </HomeLoaderContainer>
-                );
-              case ApiStatusConstant.failed:
-                return <FailureView />;
-              case ApiStatusConstant.success:
-                return renderVideoList();
-              case ApiStatusConstant.empty:
-                return (
-                  <HomeEmptyContainer darkMode={isDarkMode}>
-                    <HomeEmptyImage
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-                      alt="no video"
-                    />
-                    <HomeEmptyHeading>No Search Result Found</HomeEmptyHeading>
-                    <HomeEmptyText darkMode={isDarkMode}>
-                      Try different keyword or remove search filters
-                    </HomeEmptyText>
-                    <HomeFailureRetryBtn onClick={getGamingApiDetails}>
-                      Retry
-                    </HomeFailureRetryBtn>
-                  </HomeEmptyContainer>
-                );
-              default:
-                return null;
-            }
-          }}
-        </NxtwatchContext.Consumer>
+        <FailureView />
       </>
     );
   };
 
+  const renderContent = () => {
+    switch (apiStatus) {
+      case ApiStatusConstant.loading:
+        return (
+          <HomeLoaderContainer>
+            <ThreeDots
+              color={isDarkMode ? "white" : "#1e293b"}
+              height={80}
+              width={80}
+            />
+          </HomeLoaderContainer>
+        );
+      case ApiStatusConstant.failed:
+        return <FailureView />;
+      case ApiStatusConstant.success:
+        return renderVideoList();
+      case ApiStatusConstant.empty:
+        return (
+          <HomeEmptyContainer darkMode={isDarkMode}>
+            <HomeEmptyImage
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              alt="no video"
+            />
+            <HomeEmptyHeading>No Search Result Found</HomeEmptyHeading>
+            <HomeEmptyText darkMode={isDarkMode}>
+              Try different keyword or remove search filters
+            </HomeEmptyText>
+            <HomeFailureRetryBtn onClick={getGamingApiDetails}>
+              Retry
+            </HomeFailureRetryBtn>
+          </HomeEmptyContainer>
+        );
+      default:
+        return null;
+    }
+  };
   return (
     <div>
       {videoList.length === 0 ? renderNoSearchResults() : renderContent()}

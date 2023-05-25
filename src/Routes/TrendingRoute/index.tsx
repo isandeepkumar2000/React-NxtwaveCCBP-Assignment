@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavBar from "../../Components/NavBar";
 
 import SideBar from "../../Components/SideBar";
@@ -8,30 +8,25 @@ import {
   TrendingPage,
   TrendingPageContent,
   TrendingPageRightSection,
-} from "./syleComponets";
+} from "./styleComponets";
+import { NxtwatchContextType } from "../../ComponentsTypes";
 
 export type TrendingRouteStyle = {
   darkMode: boolean;
 };
 
 const TrendingRoute = () => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <TrendingPage darkMode={isDarkMode}>
-            <NavBar />
-            <TrendingPageContent>
-              <SideBar />
-              <TrendingPageRightSection darkMode={isDarkMode}>
-                <TrendingContent />
-              </TrendingPageRightSection>
-            </TrendingPageContent>
-          </TrendingPage>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <TrendingPage darkMode={isDarkMode}>
+      <NavBar />
+      <TrendingPageContent>
+        <SideBar />
+        <TrendingPageRightSection darkMode={isDarkMode}>
+          <TrendingContent />
+        </TrendingPageRightSection>
+      </TrendingPageContent>
+    </TrendingPage>
   );
 };
 

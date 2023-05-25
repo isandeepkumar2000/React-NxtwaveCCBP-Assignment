@@ -1,7 +1,5 @@
-
-
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { MdLocalFireDepartment } from "react-icons/md";
 import ApiStatusConstant from "../../ConstantsApiStatus/ApiConstantStatus";
@@ -17,10 +15,10 @@ import {
 import { jwtToken } from "../../Constants/appConstants";
 import TrendingContentItem from "../TrendingContentItem";
 import FailureView from "../Failure";
-import { TendingContentType } from "../../ComponentsTypes";
-
+import { NxtwatchContextType, TendingContentType } from "../../ComponentsTypes";
 
 const TrendingContent = () => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   const [trending, setTrending] = useState<TendingContentType[]>([]);
   const [apiStatus, setApiStatus] = useState(ApiStatusConstant.loading);
 
@@ -64,64 +62,46 @@ const TrendingContent = () => {
   const renderTrendingVideosList = () => {
     return (
       <>
-        <NxtwatchContext.Consumer>
-          {(value) => {
-            const { isDarkMode } = value;
-
-            return (
-              <TrendingVideoSuccessView>
-                <TrendingVideoHeaderContainer darkMode={isDarkMode}>
-                  <TrendingVideoHeaderIconContainer darkMode={isDarkMode}>
-                    <MdLocalFireDepartment className="nxtwatch-savedVideo-icons" />
-                  </TrendingVideoHeaderIconContainer>
-                  <h1>Trending</h1>
-                </TrendingVideoHeaderContainer>
-                <TrendingVideoListContainer>
-                  {trending.map((item) => {
-                    return (
-                      <TrendingContentItem key={item.id} trending={item} />
-                    );
-                  })}
-                </TrendingVideoListContainer>
-              </TrendingVideoSuccessView>
-            );
-          }}
-        </NxtwatchContext.Consumer>
+        <TrendingVideoSuccessView>
+          <TrendingVideoHeaderContainer darkMode={isDarkMode}>
+            <TrendingVideoHeaderIconContainer darkMode={isDarkMode}>
+              <MdLocalFireDepartment className="nxtwatch-savedVideo-icons" />
+            </TrendingVideoHeaderIconContainer>
+            <h1>Trending</h1>
+          </TrendingVideoHeaderContainer>
+          <TrendingVideoListContainer>
+            {trending.map((item) => {
+              return <TrendingContentItem key={item.id} trending={item} />;
+            })}
+          </TrendingVideoListContainer>
+        </TrendingVideoSuccessView>
       </>
     );
   };
 
   const renderContent = () => {
-    console.log();
-    return (
-      <NxtwatchContext.Consumer>
-        {(value) => {
-          const { isDarkMode } = value;
-          switch (apiStatus) {
-            case ApiStatusConstant.loading:
-              return (
-                <TrendingLoaderContainer>
-                  <ThreeDots
-                    color={isDarkMode ? "white" : "#1e293b"}
-                    height={80}
-                    width={80}
-                  />
-                </TrendingLoaderContainer>
-              );
-            case ApiStatusConstant.failed:
-              return (
-                <>
-                 <FailureView/>
-                </>
-              );
-            case ApiStatusConstant.success:
-              return renderTrendingVideosList();
-            default:
-              return null;
-          }
-        }}
-      </NxtwatchContext.Consumer>
-    );
+    switch (apiStatus) {
+      case ApiStatusConstant.loading:
+        return (
+          <TrendingLoaderContainer>
+            <ThreeDots
+              color={isDarkMode ? "white" : "#1e293b"}
+              height={80}
+              width={80}
+            />
+          </TrendingLoaderContainer>
+        );
+      case ApiStatusConstant.failed:
+        return (
+          <>
+            <FailureView />
+          </>
+        );
+      case ApiStatusConstant.success:
+        return renderTrendingVideosList();
+      default:
+        return null;
+    }
   };
 
   return <>{renderContent()}</>;

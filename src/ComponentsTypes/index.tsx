@@ -4,6 +4,7 @@ export type NxtwatchContextType = {
   showBanner: boolean;
   closeBanner: () => void;
   savedVideo: VideoDetailType[];
+  setSavedVideo: React.Dispatch<React.SetStateAction<VideoDetailType[]>>;
 };
 
 export type VideoDetailType = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 
 import { ContainerLink } from "../SavedVideoItem/styleComponets";
@@ -8,7 +8,7 @@ import {
   GameItemTitle,
   GameItemViewCount,
 } from "./styleComponents";
-import { GamingContentType } from "../../ComponentsTypes";
+import { GamingContentType, NxtwatchContextType } from "../../ComponentsTypes";
 
 interface GameVideoPr {
   data: GamingContentType;
@@ -20,26 +20,20 @@ export type GameVideItemStyle = {
 
 const GameVideoItem: React.FC<GameVideoPr> = (props) => {
   const { data } = props;
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <ContainerLink
-            to={"/Nxtwatch/video/" + data.id}
-            className="nxtwatch-gamevideo-item"
-          >
-            <GameItemContainer>
-              <GameItemImage src={data.thumbnailUrl} />
-              <GameItemTitle darkMode={isDarkMode}>{data.title}</GameItemTitle>
-              <GameItemViewCount darkMode={isDarkMode}>
-                {data.viewCount} Watching Worldwide
-              </GameItemViewCount>
-            </GameItemContainer>
-          </ContainerLink>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <ContainerLink
+      to={"/Nxtwatch/video/" + data.id}
+      className="nxtwatch-gamevideo-item"
+    >
+      <GameItemContainer>
+        <GameItemImage src={data.thumbnailUrl} />
+        <GameItemTitle darkMode={isDarkMode}>{data.title}</GameItemTitle>
+        <GameItemViewCount darkMode={isDarkMode}>
+          {data.viewCount} Watching Worldwide
+        </GameItemViewCount>
+      </GameItemContainer>
+    </ContainerLink>
   );
 };
 

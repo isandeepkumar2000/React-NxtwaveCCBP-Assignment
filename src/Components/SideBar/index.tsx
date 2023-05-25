@@ -1,23 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import NxtwatchContext from "../../Contexts/NxtWatchContexts";
 import ContactUs from "../ContactOus";
 import NavLinkNxtwatch from "../NavLink";
 import { SideBarPage } from "./styleComponets";
-
+import { NxtwatchContextType } from "../../ComponentsTypes";
 
 const SideBar = () => {
+  const { isDarkMode } = useContext<NxtwatchContextType>(NxtwatchContext);
   return (
-    <NxtwatchContext.Consumer>
-      {(value) => {
-        const { isDarkMode } = value;
-        return (
-          <SideBarPage darkMode={isDarkMode}>
-            <NavLinkNxtwatch />
-            <ContactUs />
-          </SideBarPage>
-        );
-      }}
-    </NxtwatchContext.Consumer>
+    <SideBarPage darkMode={isDarkMode}>
+      <NavLinkNxtwatch />
+      <ContactUs />
+    </SideBarPage>
   );
 };
 

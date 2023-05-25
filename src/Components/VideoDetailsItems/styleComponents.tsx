@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VideoItemActibve, VideoItemStyle } from ".";
+import { VideoItemActive, VideoItemStyle } from ".";
 
 export const VideoItemContent = styled.div`
   padding: 30px 20px;
@@ -24,7 +24,7 @@ export const VideoItemActionBtn = styled.div`
   cursor: pointer;
   margin-right: 20px;
   display: flex;
-  color: ${(props: VideoItemActibve) =>
+  color: ${(props: VideoItemActive) =>
     props.isActive ? "#ff0b37" : "#64748b"};
 `;
 export const VideoItemActionText = styled.div`
